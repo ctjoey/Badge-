@@ -17,7 +17,7 @@ function SegmentStrip({ elapsed, bar }: { elapsed: number; bar: string }) {
           key={i}
           className={cx(
             "h-3 rounded-sm sm:h-4",
-            i < elapsed ? bar : "bg-slate-300/70 dark:bg-slate-700/70",
+            i < elapsed ? bar : "bg-zinc-300/70 dark:bg-zinc-700/70",
           )}
         />
       ))}
@@ -48,7 +48,7 @@ export function CountdownCard({
         }
       }}
     >
-      <label className="flex flex-col gap-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+      <label className="flex flex-col gap-1 text-xs font-semibold text-zinc-600 dark:text-zinc-300">
         Last badge / UA deactivation date
         <input
           type="date"
@@ -77,7 +77,7 @@ export function CountdownCard({
       <section className={cx("rounded-2xl border-2 p-5 sm:p-6", s.panel)}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               30-Day Gap Clock
             </p>
             <p className={cx("mt-1 flex items-center gap-2 text-3xl font-black sm:text-4xl", s.text)}>
@@ -87,15 +87,15 @@ export function CountdownCard({
           <Pill className={s.pill}>On-site</Pill>
         </div>
         {o ? (
-          <p className="mt-3 text-sm text-slate-700 dark:text-slate-300">
+          <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
             Badged at <strong>{[o.utility, o.site].filter(Boolean).join(" — ")}</strong>
             {o.unitLabel && <> · {o.unitLabel}</>} since {formatDisplayDate(o.startDate)} (
             {outageDurationDays(o, today)} days).
           </p>
         ) : (
-          <p className="mt-3 text-sm text-slate-700 dark:text-slate-300">Marked as currently badged.</p>
+          <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">Marked as currently badged.</p>
         )}
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
           The 30-day clock starts the day you out-process. Use <em>Mark Outage Complete</em> or switch to{" "}
           <em>Between Outages</em> when your badge is deactivated.
         </p>
@@ -105,12 +105,12 @@ export function CountdownCard({
 
   if (!ua.gap || !ua.deactivationDate) {
     return (
-      <section className="rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 sm:p-6 dark:border-slate-700 dark:bg-slate-900">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+      <section className="rounded-2xl border-2 border-dashed border-zinc-300 bg-white p-5 sm:p-6 dark:border-zinc-700 dark:bg-zinc-900">
+        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           30-Day Gap Clock
         </p>
         <p className="mt-1 text-2xl font-black">No deactivation date yet</p>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
           Enter the date your badge / UA was last deactivated, or log a completed outage.
         </p>
         {editor}
@@ -126,7 +126,7 @@ export function CountdownCard({
   return (
     <section className={cx("rounded-2xl border-2 p-5 sm:p-6", s.panel)} aria-live="polite">
       <div className="flex items-start justify-between gap-3">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           30-Day Continuous Access Window
         </p>
         <Pill className={s.pill}>{future ? "Scheduled" : s.label}</Pill>
@@ -137,7 +137,7 @@ export function CountdownCard({
           <p className={cx("flex items-center gap-2 text-3xl font-black sm:text-4xl", s.text)}>
             <TriangleAlert className="h-8 w-8 shrink-0" /> WINDOW EXPIRED
           </p>
-          <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+          <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
             <strong className="tabular">{g.daysSince}</strong> days since deactivation. Continuous access terminated on{" "}
             <strong>{formatDisplayDate(g.terminationDate)}</strong> (Day 31) — full re-qualification under the
             reinstatement / initial criteria will apply.
@@ -146,7 +146,7 @@ export function CountdownCard({
       ) : future ? (
         <div className="mt-2">
           <p className={cx("text-3xl font-black", s.text)}>Out-processing scheduled</p>
-          <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+          <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
             Deactivation on {formatDisplayDate(g.deactivationDate)} — the clock starts then.
           </p>
         </div>
@@ -157,7 +157,7 @@ export function CountdownCard({
             <p className="text-lg font-bold leading-tight sm:text-xl">
               {g.daysRemaining === 0 ? "LAST DAY in 30-Day Window" : `Day${g.daysRemaining === 1 ? "" : "s"} Left in 30-Day Window`}
             </p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
               Day <span className="tabular font-semibold">{g.daysSince}</span> of 30 since deactivation
             </p>
           </div>
@@ -172,14 +172,14 @@ export function CountdownCard({
 
       <dl className="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
         <div>
-          <dt className="text-xs text-slate-500 dark:text-slate-400">Badge deactivated (Day 0)</dt>
+          <dt className="text-xs text-zinc-500 dark:text-zinc-400">Badge deactivated (Day 0)</dt>
           <dd className="flex items-center gap-2 font-semibold">
             {formatDisplayDate(g.deactivationDate)}
-            {ua.isOverride && <Pill className="bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200">manual</Pill>}
+            {ua.isOverride && <Pill className="bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">manual</Pill>}
           </dd>
         </div>
         <div>
-          <dt className="text-xs text-slate-500 dark:text-slate-400">
+          <dt className="text-xs text-zinc-500 dark:text-zinc-400">
             {expired ? "Window closed after" : "Must in-process by (Day 30)"}
           </dt>
           <dd className={cx("font-semibold", !expired && s.text)}>{formatDisplayDate(g.windowLastDay)}</dd>
@@ -214,7 +214,7 @@ export function CountdownCard({
         )}
       </div>
       {!expired && (
-        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+        <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
           Calendar file includes alarms on Day 20, 25, 28 and 29.
         </p>
       )}

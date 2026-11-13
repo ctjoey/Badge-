@@ -29,7 +29,7 @@ export function DataView({ data, today, actions }: { data: AppData; today: ISODa
     <div className="flex flex-col gap-4">
       <Card>
         <CardTitle icon={<Lock className="h-4 w-4" />}>Privacy</CardTitle>
-        <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700 dark:text-slate-300">
+        <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-zinc-300">
           <li>All records are stored only in this browser on this device (localStorage). Nothing is sent to a server.</li>
           <li>Nuke30 never asks for SSNs, driver&apos;s license or badge numbers, badge photos, or site security details — don&apos;t put them in notes.</li>
           <li>Use JSON backups to move your data between devices. You control the file.</li>
@@ -59,7 +59,7 @@ export function DataView({ data, today, actions }: { data: AppData; today: ISODa
             }}
           />
         </div>
-        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Saves as {backupFilename()}</p>
+        <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">Saves as {backupFilename()}</p>
         {message && (
           <p
             role="status"

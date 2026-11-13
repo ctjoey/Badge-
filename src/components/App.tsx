@@ -6,7 +6,6 @@ import { useToday } from "@/hooks/useToday";
 import { formatDisplayDate } from "@/utils/dateLogic";
 import { DataView } from "./data/DataView";
 import { Dashboard } from "./dashboard/Dashboard";
-import { Logo } from "./Logo";
 import { OutagesView } from "./outages/OutagesView";
 import { PHQView } from "./phq/PHQView";
 import { ThemeToggle } from "./ThemeToggle";
@@ -34,15 +33,17 @@ export function App() {
 
   return (
     <div className="min-h-dvh pb-[env(safe-area-inset-bottom)]">
-      <header className="sticky top-0 z-20 border-b border-slate-800 bg-slate-950/95 pt-[env(safe-area-inset-top)] text-white backdrop-blur">
+      <header className="sticky top-0 z-20 bg-black/95 pt-[env(safe-area-inset-top)] text-white backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-3">
-            <Logo size={38} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-96.png" alt="Nuke30 logo" width={44} height={44} className="h-11 w-11 rounded-xl" />
             <div className="leading-tight">
-              <p className="text-lg font-black tracking-tight">
-                Nuke<span className="text-amber-400">30</span>
+              <p className="text-xl font-black italic tracking-tight uppercase">
+                <span className="wordmark-silver">Nuke</span>
+                <span className="neon-magenta">30</span>
               </p>
-              <p className="text-[11px] text-slate-400">UA &amp; Outage Tracker{hydrated && <> · {formatDisplayDate(today)}</>}</p>
+              <p className="text-[11px] text-zinc-400">Unescorted Access Reminder{hydrated && <> · {formatDisplayDate(today)}</>}</p>
             </div>
           </div>
           <ThemeToggle />
@@ -57,8 +58,8 @@ export function App() {
               className={cx(
                 "flex shrink-0 items-center gap-1.5 border-b-2 px-3 py-2.5 text-sm font-semibold transition-colors",
                 tab === t.id
-                  ? "border-amber-400 text-white"
-                  : "border-transparent text-slate-400 hover:text-slate-200",
+                  ? "border-magenta-500 text-white"
+                  : "border-transparent text-zinc-400 hover:text-zinc-200",
               )}
             >
               {t.icon}
@@ -66,20 +67,21 @@ export function App() {
             </button>
           ))}
           <span
-            className="flex shrink-0 cursor-not-allowed items-center gap-1.5 border-b-2 border-transparent px-3 py-2.5 text-sm font-semibold text-slate-600"
+            className="flex shrink-0 cursor-not-allowed items-center gap-1.5 border-b-2 border-transparent px-3 py-2.5 text-sm font-semibold text-zinc-600"
             aria-disabled="true"
             title="Training & Qualification Tracker — coming in v2"
           >
             <GraduationCap className="h-4 w-4" />
             Training
-            <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] uppercase text-slate-400">v2</span>
+            <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] uppercase text-zinc-400">v2</span>
           </span>
         </nav>
+        <div className="hazard-stripe h-1.5" aria-hidden />
       </header>
 
       <main className="mx-auto max-w-5xl px-4 py-5">
         {!hydrated ? (
-          <div className="h-64 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-900" aria-label="Loading" />
+          <div className="h-64 animate-pulse rounded-2xl bg-zinc-200 dark:bg-zinc-900" aria-label="Loading" />
         ) : tab === "dashboard" ? (
           <Dashboard
             data={data}
@@ -103,7 +105,7 @@ export function App() {
         )}
       </main>
 
-      <footer className="mx-auto max-w-5xl px-4 pb-8 text-xs text-slate-500 dark:text-slate-500">
+      <footer className="mx-auto max-w-5xl px-4 pb-8 text-xs text-zinc-500 dark:text-zinc-500">
         Nuke30 is a personal planning aid based on NRC 10 CFR § 73.56 timeframes, not an official access determination.
         Your licensee&apos;s access authorization program and reviewing official have final say. Data stays on this
         device.

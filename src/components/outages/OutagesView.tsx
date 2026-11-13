@@ -29,11 +29,11 @@ function GapChip({ t }: { t: Transition }) {
   let text: string;
 
   if (t.gapDays === null) {
-    tone = "border-slate-300 bg-slate-50 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300";
+    tone = "border-zinc-300 bg-zinc-50 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300";
     icon = <ArrowDown className="h-4 w-4 shrink-0" />;
     text = "Gap TBD — set an out-processing date on the active assignment to project this gap.";
   } else if (t.overlap) {
-    tone = "border-cyan-500/40 bg-cyan-50 text-cyan-900 dark:bg-cyan-500/10 dark:text-cyan-200";
+    tone = "border-magenta-500/40 bg-magenta-50 text-magenta-900 dark:bg-magenta-500/10 dark:text-magenta-200";
     icon = <ArrowDown className="h-4 w-4 shrink-0" />;
     text =
       t.gapDays === 0
@@ -51,7 +51,7 @@ function GapChip({ t }: { t: Transition }) {
 
   return (
     <div className="flex items-center gap-2 pl-3">
-      <div className="h-6 w-0.5 bg-slate-300 dark:bg-slate-700" aria-hidden />
+      <div className="h-6 w-0.5 bg-zinc-300 dark:bg-zinc-700" aria-hidden />
       <p className={cx("flex items-start gap-2 rounded-lg border px-3 py-1.5 text-xs font-semibold sm:text-sm", tone)}>
         {icon}
         <span>{text}</span>
@@ -117,8 +117,8 @@ export function OutagesView({
               className={cx(
                 "rounded-full px-3 py-1.5 text-xs font-semibold transition-colors sm:text-sm",
                 filter === f.value
-                  ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900"
-                  : "bg-slate-200 text-slate-700 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
+                  ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
+                  : "bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700",
               )}
             >
               {f.label} <span className="tabular opacity-70">{counts[f.value]}</span>
@@ -150,7 +150,7 @@ export function OutagesView({
       )}
 
       {outages.length === 0 && !formOpen && (
-        <p className="rounded-xl border-2 border-dashed border-slate-300 p-6 text-center text-sm text-slate-600 dark:border-slate-700 dark:text-slate-400">
+        <p className="rounded-xl border-2 border-dashed border-zinc-300 p-6 text-center text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">
           No outages logged yet. Add one, or load demo data from the <strong>Data</strong> tab.
         </p>
       )}
@@ -161,14 +161,14 @@ export function OutagesView({
           .sort((a, b) => (a.startDate < b.startDate ? 1 : a.startDate > b.startDate ? -1 : 0));
         if (items.length === 0) {
           return filter === section.status ? (
-            <p key={section.status} className="text-sm text-slate-500 dark:text-slate-400">
+            <p key={section.status} className="text-sm text-zinc-500 dark:text-zinc-400">
               No {section.title.toLowerCase()}.
             </p>
           ) : null;
         }
         return (
           <section key={section.status} className="flex flex-col gap-2">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               {section.title}
             </h2>
             {items.map((o) => {

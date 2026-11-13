@@ -27,11 +27,11 @@ function TimerRow({
   children?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2 border-t border-slate-200 pt-4 first:border-t-0 first:pt-0 dark:border-slate-800">
+    <div className="flex flex-col gap-2 border-t border-zinc-200 pt-4 first:border-t-0 first:pt-0 dark:border-zinc-800">
       <div className="flex items-start justify-between gap-2">
         <div>
           <p className="font-semibold">{title}</p>
-          <p className="text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">{subtitle}</p>
         </div>
         {right}
       </div>
@@ -42,12 +42,12 @@ function TimerRow({
 }
 
 function screeningTone(s: ScreeningStatus | null) {
-  if (!s) return { bar: "bg-slate-400", pill: "", label: "" };
+  if (!s) return { bar: "bg-zinc-400", pill: "", label: "" };
   if (s.state === "overdue")
     return { bar: "bg-red-500", pill: "bg-red-100 text-red-800 dark:bg-red-500/15 dark:text-red-300", label: "Overdue" };
   if (s.state === "due-soon")
     return { bar: "bg-amber-500", pill: "bg-amber-100 text-amber-900 dark:bg-amber-500/15 dark:text-amber-300", label: "Due soon" };
-  return { bar: "bg-cyan-500", pill: "bg-cyan-100 text-cyan-900 dark:bg-cyan-500/15 dark:text-cyan-300", label: "Current" };
+  return { bar: "bg-magenta-500", pill: "bg-magenta-100 text-magenta-900 dark:bg-magenta-500/15 dark:text-magenta-300", label: "Current" };
 }
 
 function screeningSubtitle(s: ScreeningStatus | null) {
@@ -105,10 +105,10 @@ export function SecondaryTimers({
             )
           }
           progress={r365 ? r365.progress : null}
-          tone={r365?.expired ? "bg-slate-500" : "bg-violet-500"}
+          tone={r365?.expired ? "bg-zinc-500" : "bg-yellow-400"}
           right={
             r365 && (
-              <Pill className="bg-violet-100 text-violet-900 dark:bg-violet-500/15 dark:text-violet-300">
+              <Pill className="bg-yellow-100 text-yellow-900 dark:bg-yellow-400/15 dark:text-yellow-200">
                 Day {Math.max(0, r365.daysElapsed)}
               </Pill>
             )
@@ -122,7 +122,7 @@ export function SecondaryTimers({
           tone={psychTone.bar}
           right={psych && <Pill className={psychTone.pill}>{psychTone.label}</Pill>}
         >
-          <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+          <label className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
             Last evaluation
             <input
               type="date"
@@ -141,7 +141,7 @@ export function SecondaryTimers({
           tone={bgTone.bar}
           right={bg && <Pill className={bgTone.pill}>{bgTone.label}</Pill>}
         >
-          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-600 dark:text-zinc-400">
             <label className="flex items-center gap-2">
               Last update
               <input

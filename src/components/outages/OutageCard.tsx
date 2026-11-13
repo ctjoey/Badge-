@@ -7,8 +7,8 @@ import { Button, cx, Pill } from "../ui";
 const STATUS_STYLE: Record<Outage["status"], { label: string; pill: string; bar: string }> = {
   upcoming: {
     label: "Upcoming",
-    pill: "bg-cyan-100 text-cyan-900 dark:bg-cyan-500/15 dark:text-cyan-300",
-    bar: "border-l-cyan-500",
+    pill: "bg-magenta-100 text-magenta-900 dark:bg-magenta-500/15 dark:text-magenta-300",
+    bar: "border-l-magenta-500",
   },
   active: {
     label: "Active",
@@ -17,8 +17,8 @@ const STATUS_STYLE: Record<Outage["status"], { label: string; pill: string; bar:
   },
   completed: {
     label: "Completed",
-    pill: "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200",
-    bar: "border-l-slate-400 dark:border-l-slate-600",
+    pill: "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200",
+    bar: "border-l-zinc-400 dark:border-l-zinc-600",
   },
 };
 
@@ -45,7 +45,7 @@ export function OutageCard({
   return (
     <article
       className={cx(
-        "rounded-xl border border-l-4 border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900",
+        "rounded-xl border border-l-4 border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900",
         s.bar,
       )}
     >
@@ -54,17 +54,17 @@ export function OutageCard({
           <div className="flex flex-wrap items-center gap-2">
             <Pill className={s.pill}>{s.label}</Pill>
             {startsIn !== null && (
-              <Pill className="bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              <Pill className="bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
                 {startsIn > 0 ? `Starts in ${startsIn} day${startsIn === 1 ? "" : "s"}` : startsIn === 0 ? "Starts today" : `Start date passed`}
               </Pill>
             )}
           </div>
           <h3 className="mt-1 text-base font-bold">{title}</h3>
-          {outage.unitLabel && <p className="text-sm text-slate-600 dark:text-slate-400">{outage.unitLabel}</p>}
+          {outage.unitLabel && <p className="text-sm text-zinc-600 dark:text-zinc-400">{outage.unitLabel}</p>}
         </div>
         <div className="text-right">
           <p className="tabular text-2xl font-black leading-none">{duration}</p>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
             day{duration === 1 ? "" : "s"}
             {outage.endDate === null ? " so far" : outage.status === "upcoming" ? " planned" : ""}
           </p>
@@ -73,21 +73,21 @@ export function OutageCard({
 
       <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
         <div>
-          <dt className="text-xs text-slate-500 dark:text-slate-400">In-processing</dt>
+          <dt className="text-xs text-zinc-500 dark:text-zinc-400">In-processing</dt>
           <dd className="font-semibold">{formatDisplayDate(outage.startDate)}</dd>
         </div>
         <div>
-          <dt className="text-xs text-slate-500 dark:text-slate-400">Out-processing</dt>
+          <dt className="text-xs text-zinc-500 dark:text-zinc-400">Out-processing</dt>
           <dd className="font-semibold">{outage.endDate ? formatDisplayDate(outage.endDate) : "TBD / Ongoing"}</dd>
         </div>
         {(outage.employer || outage.role) && (
-          <div className="col-span-2 mt-1 text-slate-600 dark:text-slate-400">
+          <div className="col-span-2 mt-1 text-zinc-600 dark:text-zinc-400">
             {[outage.role, outage.employer].filter(Boolean).join(" · ")}
           </div>
         )}
       </dl>
       {outage.notes && (
-        <p className="mt-2 whitespace-pre-wrap rounded-lg bg-slate-50 p-2 text-sm text-slate-600 dark:bg-slate-950 dark:text-slate-400">
+        <p className="mt-2 whitespace-pre-wrap rounded-lg bg-zinc-50 p-2 text-sm text-zinc-600 dark:bg-zinc-950 dark:text-zinc-400">
           {outage.notes}
         </p>
       )}

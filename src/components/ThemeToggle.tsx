@@ -15,7 +15,7 @@ export function ThemeToggle() {
     const next: Theme = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.classList.toggle("dark", next === "dark");
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", next === "dark" ? "#0f172a" : "#f1f5f9");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", next === "dark" ? "#000000" : "#f4f4f5");
     try {
       localStorage.setItem(THEME_KEY, next);
     } catch {
@@ -27,7 +27,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="rounded-lg p-2 text-slate-300 hover:bg-slate-800 hover:text-white"
+      className="rounded-lg p-2 text-zinc-300 hover:bg-zinc-800 hover:text-white"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >

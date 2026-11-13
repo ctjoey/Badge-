@@ -23,7 +23,7 @@ export function StatusToggle({
     <div
       role="radiogroup"
       aria-label="Unescorted access status"
-      className="grid grid-cols-2 gap-1 rounded-xl border border-slate-200 bg-slate-200/60 p-1 dark:border-slate-800 dark:bg-slate-900"
+      className="grid grid-cols-2 gap-1 rounded-xl border border-zinc-200 bg-zinc-200/60 p-1 dark:border-zinc-800 dark:bg-zinc-900"
     >
       <button
         type="button"
@@ -34,7 +34,7 @@ export function StatusToggle({
           "flex items-center justify-center gap-2 rounded-lg px-2 py-2.5 text-left text-xs font-semibold transition-colors sm:text-sm",
           ua.isActive
             ? "bg-emerald-600 text-white shadow"
-            : "text-slate-600 hover:bg-white/70 dark:text-slate-400 dark:hover:bg-slate-800",
+            : "text-zinc-600 hover:bg-white/70 dark:text-zinc-400 dark:hover:bg-zinc-800",
         )}
       >
         <BadgeCheck className="h-4 w-4 shrink-0" />
@@ -50,8 +50,8 @@ export function StatusToggle({
         className={cx(
           "flex items-center justify-center gap-2 rounded-lg px-2 py-2.5 text-left text-xs font-semibold transition-colors sm:text-sm",
           !ua.isActive
-            ? "bg-amber-500 text-slate-950 shadow"
-            : "text-slate-600 hover:bg-white/70 dark:text-slate-400 dark:hover:bg-slate-800",
+            ? "bg-yellow-300 text-black shadow"
+            : "text-zinc-600 hover:bg-white/70 dark:text-zinc-400 dark:hover:bg-zinc-800",
         )}
       >
         <Hourglass className="h-4 w-4 shrink-0" />

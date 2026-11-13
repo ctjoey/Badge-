@@ -38,7 +38,7 @@ export function PHQView({ outages, today }: { outages: Outage[]; today: ISODate 
     return (
       <Card>
         <CardTitle>PHQ Summary</CardTitle>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           No completed or active assignments yet. Log your outage history to build a PHQ-ready timeline.
         </p>
       </Card>
@@ -55,7 +55,7 @@ export function PHQView({ outages, today }: { outages: Outage[]; today: ISODate 
         ].map((s) => (
           <Card key={s.label} className="p-3 sm:p-4">
             <p className={cx("tabular text-2xl font-black sm:text-3xl", s.tone)}>{s.value}</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">{s.label}</p>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">{s.label}</p>
           </Card>
         ))}
       </div>
@@ -65,17 +65,17 @@ export function PHQView({ outages, today }: { outages: Outage[]; today: ISODate 
         <ol className="flex flex-col gap-2">
           {[...rows].reverse().map((r) =>
             r.kind === "assignment" ? (
-              <li key={`a-${r.outage.id}`} className="rounded-lg border border-slate-200 p-3 dark:border-slate-800">
+              <li key={`a-${r.outage.id}`} className="rounded-lg border border-zinc-200 p-3 dark:border-zinc-800">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="font-semibold">
                     {[r.outage.utility, r.outage.site].filter(Boolean).join(" — ")}
-                    {r.outage.unitLabel && <span className="font-normal text-slate-500 dark:text-slate-400"> · {r.outage.unitLabel}</span>}
+                    {r.outage.unitLabel && <span className="font-normal text-zinc-500 dark:text-zinc-400"> · {r.outage.unitLabel}</span>}
                   </p>
                   {r.outage.status === "active" && (
                     <Pill className="bg-emerald-100 text-emerald-900 dark:bg-emerald-500/15 dark:text-emerald-300">Active</Pill>
                   )}
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">
                   {formatDisplayDate(r.startDate)} – {r.endDate ? formatDisplayDate(r.endDate) : "Present"} ·{" "}
                   <span className="tabular">{r.durationDays}</span> days
                   {r.outage.employer && <> · {r.outage.employer}</>}
@@ -88,7 +88,7 @@ export function PHQView({ outages, today }: { outages: Outage[]; today: ISODate 
                   "flex items-start gap-2 rounded-lg border border-dashed px-3 py-2 text-sm",
                   r.flagged
                     ? "border-red-500/60 bg-red-50 text-red-900 dark:bg-red-500/10 dark:text-red-200"
-                    : "border-slate-300 text-slate-600 dark:border-slate-700 dark:text-slate-400",
+                    : "border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-400",
                 )}
               >
                 {r.flagged && <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />}
@@ -102,7 +102,7 @@ export function PHQView({ outages, today }: { outages: Outage[]; today: ISODate 
           )}
         </ol>
         {excluded > 0 && (
-          <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+          <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
             {excluded} upcoming / scheduled outage{excluded === 1 ? " is" : "s are"} excluded from the PHQ history.
           </p>
         )}
@@ -134,7 +134,7 @@ export function PHQView({ outages, today }: { outages: Outage[]; today: ISODate 
         >
           Copy-Paste Block
         </CardTitle>
-        <pre className="max-h-[28rem] overflow-auto whitespace-pre-wrap rounded-lg bg-slate-950 p-3 font-mono text-xs leading-relaxed text-slate-100 sm:text-sm">
+        <pre className="max-h-[28rem] overflow-auto whitespace-pre-wrap rounded-lg bg-zinc-950 p-3 font-mono text-xs leading-relaxed text-zinc-100 sm:text-sm">
           {text}
         </pre>
       </Card>

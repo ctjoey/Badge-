@@ -3,6 +3,19 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  /* Nuke30 brand: neon magenta (from the app icon "30") */
+  --color-magenta-50: #fff0fa;
+  --color-magenta-100: #ffe0f5;
+  --color-magenta-200: #ffc2ec;
+  --color-magenta-300: #ff8fdc;
+  --color-magenta-400: #ff4fc4;
+  --color-magenta-500: #fb03a5;
+  --color-magenta-600: #d90090;
+  --color-magenta-700: #b30077;
+  --color-magenta-800: #8c005d;
+  --color-magenta-900: #5c003d;
+  --color-magenta-950: #3a0026;
+
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
@@ -15,7 +28,7 @@
 }
 
 body {
-  @apply bg-slate-100 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  @apply bg-zinc-100 text-zinc-900 antialiased dark:bg-black dark:text-zinc-100;
 }
 
 /* Native date inputs: keep the picker icon visible in dark mode */
@@ -25,4 +38,21 @@ body {
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Yellow/black hazard stripe, as on the icon frame */
+.hazard-stripe {
+  background: repeating-linear-gradient(-45deg, #fde047 0 10px, #000 10px 20px);
+}
+
+/* Brushed-silver wordmark, as on the icon */
+.wordmark-silver {
+  background: linear-gradient(180deg, #ffffff 0%, #d4d4d8 45%, #8f8f96 55%, #e4e4e7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.neon-magenta {
+  color: #fb03a5;
+  text-shadow: 0 0 10px rgba(251, 3, 165, 0.55);
 }

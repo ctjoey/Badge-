@@ -23,7 +23,7 @@ export function NextOutageCard({
     return (
       <Card>
         <CardTitle icon={<CalendarClock className="h-4 w-4" />}>Next Scheduled Outage</CardTitle>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           No upcoming outage logged. Add your next call-out to see whether you&apos;ll bridge the 30-day gap.
         </p>
         <Button className="mt-3" size="sm" onClick={onAdd}>
@@ -39,7 +39,7 @@ export function NextOutageCard({
       <CardTitle
         icon={<CalendarClock className="h-4 w-4" />}
         right={
-          <button type="button" onClick={onView} className="text-xs font-semibold text-cyan-600 hover:underline dark:text-cyan-400">
+          <button type="button" onClick={onView} className="text-xs font-semibold text-magenta-600 hover:underline dark:text-magenta-400">
             View all
           </button>
         }
@@ -49,21 +49,21 @@ export function NextOutageCard({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-lg font-bold">{[outage.utility, outage.site].filter(Boolean).join(" — ") || "Unnamed site"}</p>
-          {outage.unitLabel && <p className="text-sm text-slate-600 dark:text-slate-400">{outage.unitLabel}</p>}
+          {outage.unitLabel && <p className="text-sm text-zinc-600 dark:text-zinc-400">{outage.unitLabel}</p>}
           <p className="mt-1 text-sm">
             In-processing <strong>{formatDisplayDate(projection.startDate)}</strong>
           </p>
         </div>
         <div className="shrink-0 text-right">
-          <p className="tabular text-4xl font-black leading-none text-cyan-600 dark:text-cyan-400">{daysUntilStart}</p>
-          <p className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">
+          <p className="tabular text-4xl font-black leading-none text-magenta-600 dark:text-magenta-400">{daysUntilStart}</p>
+          <p className="text-xs font-semibold uppercase text-zinc-500 dark:text-zinc-400">
             day{daysUntilStart === 1 ? "" : "s"} away
           </p>
         </div>
       </div>
 
       {isActive || gapAtStart === null ? (
-        <p className="mt-3 rounded-lg bg-slate-100 p-3 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+        <p className="mt-3 rounded-lg bg-zinc-100 p-3 text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
           You&apos;re currently badged — whether you bridge the gap depends on your out-processing date. Stay within{" "}
           {CONTINUOUS_WINDOW_DAYS} days of deactivation.
         </p>

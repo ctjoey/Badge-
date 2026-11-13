@@ -69,12 +69,12 @@ export function OutageForm({
   };
 
   return (
-    <Card className="border-amber-500/50">
+    <Card className="border-magenta-500/50">
       <form onSubmit={submit} className="flex flex-col gap-4" noValidate>
         <h3 className="text-lg font-bold">{initial ? "Edit outage" : "Add outage"}</h3>
 
         <fieldset>
-          <legend className="mb-1 text-xs font-semibold text-slate-600 dark:text-slate-300">Status</legend>
+          <legend className="mb-1 text-xs font-semibold text-zinc-600 dark:text-zinc-300">Status</legend>
           <div className="grid grid-cols-1 gap-1 sm:grid-cols-3">
             {STATUS_OPTIONS.map((opt) => (
               <label
@@ -82,8 +82,8 @@ export function OutageForm({
                 className={cx(
                   "cursor-pointer rounded-lg border px-3 py-2 text-center text-sm font-semibold",
                   status === opt.value
-                    ? "border-amber-500 bg-amber-500/15 text-amber-700 dark:text-amber-300"
-                    : "border-slate-300 text-slate-600 dark:border-slate-700 dark:text-slate-300",
+                    ? "border-magenta-500 bg-magenta-500/15 text-magenta-700 dark:text-magenta-300"
+                    : "border-zinc-300 text-zinc-600 dark:border-zinc-700 dark:text-zinc-300",
                 )}
               >
                 <input
@@ -190,7 +190,7 @@ export function OutageForm({
               onChange={(e) => setEndDate(e.target.value)}
             />
             {endTBDAllowed && (
-              <label className="mt-1 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+              <label className="mt-1 flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
                 <input type="checkbox" checked={ongoing} onChange={(e) => setOngoing(e.target.checked)} />
                 TBD / Ongoing
               </label>

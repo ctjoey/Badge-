@@ -1,10 +1,10 @@
 /* Nuke30 service worker — offline app shell. No user data is ever sent or cached here;
    all records live in the browser's localStorage. */
-const CACHE = "nuke30-v1";
+const CACHE = "nuke30-v2";
 const SHELL = [
   "/",
   "/manifest.json",
-  "/icon.svg",
+  "/logo-96.png",
   "/icon-192x192.png",
   "/icon-512x512.png",
   "/apple-touch-icon.png",

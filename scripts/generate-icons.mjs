@@ -1,26 +1,34 @@
-// One-time icon generator: renders public/icon.svg to all PWA / browser icon sizes.
-// Usage: npm run icons
-import { readFile, writeFile } from "node:fs/promises";
-import { Resvg } from "@resvg/resvg-js";
+// Icon generator: renders scripts/icon-source.png (1254x1254 master artwork)
+// to all PWA / iOS / browser icon sizes. Usage: npm run icons
+import { writeFile } from "node:fs/promises";
+import sharp from "sharp";
 import pngToIco from "png-to-ico";
 
-const svg = await readFile(new URL("../public/icon.svg", import.meta.url), "utf8");
+const SRC = new URL("./icon-source.png", import.meta.url).pathname;
+const out = (p) => new URL(`../${p}`, import.meta.url).pathname;
 
-function render(size) {
-  const resvg = new Resvg(svg, { fitTo: { mode: "width", value: size }, background: "rgba(0,0,0,0)" });
-  return resvg.render().asPng();
-}
+const png = (size) =>
+  sharp(SRC).resize(size, size, { kernel: "lanczos3" }).flatten({ background: "#000000" }).png({ compressionLevel: 9 });
 
-const targets = [
+for (const [path, size] of [
   ["public/icon-192x192.png", 192],
   ["public/icon-512x512.png", 512],
+  ["assets/app-icon-1024.png", 1024], // App Store / native wrapper master (not served)
   ["public/apple-touch-icon.png", 180],
-];
-for (const [path, size] of targets) {
-  await writeFile(new URL(`../${path}`, import.meta.url), render(size));
-  console.log(`wrote ${path} (${size}x${size})`);
+  ["public/logo-96.png", 96], // header mark
+]) {
+  await png(size).toFile(out(path));
+  console.log(`wrote ${path}`);
 }
 
-const ico = await pngToIco([render(16), render(32), render(48)]);
-await writeFile(new URL("../public/favicon.ico", import.meta.url), ico);
-console.log("wrote public/favicon.ico (16/32/48)");
+// Maskable: artwork scaled to the 80% safe zone on a black field.
+const inner = await png(410).toBuffer();
+await sharp({ create: { width: 512, height: 512, channels: 3, background: "#000000" } })
+  .composite([{ input: inner, gravity: "center" }])
+  .png()
+  .toFile(out("public/icon-maskable-512x512.png"));
+console.log("wrote public/icon-maskable-512x512.png");
+
+const ico = await pngToIco(await Promise.all([16, 32, 48].map((s) => png(s).toBuffer())));
+await writeFile(out("public/favicon.ico"), ico);
+console.log("wrote public/favicon.ico");

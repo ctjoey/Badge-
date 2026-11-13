@@ -31,8 +31,8 @@ export function Dashboard({
   return (
     <div className="flex flex-col gap-4">
       {isEmpty && (
-        <div className="flex flex-col items-start gap-3 rounded-2xl border border-cyan-500/40 bg-cyan-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:bg-cyan-950/30">
-          <p className="text-sm text-cyan-950 dark:text-cyan-100">
+        <div className="flex flex-col items-start gap-3 rounded-2xl border border-magenta-500/40 bg-magenta-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:bg-magenta-950/30">
+          <p className="text-sm text-magenta-950 dark:text-magenta-100">
             <strong>New here?</strong> Load sample outages to preview every state, or start by entering your last
             deactivation date below.
           </p>

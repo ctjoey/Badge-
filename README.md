@@ -37,13 +37,14 @@ npm test           # vitest unit tests (src/utils/*.test.ts)
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit
 npm run build      # production build (service worker registers in production only)
-npm run icons      # re-render PNG/ICO icons from public/icon.svg
+npm run icons      # re-render PNG/ICO icons from scripts/icon-source.png
 ```
 
 ## Structure
 ```
-public/            icon.svg (master) + generated PNG/ICO icons, manifest.json, sw.js
-scripts/           generate-icons.mjs (@resvg/resvg-js + png-to-ico)
+public/            generated PNG/ICO icons, manifest.json, sw.js
+assets/            app-icon-1024.png (App Store size, not served)
+scripts/           icon-source.png (master artwork) + generate-icons.mjs (sharp + png-to-ico)
 src/types/         data model
 src/utils/         dateLogic.ts, icsGenerator.ts, phq.ts, storage.ts, uaState.ts, demoData.ts
 src/hooks/         useAppData (localStorage state), useToday (midnight rollover)

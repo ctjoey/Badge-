@@ -64,6 +64,17 @@ jobs:
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
             | tee build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
           grep -q "BUILD SUCCEEDED" build.log
+      - name: Verify the built app (bundle id, icon, web assets inside)
+        working-directory: ios/App
+        run: |
+          APP=$(find build/Build/Products -name "App.app" -path "*iphonesimulator*" | head -1)
+          [ -n "$APP" ] || { echo "::error::No App.app was produced"; exit 1; }
+          echo "Built: $APP ($(du -sh "$APP" | cut -f1))"
+          /usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" -c "Print :CFBundleDisplayName" "$APP/Info.plist"
+          test -f "$APP/public/index.html" || { echo "::error::web app missing from bundle"; exit 1; }
+          test -f "$APP/Assets.car" || { echo "::error::asset catalog (icon) missing"; exit 1; }
+          grep -c "BUILD SUCCEEDED\|SwiftCompile\|CompileSwift" build.log || true
+          ls "$APP/public" | head
       - uses: actions/upload-artifact@v4
         if: always()
         with:

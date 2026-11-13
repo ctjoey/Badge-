@@ -29,6 +29,21 @@ await sharp({ create: { width: 512, height: 512, channels: 3, background: "#0000
   .toFile(out("public/icon-maskable-512x512.png"));
 console.log("wrote public/icon-maskable-512x512.png");
 
+// iOS (Capacitor) app icon: single opaque 1024px image.
+const IOS_ASSETS = "ios/App/App/Assets.xcassets";
+await png(1024).toFile(out(`${IOS_ASSETS}/AppIcon.appiconset/AppIcon-512@2x.png`));
+console.log("wrote iOS AppIcon");
+
+// iOS launch screen: icon centered on black, 2732x2732 (Capacitor's Splash.imageset).
+const splashMark = await png(900).toBuffer();
+for (const name of ["splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"]) {
+  await sharp({ create: { width: 2732, height: 2732, channels: 3, background: "#000000" } })
+    .composite([{ input: splashMark, gravity: "center" }])
+    .png({ compressionLevel: 9 })
+    .toFile(out(`${IOS_ASSETS}/Splash.imageset/${name}`));
+}
+console.log("wrote iOS splash images");
+
 const ico = await pngToIco(await Promise.all([16, 32, 48].map((s) => png(s).toBuffer())));
 await writeFile(out("public/favicon.ico"), ico);
 console.log("wrote public/favicon.ico");

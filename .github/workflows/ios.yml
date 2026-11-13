@@ -1,0 +1,162 @@
+# Builds the Nuke30 iOS app (Capacitor wrapper around the static Next.js export) on GitHub's
+# hosted macOS runners — no Mac needed — and ships a signed build to TestFlight on request.
+# Same pipeline shape as GameDial (ctjoey/NFL-game-reminder).
+#
+# Secrets/variables to add in GitHub → Settings → Secrets and variables → Actions (this repo):
+#   Variables:  BUNDLE_ID_PREFIX   e.g. com.capozza  → bundle id <prefix>.nuke30 (defaults to com.yourcompany)
+#   Secrets:    APPLE_TEAM_ID      10-char Team ID from developer.apple.com/account
+#               ASC_KEY_ID         App Store Connect API key ID
+#               ASC_ISSUER_ID      App Store Connect API issuer ID
+#               ASC_KEY_P8         contents of the AuthKey_XXXX.p8 file
+# One-time in App Store Connect: create the "Nuke30" app record with that bundle id.
+name: iOS
+
+on:
+  push:
+    paths: ['ios/**', 'src/**', 'public/**', 'package.json', 'capacitor.config.ts', '.github/workflows/ios.yml']
+  workflow_dispatch:
+    inputs:
+      testflight:
+        description: 'Archive, sign and upload to TestFlight'
+        type: boolean
+        default: false
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  BUNDLE_ID: ${{ vars.BUNDLE_ID_PREFIX || 'com.yourcompany' }}.nuke30
+
+jobs:
+  build-and-test:
+    name: Web checks + iOS build (Simulator)
+    runs-on: macos-26
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit tests, lint, typecheck
+        run: |
+          npm test
+          npm run lint
+          npm run typecheck
+      - name: Build web app and copy it into the iOS project
+        run: |
+          npm run build
+          npx cap sync ios
+      - name: Select the newest Xcode (App Store requires the iOS 26 SDK or later)
+        run: |
+          sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
+          xcodebuild -version
+      - name: Set bundle id
+        run: sed -i '' "s/com.yourcompany.nuke30/${BUNDLE_ID}/g" ios/App/App.xcodeproj/project.pbxproj
+      - name: Build (Simulator, unsigned)
+        working-directory: ios/App
+        run: |
+          set -o pipefail
+          xcodebuild build -project App.xcodeproj -scheme App -configuration Debug \
+            -destination "generic/platform=iOS Simulator" -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            | tee build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" build.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-build-log-${{ github.run_number }}
+          path: ios/App/build.log
+          if-no-files-found: ignore
+
+  testflight:
+    name: Archive + upload to TestFlight
+    if: github.event_name == 'workflow_dispatch' && inputs.testflight
+    needs: build-and-test
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check signing secrets are present
+        env:
+          TEAM: ${{ secrets.APPLE_TEAM_ID }}
+          KEY: ${{ secrets.ASC_KEY_ID }}
+          ISSUER: ${{ secrets.ASC_ISSUER_ID }}
+          P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          missing=""
+          [ -n "$TEAM" ] || missing="$missing APPLE_TEAM_ID"
+          [ -n "$KEY" ] || missing="$missing ASC_KEY_ID"
+          [ -n "$ISSUER" ] || missing="$missing ASC_ISSUER_ID"
+          [ -n "$P8" ] || missing="$missing ASC_KEY_P8"
+          if [ -n "$missing" ]; then echo "::error::Missing repo secrets:$missing"; exit 1; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build web app and copy it into the iOS project
+        run: |
+          npm run build
+          npx cap sync ios
+      - name: Select the newest Xcode (App Store requires the iOS 26 SDK or later)
+        run: |
+          sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
+          xcodebuild -version
+      - name: Set bundle id, version and build number
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          sed -i '' "s/com.yourcompany.nuke30/${BUNDLE_ID}/g" ios/App/App.xcodeproj/project.pbxproj
+          sed -i '' "s/MARKETING_VERSION = [^;]*;/MARKETING_VERSION = ${VERSION};/g" ios/App/App.xcodeproj/project.pbxproj
+          sed -i '' "s/CURRENT_PROJECT_VERSION = [^;]*;/CURRENT_PROJECT_VERSION = ${{ github.run_number }};/g" ios/App/App.xcodeproj/project.pbxproj
+          echo "Version $VERSION (${{ github.run_number }}) for $BUNDLE_ID"
+      - name: App Store Connect API key
+        run: |
+          mkdir -p ~/private_keys
+          echo "${{ secrets.ASC_KEY_P8 }}" > ~/private_keys/AuthKey_${{ secrets.ASC_KEY_ID }}.p8
+      # Archive unsigned (no device-bound development profile needed); export signs it with an
+      # App Store distribution profile via the API key.
+      - name: Archive (unsigned)
+        working-directory: ios/App
+        run: |
+          set -o pipefail
+          xcodebuild archive -project App.xcodeproj -scheme App -configuration Release \
+            -destination "generic/platform=iOS" -archivePath build/App.xcarchive \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM=${{ secrets.APPLE_TEAM_ID }} \
+            | tee archive.log | grep -E "error:|ARCHIVE (SUCCEEDED|FAILED)" || true
+          grep -q "ARCHIVE SUCCEEDED" archive.log
+      - name: Export IPA
+        working-directory: ios/App
+        run: |
+          cat > ExportOptions.plist <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>export</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>teamID</key><string>${{ secrets.APPLE_TEAM_ID }}</string>
+            <key>uploadSymbols</key><true/>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath build/App.xcarchive -exportPath build/export -exportOptionsPlist ExportOptions.plist \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/private_keys/AuthKey_${{ secrets.ASC_KEY_ID }}.p8 \
+            -authenticationKeyID ${{ secrets.ASC_KEY_ID }} -authenticationKeyIssuerID ${{ secrets.ASC_ISSUER_ID }}
+          ls -la build/export
+      - name: Upload to TestFlight
+        working-directory: ios/App
+        run: |
+          IPA=$(ls build/export/*.ipa | head -1)
+          xcrun altool --upload-app -f "$IPA" --type ios --apiKey ${{ secrets.ASC_KEY_ID }} --apiIssuer ${{ secrets.ASC_ISSUER_ID }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ipa-${{ github.run_number }}
+          path: |
+            ios/App/build/export/*.ipa
+            ios/App/archive.log
+          if-no-files-found: ignore

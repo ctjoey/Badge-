@@ -50,3 +50,17 @@ src/utils/         dateLogic.ts, icsGenerator.ts, phq.ts, storage.ts, uaState.ts
 src/hooks/         useAppData (localStorage state), useToday (midnight rollover)
 src/components/    App shell, dashboard/, outages/, phq/, data/, ui primitives
 ```
+
+## iOS app & TestFlight
+The iOS app is a [Capacitor](https://capacitorjs.com) wrapper (`ios/`) around the static web build (`out/`). It works fully offline because everything ships inside the app.
+
+`.github/workflows/ios.yml` builds it on GitHub's macOS runners, so no Mac is needed. It uses the same pipeline as GameDial:
+- **Every push** that touches the app runs the web tests, lint and typecheck, plus an unsigned Simulator build.
+- **Actions → iOS → Run workflow → `testflight: true`** archives the app, signs it with the App Store Connect API key, and uploads it to TestFlight. The build number is the workflow run number. The version comes from `package.json`.
+
+One-time setup (in this repo's Settings → Secrets and variables → Actions):
+- Variable `BUNDLE_ID_PREFIX`. The bundle id becomes `<prefix>.nuke30`.
+- Secrets `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID` and `ASC_KEY_P8`. These are the same values GameDial uses.
+- In App Store Connect, create the **Nuke30** app record with that bundle id.
+
+Local: `npm run ios:sync` rebuilds the web app and copies it into `ios/`. `npm run icons` regenerates every icon and the iOS launch screen.

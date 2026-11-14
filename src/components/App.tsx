@@ -156,6 +156,8 @@ export function App() {
             reminderDays={data.reminderDays}
             alerts={alerts}
             onAlertsChanged={() => setResumeTick((n) => n + 1)}
+            data={data}
+            today={today}
             actions={actions}
           />
         )}

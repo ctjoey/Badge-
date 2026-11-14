@@ -103,6 +103,19 @@ jobs:
           [ -n "$ISSUER" ] || missing="$missing ASC_ISSUER_ID"
           [ -n "$P8" ] || missing="$missing ASC_KEY_P8"
           if [ -n "$missing" ]; then echo "::error::Missing repo secrets:$missing"; exit 1; fi
+      - name: App Store Connect API key (normalized + validated)
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          KEY_ID=$(printf '%s' "$ASC_KEY_ID" | tr -d ' \r\n\t')
+          ISSUER=$(printf '%s' "$ASC_ISSUER_ID" | tr -d ' \r\n\t')
+          mkdir -p ~/private_keys
+          scripts/normalize-p8.sh ~/private_keys/AuthKey_${KEY_ID}.p8
+          echo "ASC_KEY=$KEY_ID" >> "$GITHUB_ENV"
+          echo "ASC_ISSUER=$ISSUER" >> "$GITHUB_ENV"
+          echo "TEAM_ID=$(printf '%s' "${{ secrets.APPLE_TEAM_ID }}" | tr -d ' \r\n\t')" >> "$GITHUB_ENV"
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -123,10 +136,6 @@ jobs:
           sed -i '' "s/MARKETING_VERSION = [^;]*;/MARKETING_VERSION = ${VERSION};/g" ios/App/App.xcodeproj/project.pbxproj
           sed -i '' "s/CURRENT_PROJECT_VERSION = [^;]*;/CURRENT_PROJECT_VERSION = ${{ github.run_number }};/g" ios/App/App.xcodeproj/project.pbxproj
           echo "Version $VERSION (${{ github.run_number }}) for $BUNDLE_ID"
-      - name: App Store Connect API key
-        run: |
-          mkdir -p ~/private_keys
-          echo "${{ secrets.ASC_KEY_P8 }}" > ~/private_keys/AuthKey_${{ secrets.ASC_KEY_ID }}.p8
       # Archive unsigned (no device-bound development profile needed); export signs it with an
       # App Store distribution profile via the API key.
       - name: Archive (unsigned)
@@ -136,7 +145,7 @@ jobs:
           xcodebuild archive -project App.xcodeproj -scheme App -configuration Release \
             -destination "generic/platform=iOS" -archivePath build/App.xcarchive \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM=${{ secrets.APPLE_TEAM_ID }} \
+            DEVELOPMENT_TEAM=${TEAM_ID} \
             | tee archive.log | grep -E "error:|ARCHIVE (SUCCEEDED|FAILED)" || true
           grep -q "ARCHIVE SUCCEEDED" archive.log
       - name: Export IPA
@@ -149,20 +158,20 @@ jobs:
             <key>method</key><string>app-store-connect</string>
             <key>destination</key><string>export</string>
             <key>signingStyle</key><string>automatic</string>
-            <key>teamID</key><string>${{ secrets.APPLE_TEAM_ID }}</string>
+            <key>teamID</key><string>${TEAM_ID}</string>
             <key>uploadSymbols</key><true/>
           </dict></plist>
           PLIST
           xcodebuild -exportArchive -archivePath build/App.xcarchive -exportPath build/export -exportOptionsPlist ExportOptions.plist \
             -allowProvisioningUpdates \
-            -authenticationKeyPath ~/private_keys/AuthKey_${{ secrets.ASC_KEY_ID }}.p8 \
-            -authenticationKeyID ${{ secrets.ASC_KEY_ID }} -authenticationKeyIssuerID ${{ secrets.ASC_ISSUER_ID }}
+            -authenticationKeyPath ~/private_keys/AuthKey_${ASC_KEY}.p8 \
+            -authenticationKeyID ${ASC_KEY} -authenticationKeyIssuerID ${ASC_ISSUER}
           ls -la build/export
       - name: Upload to TestFlight
         working-directory: ios/App
         run: |
           IPA=$(ls build/export/*.ipa | head -1)
-          xcrun altool --upload-app -f "$IPA" --type ios --apiKey ${{ secrets.ASC_KEY_ID }} --apiIssuer ${{ secrets.ASC_ISSUER_ID }}
+          xcrun altool --upload-app -f "$IPA" --type ios --apiKey ${ASC_KEY} --apiIssuer ${ASC_ISSUER}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -9,6 +9,7 @@ import {
   countPendingAlerts,
   getAlertPermission,
   loadSentToday,
+  onAlertTapped,
   syncNotifications,
   type AlertPermission,
 } from "@/utils/notifications";
@@ -40,6 +41,25 @@ export function App() {
   }>({ permission: "unavailable", pending: null, planned: [] });
   const [resumeTick, setResumeTick] = useState(0);
   const [blast, setBlast] = useState<string[] | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const [highlight, setHighlight] = useState<string | null>(null);
+
+  // Tapping one of our alerts opens the right place in the app.
+  useEffect(
+    () =>
+      onAlertTapped((tap) => {
+        setTab("status");
+        if (tap.kind === "test") {
+          setToast("✓ Test alert received. Tapping a badge alert opens its site here on Status.");
+        } else {
+          setHighlight(tap.plantId);
+          setToast(`Opened from your ${PLANTS_BY_ID.get(tap.plantId)?.name ?? ""} badge alert`);
+          window.setTimeout(() => setHighlight(null), 4000);
+        }
+        window.setTimeout(() => setToast(null), 5000);
+      }),
+    [],
+  );
 
   // A little fun on expiration day: the first time the app opens that day, play the blast.
   useEffect(() => {
@@ -120,6 +140,7 @@ export function App() {
             actions={actions}
             onOpenSettings={() => setTab("settings")}
             onReplayBlast={(name) => setBlast([name])}
+            highlightId={highlight}
           />
         ) : tab === "outages" ? (
           <OutagesView
@@ -138,6 +159,16 @@ export function App() {
           />
         )}
       </main>
+
+      {toast && (
+        <div
+          role="status"
+          onClick={() => setToast(null)}
+          className="fixed inset-x-4 bottom-[calc(env(safe-area-inset-bottom)+16px)] z-40 mx-auto max-w-md rounded-xl border-2 border-yellow-300 bg-black/90 px-4 py-3 text-center text-sm font-semibold text-white shadow-2xl"
+        >
+          {toast}
+        </div>
+      )}
 
       {blast && <NukeBlast sites={blast} onClose={() => setBlast(null)} />}
 

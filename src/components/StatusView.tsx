@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { BadgeCheck, Bell, CalendarPlus, Hourglass, Info, Settings, Trash2, TriangleAlert } from "lucide-react";
 import type { AppActions } from "@/hooks/useAppData";
 import { PLANTS_BY_ID } from "@/data";
@@ -28,6 +29,7 @@ function SiteCard({
   onChange,
   onRemove,
   onReplayBlast,
+  highlighted,
 }: {
   plant: Plant;
   badge: SiteBadge | undefined;
@@ -36,7 +38,12 @@ function SiteCard({
   onChange: (b: SiteBadge) => void;
   onRemove: () => void;
   onReplayBlast: () => void;
+  highlighted: boolean;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (highlighted) ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [highlighted]);
   const active = badge?.active ?? false;
   const outDate = badge?.outDate ?? null;
   const gap = !active && outDate ? getGapStatus(outDate, today) : null;
@@ -44,7 +51,14 @@ function SiteCard({
   const s = URGENCY_STYLES[urgency];
 
   return (
-    <section className={cx("rounded-2xl border-2 p-4 sm:p-5", s.panel)}>
+    <section
+      ref={ref}
+      className={cx(
+        "rounded-2xl border-2 p-4 transition-shadow sm:p-5",
+        s.panel,
+        highlighted && "ring-4 ring-magenta-500 ring-offset-2 ring-offset-zinc-100 dark:ring-offset-black",
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="truncate text-lg font-bold">{plant.name}</h2>
@@ -179,6 +193,7 @@ export function StatusView({
   actions,
   onOpenSettings,
   onReplayBlast,
+  highlightId,
 }: {
   selectedIds: string[];
   badges: Record<string, SiteBadge>;
@@ -187,6 +202,7 @@ export function StatusView({
   actions: AppActions;
   onOpenSettings: () => void;
   onReplayBlast: (plantName: string) => void;
+  highlightId: string | null;
 }) {
   const plants = selectedIds.map((id) => PLANTS_BY_ID.get(id)).filter((p): p is Plant => !!p);
   if (plants.length === 0) {
@@ -211,6 +227,7 @@ export function StatusView({
             <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} reminderDays={reminderDays} onChange={(b) => actions.setBadge(p.id, b)}
               onRemove={() => actions.togglePlant(p.id)}
               onReplayBlast={() => onReplayBlast(p.name)}
+              highlighted={highlightId === p.id}
             />
           ))}
       </div>

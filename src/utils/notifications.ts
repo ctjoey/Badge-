@@ -88,6 +88,7 @@ export async function syncNotifications(planned: PlannedReminder[]): Promise<"ok
         title: p.title,
         body: p.body,
         schedule: { at: p.at, allowWhileIdle: true },
+        extra: { kind: "badge", plantId: p.plantId },
       })),
     });
     markSent(batch.filter((p) => p.catchUp));
@@ -110,6 +111,7 @@ export async function sendTestAlert(): Promise<"ok" | "denied" | "unavailable"> 
           title: "Nuke30 test alert",
           body: "Alerts are working. Your badge reminders will arrive like this at 8:00 AM.",
           schedule: { at: new Date(Date.now() + 5000), allowWhileIdle: true },
+          extra: { kind: "test" },
         },
       ],
     });
@@ -117,4 +119,22 @@ export async function sendTestAlert(): Promise<"ok" | "denied" | "unavailable"> 
   } catch {
     return "unavailable";
   }
+}
+
+export type AlertTap = { kind: "test" } | { kind: "badge"; plantId: string };
+
+/**
+ * Call `onTap` when the user taps one of our alerts (app open, in the background, or launched
+ * from the alert). Returns a cleanup function.
+ */
+export function onAlertTapped(onTap: (tap: AlertTap) => void): () => void {
+  if (!isNativeApp()) return () => {};
+  const handle = LocalNotifications.addListener("localNotificationActionPerformed", (e) => {
+    const extra = (e.notification.extra ?? {}) as { kind?: string; plantId?: string };
+    if (extra.kind === "badge" && extra.plantId) onTap({ kind: "badge", plantId: extra.plantId });
+    else onTap({ kind: "test" });
+  });
+  return () => {
+    void handle.then((h) => h.remove());
+  };
 }

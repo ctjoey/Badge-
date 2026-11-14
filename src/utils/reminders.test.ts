@@ -8,6 +8,7 @@ const data = (over: Partial<AppData>): AppData => ({
   badges: { perry: { active: false, outDate: "2026-11-01" }, vogtle: { active: true, outDate: null } },
   reminderDays: [10, 5, 1],
   followed: [],
+  userOutages: [],
   ...over,
 });
 const when = (r: { at: Date }) => [r.at.getMonth() + 1, r.at.getDate(), r.at.getHours()];

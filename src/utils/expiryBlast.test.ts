@@ -14,6 +14,7 @@ describe("sitesExpired", () => {
     },
     reminderDays: [],
     followed: [],
+    userOutages: [],
   };
   it("returns every badged-out site past its 30-day window", () => {
     expect(sitesExpired(data, "2026-11-14")).toEqual(["perry", "surry"]);

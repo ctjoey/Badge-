@@ -14,6 +14,7 @@ describe("share text", () => {
       },
       reminderDays: [],
       followed: [],
+      userOutages: [],
     };
     const names: Record<string, string> = { vogtle: "Vogtle", perry: "Perry", surry: "Surry", byron: "Byron" };
     const t = badgeStatusText(data, "2026-11-14", (id) => names[id]);

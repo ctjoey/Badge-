@@ -149,6 +149,9 @@ export function App() {
             followed={data.followed}
             today={today}
             onToggleFollow={actions.toggleFollowOutage}
+            userOutages={data.userOutages}
+            onSaveUserOutage={actions.saveUserOutage}
+            onDeleteUserOutage={actions.deleteUserOutage}
           />
         ) : (
           <SettingsView

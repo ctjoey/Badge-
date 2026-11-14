@@ -22,6 +22,18 @@ export interface AppData {
   reminderDays: number[];
   /** Outages the user starred on the Outages tab. */
   followed: FollowedOutage[];
+  /** Outages the user added, or dates they corrected (kept on this device). */
+  userOutages: UserOutage[];
+}
+
+export interface UserOutage {
+  id: string;
+  plantId: string;
+  unit: number;
+  start: ISODate;
+  days: number;
+  /** The projected outage this one corrects (null when it's a brand-new entry). */
+  replaces: { plantId: string; unit: number; start: ISODate } | null;
 }
 
 export interface FollowedOutage {

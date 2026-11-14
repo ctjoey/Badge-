@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AppData, SiteBadge } from "@/types";
+import { toggleFollow } from "@/utils/follow";
 import { emptyData, loadData, saveData, STORAGE_KEY } from "@/utils/storage";
 
 export interface AppActions {
@@ -9,6 +10,7 @@ export interface AppActions {
   setBadge: (id: string, badge: SiteBadge) => void;
   setPlants: (ids: string[]) => void;
   setReminderDays: (days: number[]) => void;
+  toggleFollowOutage: (o: { plantId: string; unit: number; start: string }) => void;
 }
 
 /** Local-first state persisted to localStorage (`nuke30_data_v2`). */
@@ -61,5 +63,14 @@ export function useAppData(): { data: AppData; hydrated: boolean; actions: AppAc
     [],
   );
 
-  return { data, hydrated, actions: { togglePlant, clearPlants, setBadge, setPlants, setReminderDays } };
+  const toggleFollowOutage = useCallback(
+    (o: { plantId: string; unit: number; start: string }) => setData((d) => ({ ...d, followed: toggleFollow(o, d.followed) })),
+    [],
+  );
+
+  return {
+    data,
+    hydrated,
+    actions: { togglePlant, clearPlants, setBadge, setPlants, setReminderDays, toggleFollowOutage },
+  };
 }

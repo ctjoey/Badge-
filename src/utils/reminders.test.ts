@@ -7,6 +7,7 @@ const data = (over: Partial<AppData>): AppData => ({
   selectedPlantIds: ["perry", "vogtle"],
   badges: { perry: { active: false, outDate: "2026-11-01" }, vogtle: { active: true, outDate: null } },
   reminderDays: [10, 5, 1],
+  followed: [],
   ...over,
 });
 

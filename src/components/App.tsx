@@ -89,7 +89,12 @@ export function App() {
             onOpenSettings={() => setTab("settings")}
           />
         ) : tab === "outages" ? (
-          <OutagesView selectedIds={data.selectedPlantIds} today={today} />
+          <OutagesView
+            selectedIds={data.selectedPlantIds}
+            followed={data.followed}
+            today={today}
+            onToggleFollow={actions.toggleFollowOutage}
+          />
         ) : (
           <SettingsView
             selectedIds={data.selectedPlantIds}

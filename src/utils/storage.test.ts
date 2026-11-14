@@ -11,6 +11,7 @@ describe("storage", () => {
     });
     expect(d.selectedPlantIds).toEqual(["vogtle", "surry"]);
     expect(d.reminderDays).toEqual([10, 5, 2, 1]);
+    expect(d.followed).toEqual([]);
     expect(d.badges).toEqual({ vogtle: { active: false, outDate: "2026-11-01" }, surry: { active: true, outDate: null } });
   });
   it("keeps only reminder days 1–15", () => {

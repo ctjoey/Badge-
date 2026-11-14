@@ -20,6 +20,14 @@ export interface AppData {
   badges: Record<string, SiteBadge>;
   /** Remind me this many days before a site's 30-day window closes (1–15). */
   reminderDays: number[];
+  /** Outages the user starred on the Outages tab. */
+  followed: FollowedOutage[];
+}
+
+export interface FollowedOutage {
+  plantId: string;
+  unit: number;
+  start: ISODate;
 }
 
 export interface Plant {

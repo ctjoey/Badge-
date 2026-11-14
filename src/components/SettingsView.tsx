@@ -1,9 +1,13 @@
 "use client";
-import { Bell, Factory, Info, X } from "lucide-react";
-import { useMemo } from "react";
+import { Bell, BellRing, Factory, Info, X } from "lucide-react";
+import { useMemo, useState } from "react";
 import type { AppActions } from "@/hooks/useAppData";
 import { PLANTS, PLANTS_BY_ID } from "@/data";
+import { formatDisplayDate, toISODate } from "@/utils/dateLogic";
+import { isNativeApp, sendTestAlert, type AlertPermission } from "@/utils/notifications";
+import type { PlannedReminder } from "@/utils/reminders";
 import { MultiSelect, type Option } from "./MultiSelect";
+import { Button, cx } from "./ui";
 
 const DAY_OPTIONS: Option[] = Array.from({ length: 15 }, (_, i) => {
   const n = i + 1;
@@ -13,14 +17,19 @@ const DAY_OPTIONS: Option[] = Array.from({ length: 15 }, (_, i) => {
 export function SettingsView({
   selectedIds,
   reminderDays,
-  notificationsBlocked,
+  alerts,
+  onAlertsChanged,
   actions,
 }: {
   selectedIds: string[];
   reminderDays: number[];
-  notificationsBlocked: boolean;
+  alerts: { permission: AlertPermission; pending: number | null; planned: PlannedReminder[] };
+  onAlertsChanged: () => void;
   actions: AppActions;
 }) {
+  const [testMsg, setTestMsg] = useState<string | null>(null);
+  const native = isNativeApp();
+  const next = alerts.planned[0];
   const plantOptions = useMemo<Option[]>(
     () =>
       [...PLANTS]
@@ -107,13 +116,73 @@ export function SettingsView({
           }
         />
         <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-          Alerts arrive at 8:00 AM, counting down to the last day of your 30-day window, for every plant set to 30 Day
-          Badge Reminder.
+          Alerts arrive at 8:00 AM on each day you pick, plus on the last day of your 30-day window, for every plant set
+          to 30 Day Badge Reminder.
         </p>
-        {notificationsBlocked && (
+
+        <div className="mt-3 rounded-xl border border-zinc-200 bg-white p-3 text-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <p className="flex items-center gap-2 font-bold">
+            <BellRing className="h-4 w-4 text-magenta-500" /> iPhone alerts
+          </p>
+          {!native ? (
+            <p className="mt-1 text-zinc-600 dark:text-zinc-400">
+              Alerts work in the Nuke30 iPhone app. In a web browser, use the Reminder button on each site to add them to
+              your calendar.
+            </p>
+          ) : (
+            <>
+              <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-zinc-700 dark:text-zinc-300">
+                <dt className="text-zinc-500">Permission</dt>
+                <dd
+                  className={cx(
+                    "font-semibold",
+                    alerts.permission === "granted" ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600",
+                  )}
+                >
+                  {alerts.permission === "granted"
+                    ? "Allowed"
+                    : alerts.permission === "denied"
+                      ? "Turned off"
+                      : "Not asked yet"}
+                </dd>
+                <dt className="text-zinc-500">Scheduled</dt>
+                <dd className="font-semibold">
+                  {alerts.pending ?? 0} alert{alerts.pending === 1 ? "" : "s"}
+                </dd>
+                <dt className="text-zinc-500">Next</dt>
+                <dd className="font-semibold">
+                  {next
+                    ? `${formatDisplayDate(toISODate(next.at))} ${next.at.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })} — ${next.title}`
+                    : "None — set a plant to 30 Day Badge Reminder on Status"}
+                </dd>
+              </dl>
+              <Button
+                size="sm"
+                className="mt-3"
+                onClick={async () => {
+                  const r = await sendTestAlert();
+                  setTestMsg(
+                    r === "ok"
+                      ? "Test alert coming in 5 seconds. Lock your phone or go to the Home Screen to see it."
+                      : r === "denied"
+                        ? "Notifications are turned off for Nuke30 — see below."
+                        : "Couldn't schedule a test alert.",
+                  );
+                  onAlertsChanged();
+                }}
+              >
+                <BellRing className="h-4 w-4" /> Send test alert
+              </Button>
+              {testMsg && <p className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">{testMsg}</p>}
+            </>
+          )}
+        </div>
+
+        {native && alerts.permission === "denied" && (
           <p className="mt-2 rounded-lg bg-amber-100 px-3 py-2 text-xs font-medium text-amber-900 dark:bg-amber-500/15 dark:text-amber-200">
-            Notifications are turned off for Nuke30. To get reminders: open the iPhone <strong>Settings</strong> app →{" "}
+            Notifications are turned off for Nuke30. To get alerts: open the iPhone <strong>Settings</strong> app →{" "}
             <strong>Notifications</strong> → <strong>Nuke30</strong> → turn on <strong>Allow Notifications</strong>.
+            Then come back to Nuke30.
           </p>
         )}
       </div>

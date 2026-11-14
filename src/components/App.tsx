@@ -5,8 +5,14 @@ import { useAppData } from "@/hooks/useAppData";
 import { useToday } from "@/hooks/useToday";
 import { PLANTS_BY_ID } from "@/data";
 import { formatDisplayDate } from "@/utils/dateLogic";
-import { syncNotifications } from "@/utils/notifications";
-import { planReminders } from "@/utils/reminders";
+import {
+  countPendingAlerts,
+  getAlertPermission,
+  loadSentToday,
+  syncNotifications,
+  type AlertPermission,
+} from "@/utils/notifications";
+import { planReminders, type PlannedReminder } from "@/utils/reminders";
 import { OutagesView } from "./OutagesView";
 import { SettingsView } from "./SettingsView";
 import { StatusView } from "./StatusView";
@@ -25,17 +31,32 @@ export function App() {
   const { data, hydrated, actions } = useAppData();
   const today = useToday();
   const [tab, setTab] = useState<Tab>("status");
-  const [notificationsBlocked, setNotificationsBlocked] = useState(false);
+  const [alerts, setAlerts] = useState<{
+    permission: AlertPermission;
+    pending: number | null;
+    planned: PlannedReminder[];
+  }>({ permission: "unavailable", pending: null, planned: [] });
+  const [resumeTick, setResumeTick] = useState(0);
 
-  // Keep the phone's scheduled reminders in step with the sites, badge dates and reminder days.
+  // Re-check alerts whenever the app comes back to the foreground (e.g. after changing
+  // notification permission in the iPhone Settings app).
+  useEffect(() => {
+    const onVisible = () => document.visibilityState === "visible" && setResumeTick((n) => n + 1);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
+
+  // Keep the phone's scheduled alerts in step with the sites, badge dates and reminder days.
   useEffect(() => {
     if (!hydrated) return;
-    const t = window.setTimeout(() => {
-      const planned = planReminders(data, (id) => PLANTS_BY_ID.get(id)?.name ?? id);
-      void syncNotifications(planned).then((r) => setNotificationsBlocked(r === "denied"));
+    const t = window.setTimeout(async () => {
+      const planned = planReminders(data, (id) => PLANTS_BY_ID.get(id)?.name ?? id, new Date(), loadSentToday());
+      await syncNotifications(planned);
+      const [permission, pending] = await Promise.all([getAlertPermission(), countPendingAlerts()]);
+      setAlerts({ permission, pending, planned });
     }, 600);
     return () => window.clearTimeout(t);
-  }, [data, hydrated, today]);
+  }, [data, hydrated, today, resumeTick]);
 
   return (
     <div className="min-h-dvh pb-[env(safe-area-inset-bottom)]">
@@ -99,7 +120,8 @@ export function App() {
           <SettingsView
             selectedIds={data.selectedPlantIds}
             reminderDays={data.reminderDays}
-            notificationsBlocked={notificationsBlocked}
+            alerts={alerts}
+            onAlertsChanged={() => setResumeTick((n) => n + 1)}
             actions={actions}
           />
         )}

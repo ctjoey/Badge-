@@ -146,8 +146,8 @@ function SiteCard({
         <p className="mt-2 flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400">
           <Bell className="h-3.5 w-3.5" />
           {reminderDays.length
-            ? `Alerts ${[...reminderDays].sort((a, b) => b - a).join(", ")} day${reminderDays.length === 1 && reminderDays[0] === 1 ? "" : "s"} before the window closes`
-            : "No reminders set — choose them in Settings"}
+            ? `Alerts ${[...reminderDays].sort((a, b) => b - a).join(", ")} day${reminderDays.length === 1 && reminderDays[0] === 1 ? "" : "s"} before, and on the last day`
+            : "Alert on the last day only — add more in Settings"}
         </p>
       )}
 

@@ -94,7 +94,7 @@ function SiteCard({
               active ? "bg-emerald-600 text-white" : "text-zinc-600 dark:text-zinc-300",
             )}
           >
-            <BadgeCheck className="h-3.5 w-3.5" /> On site
+            <BadgeCheck className="h-3.5 w-3.5" /> On Site
           </button>
           <button
             type="button"
@@ -104,7 +104,7 @@ function SiteCard({
               !active && outDate ? "bg-yellow-300 text-black" : "text-zinc-600 dark:text-zinc-300",
             )}
           >
-            <Hourglass className="h-3.5 w-3.5" /> Badged out
+            <Hourglass className="h-3.5 w-3.5" /> 30 Day Badge Reminder
           </button>
         </div>
         {!active && outDate && (
@@ -174,10 +174,8 @@ export function StatusView({
       <div className="flex items-start gap-2 rounded-xl border border-zinc-200 bg-white p-3 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
         <Info className="mt-0.5 h-4 w-4 shrink-0 text-magenta-500" />
         <p>
-          <strong>Going in and out of the protected area?</strong> Keep <strong>On site</strong> selected while you work
-          the outage, even if you badge in and out of the protected area every day. Switch to{" "}
-          <strong>Badged out</strong> only when you out-process and your badge is deactivated. That starts the 30-day
-          clock.
+          <strong>Going in and out of the protected area?</strong> Keep <strong>On Site</strong> selected. If not,
+          switch to <strong>&quot;30 Day Badge Reminder&quot;</strong> to start the 30-day clock.
         </p>
       </div>
     </div>

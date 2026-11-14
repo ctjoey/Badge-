@@ -50,6 +50,7 @@ export interface OutageEntry {
 
 export interface OutageData {
   generatedAt: string | null;
+  units?: { plantId: string; unit: number; typicalDays: number }[];
   latestReport: ISODate | null;
   source: string;
   years: number;

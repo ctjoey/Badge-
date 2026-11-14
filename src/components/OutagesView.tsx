@@ -1,10 +1,11 @@
 "use client";
 import { CalendarClock, Star } from "lucide-react";
 import { useMemo, useState } from "react";
-import { OUTAGE_DATA, PLANTS_BY_ID } from "@/data";
+import { OUTAGE_DATA, PLANTS_BY_ID, TYPICAL_DAYS } from "@/data";
 import type { FollowedOutage, ISODate, OutageEntry } from "@/types";
 import { addDaysISO, daysBetween, formatDisplayDate } from "@/utils/dateLogic";
 import { isFollowed } from "@/utils/follow";
+import { isCurrentOrUpcoming, outageDay } from "@/utils/outageVisibility";
 import { cx, Pill } from "./ui";
 
 export function OutagesView({
@@ -20,6 +21,16 @@ export function OutagesView({
 }) {
   const [scope, setScope] = useState<"mine" | "all" | "following">(selectedIds.length ? "mine" : "all");
 
+  const visible = useMemo(
+    () => (o: OutageEntry, horizon: ISODate) =>
+      isCurrentOrUpcoming(o, today, {
+        horizon,
+        typicalDays: TYPICAL_DAYS.get(`${o.plantId}#${o.unit}`) ?? 30,
+        latestReport: OUTAGE_DATA.latestReport,
+      }),
+    [today],
+  );
+
   const rows = useMemo(() => {
     const horizon = addDaysISO(today, 5 * 365 + 1);
     return OUTAGE_DATA.outages.filter(
@@ -27,22 +38,21 @@ export function OutagesView({
         (scope === "all" ||
           (scope === "mine" && selectedIds.includes(o.plantId)) ||
           (scope === "following" && isFollowed(o, followed))) &&
-        o.start <= horizon &&
-        (o.status === "in-progress" || o.start >= today),
+        visible(o, horizon),
     );
-  }, [scope, selectedIds, followed, today]);
+  }, [scope, selectedIds, followed, today, visible]);
 
   const followingCount = useMemo(() => {
     const horizon = addDaysISO(today, 5 * 365 + 1);
     return OUTAGE_DATA.outages.filter(
-      (o) => isFollowed(o, followed) && o.start <= horizon && (o.status === "in-progress" || o.start >= today),
+      (o) => isFollowed(o, followed) && visible(o, horizon),
     ).length;
-  }, [followed, today]);
+  }, [followed, today, visible]);
 
   const byYear = useMemo(() => {
     const m = new Map<string, typeof rows>();
     for (const r of rows) {
-      const y = r.status === "in-progress" ? "Now" : r.start.slice(0, 4);
+      const y = r.status === "in-progress" ? "Current" : r.start.slice(0, 4);
       if (!m.has(y)) m.set(y, []);
       m.get(y)!.push(r);
     }
@@ -110,8 +120,15 @@ export function OutagesView({
                       {plant?.name ?? o.plantId} <span className="font-normal text-zinc-500">· Unit {o.unit}</span>
                     </p>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                      {o.status === "in-progress" ? "Started " : ""}
-                      {formatDisplayDate(o.start)} · ~{o.days} days
+                      {o.status === "in-progress" ? (
+                        <>
+                          Started {formatDisplayDate(o.start)} · Day {outageDay(o.start, today)}
+                        </>
+                      ) : (
+                        <>
+                          {formatDisplayDate(o.start)} · ~{o.days} days
+                        </>
+                      )}
                     </p>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">

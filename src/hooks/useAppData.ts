@@ -7,6 +7,8 @@ export interface AppActions {
   togglePlant: (id: string) => void;
   clearPlants: () => void;
   setBadge: (id: string, badge: SiteBadge) => void;
+  setPlants: (ids: string[]) => void;
+  setReminderDays: (days: number[]) => void;
 }
 
 /** Local-first state persisted to localStorage (`nuke30_data_v2`). */
@@ -53,5 +55,11 @@ export function useAppData(): { data: AppData; hydrated: boolean; actions: AppAc
     [],
   );
 
-  return { data, hydrated, actions: { togglePlant, clearPlants, setBadge } };
+  const setPlants = useCallback((ids: string[]) => setData((d) => ({ ...d, selectedPlantIds: [...new Set(ids)] })), []);
+  const setReminderDays = useCallback(
+    (days: number[]) => setData((d) => ({ ...d, reminderDays: [...new Set(days)].sort((a, b) => b - a) })),
+    [],
+  );
+
+  return { data, hydrated, actions: { togglePlant, clearPlants, setBadge, setPlants, setReminderDays } };
 }

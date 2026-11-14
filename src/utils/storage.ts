@@ -4,8 +4,10 @@ import { isISODate } from "./dateLogic";
 export const STORAGE_KEY = "nuke30_data_v2";
 export const THEME_KEY = "nuke30_theme";
 
+export const DEFAULT_REMINDER_DAYS = [10, 5, 2, 1];
+
 export function emptyData(): AppData {
-  return { version: 2, selectedPlantIds: [], badges: {} };
+  return { version: 2, selectedPlantIds: [], badges: {}, reminderDays: [...DEFAULT_REMINDER_DAYS] };
 }
 
 /** Validate unknown input; anything unexpected is dropped. */
@@ -24,7 +26,10 @@ export function parseAppData(raw: unknown): AppData {
       badges[id] = { active: v.active === true, outDate: isISODate(v.outDate) ? v.outDate : null };
     }
   }
-  return { version: 2, selectedPlantIds: [...new Set(ids)], badges };
+  const reminderDays = Array.isArray(r.reminderDays)
+    ? [...new Set(r.reminderDays.filter((x): x is number => Number.isInteger(x) && x >= 1 && x <= 15))].sort((a, b) => b - a)
+    : [...DEFAULT_REMINDER_DAYS];
+  return { version: 2, selectedPlantIds: [...new Set(ids)], badges, reminderDays };
 }
 
 export function loadData(): AppData {

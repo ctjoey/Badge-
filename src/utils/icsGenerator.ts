@@ -1,7 +1,6 @@
 import type { ISODate } from "@/types";
 import { addDaysISO, CONTINUOUS_WINDOW_DAYS, formatDisplayDate } from "./dateLogic";
 
-export const REMINDER_DAYS = [20, 25, 28, 29] as const;
 export const ICS_FILENAME = "nuke30-reminders.ics";
 
 /** Escape text per RFC 5545 §3.3.11. */
@@ -40,11 +39,15 @@ function utcStamp(now: Date): string {
 }
 
 /**
- * Build an iCalendar file with all-day reminder events on Day 20, 25, 28 and
- * 29 after badge deactivation. Each event carries a display alarm at 08:00 on
- * that day and the date the 30-day window closes.
+ * Build an iCalendar file with an all-day reminder event for each "days before the 30-day
+ * window closes" value (default 10, 5, 2, 1 → Day 20, 25, 28, 29). Each event carries a
+ * display alarm at 08:00 on that day and the date the window closes.
  */
-export function generateReminderICS(deactivationDate: ISODate, now: Date = new Date()): string {
+export function generateReminderICS(
+  deactivationDate: ISODate,
+  now: Date = new Date(),
+  daysBefore: number[] = [10, 5, 2, 1],
+): string {
   const lastDay = addDaysISO(deactivationDate, CONTINUOUS_WINDOW_DAYS);
   const lastDayLabel = formatDisplayDate(lastDay);
   const stamp = utcStamp(now);
@@ -58,7 +61,8 @@ export function generateReminderICS(deactivationDate: ISODate, now: Date = new D
     "X-WR-CALNAME:Nuke30 UA Reminders",
   ];
 
-  for (const day of REMINDER_DAYS) {
+  const days = [...new Set(daysBefore)].map((n) => CONTINUOUS_WINDOW_DAYS - n).sort((a, b) => a - b);
+  for (const day of days) {
     const date = addDaysISO(deactivationDate, day);
     const next = addDaysISO(date, 1);
     const left = CONTINUOUS_WINDOW_DAYS - day;

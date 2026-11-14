@@ -1,9 +1,12 @@
 "use client";
 import { CalendarClock, LayoutDashboard, Settings } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useAppData } from "@/hooks/useAppData";
 import { useToday } from "@/hooks/useToday";
+import { PLANTS_BY_ID } from "@/data";
 import { formatDisplayDate } from "@/utils/dateLogic";
+import { syncNotifications } from "@/utils/notifications";
+import { planReminders } from "@/utils/reminders";
 import { OutagesView } from "./OutagesView";
 import { SettingsView } from "./SettingsView";
 import { StatusView } from "./StatusView";
@@ -22,6 +25,17 @@ export function App() {
   const { data, hydrated, actions } = useAppData();
   const today = useToday();
   const [tab, setTab] = useState<Tab>("status");
+  const [notificationsBlocked, setNotificationsBlocked] = useState(false);
+
+  // Keep the phone's scheduled reminders in step with the sites, badge dates and reminder days.
+  useEffect(() => {
+    if (!hydrated) return;
+    const t = window.setTimeout(() => {
+      const planned = planReminders(data, (id) => PLANTS_BY_ID.get(id)?.name ?? id);
+      void syncNotifications(planned).then((r) => setNotificationsBlocked(r === "denied"));
+    }, 600);
+    return () => window.clearTimeout(t);
+  }, [data, hydrated, today]);
 
   return (
     <div className="min-h-dvh pb-[env(safe-area-inset-bottom)]">
@@ -69,6 +83,7 @@ export function App() {
           <StatusView
             selectedIds={data.selectedPlantIds}
             badges={data.badges}
+            reminderDays={data.reminderDays}
             today={today}
             actions={actions}
             onOpenSettings={() => setTab("settings")}
@@ -76,7 +91,12 @@ export function App() {
         ) : tab === "outages" ? (
           <OutagesView selectedIds={data.selectedPlantIds} today={today} />
         ) : (
-          <SettingsView selectedIds={data.selectedPlantIds} actions={actions} />
+          <SettingsView
+            selectedIds={data.selectedPlantIds}
+            reminderDays={data.reminderDays}
+            notificationsBlocked={notificationsBlocked}
+            actions={actions}
+          />
         )}
       </main>
 

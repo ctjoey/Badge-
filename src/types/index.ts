@@ -18,6 +18,8 @@ export interface AppData {
   /** Plant ids from src/data/plants.json the user works at. */
   selectedPlantIds: string[];
   badges: Record<string, SiteBadge>;
+  /** Remind me this many days before a site's 30-day window closes (1–15). */
+  reminderDays: number[];
 }
 
 export interface Plant {

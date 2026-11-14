@@ -1,11 +1,12 @@
 "use client";
-import { BadgeCheck, CalendarPlus, Hourglass, Info, Settings, Trash2, TriangleAlert } from "lucide-react";
+import { BadgeCheck, Bell, CalendarPlus, Hourglass, Info, Settings, Trash2, TriangleAlert } from "lucide-react";
 import type { AppActions } from "@/hooks/useAppData";
 import { PLANTS_BY_ID } from "@/data";
 import type { ISODate, Plant, SiteBadge } from "@/types";
 import { CONTINUOUS_WINDOW_DAYS, formatDisplayDate, getGapStatus } from "@/utils/dateLogic";
 import { downloadFile } from "@/utils/download";
 import { generateReminderICS, ICS_FILENAME } from "@/utils/icsGenerator";
+import { isNativeApp } from "@/utils/notifications";
 import { URGENCY_STYLES } from "@/utils/urgencyStyles";
 import { Button, cx, inputClass, Pill } from "./ui";
 
@@ -23,12 +24,14 @@ function SiteCard({
   plant,
   badge,
   today,
+  reminderDays,
   onChange,
   onRemove,
 }: {
   plant: Plant;
   badge: SiteBadge | undefined;
   today: ISODate;
+  reminderDays: number[];
   onChange: (b: SiteBadge) => void;
   onRemove: () => void;
 }) {
@@ -122,17 +125,31 @@ function SiteCard({
             />
           </label>
         )}
-        {gap && gap.inWindow && gap.daysSince >= 0 && (
+        {gap && gap.inWindow && gap.daysSince >= 0 && !isNativeApp() && reminderDays.length > 0 && (
           <Button
             size="sm"
             variant="ghost"
-            onClick={() => downloadFile(ICS_FILENAME, generateReminderICS(gap.deactivationDate), "text/calendar;charset=utf-8")}
-            title="Calendar reminders on Day 20, 25, 28 and 29"
+            onClick={() =>
+              downloadFile(
+                ICS_FILENAME,
+                generateReminderICS(gap.deactivationDate, new Date(), reminderDays),
+                "text/calendar;charset=utf-8",
+              )
+            }
+            title="Add the reminders to your calendar"
           >
             <CalendarPlus className="h-4 w-4" /> Reminder
           </Button>
         )}
       </div>
+      {gap && gap.inWindow && gap.daysSince >= 0 && (
+        <p className="mt-2 flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400">
+          <Bell className="h-3.5 w-3.5" />
+          {reminderDays.length
+            ? `Alerts ${[...reminderDays].sort((a, b) => b - a).join(", ")} day${reminderDays.length === 1 && reminderDays[0] === 1 ? "" : "s"} before the window closes`
+            : "No reminders set — choose them in Settings"}
+        </p>
+      )}
 
       <button
         type="button"
@@ -150,12 +167,14 @@ function SiteCard({
 export function StatusView({
   selectedIds,
   badges,
+  reminderDays,
   today,
   actions,
   onOpenSettings,
 }: {
   selectedIds: string[];
   badges: Record<string, SiteBadge>;
+  reminderDays: number[];
   today: ISODate;
   actions: AppActions;
   onOpenSettings: () => void;
@@ -180,7 +199,7 @@ export function StatusView({
         {plants
           .sort((a, b) => a.name.localeCompare(b.name))
           .map((p) => (
-            <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} onChange={(b) => actions.setBadge(p.id, b)}
+            <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} reminderDays={reminderDays} onChange={(b) => actions.setBadge(p.id, b)}
               onRemove={() => actions.togglePlant(p.id)}
             />
           ))}

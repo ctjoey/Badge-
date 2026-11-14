@@ -18,7 +18,7 @@ Nuke30 is a local-first, offline-capable PWA for nuclear outage workers, traveli
 |---|---|
 | **Status** | One card for each site you picked. It shows **Active UA** while you're on site, or the days left in the 30-day window after you badge out, colored by urgency (green 0–15, amber 16–25, red 26–30, expired 31+). It also shows the date you must in-process by. The calendar reminder (`.ics`) has alarms on Day 20, 25, 28 and 29. |
 | **Outages** | Refueling outages for the next 5 years, with start dates and lengths, for your sites or all sites. These are **projected** from NRC daily reactor power reports and each unit's measured refueling cycle. The list is refreshed weekly by `.github/workflows/outages.yml` (`scripts/scrape-outages.mjs` → `src/data/outages.json`). |
-| **Settings** | Every operating US nuclear plant (`src/data/plants.json`). Tick the ones you work at. |
+| **Settings** | Setup instructions, plus two dropdowns. **My power plants** lists every operating US nuclear plant (`src/data/plants.json`); pick any number. **Reminders** lets you pick any of 1–15 days before the 30-day window closes; the iPhone app schedules an 8 AM local notification for each one (`@capacitor/local-notifications`), for every site set to 30 Day Badge Reminder. |
 
 ## Date rules
 - All dates are calendar dates set to **local midnight**. Day counts use `differenceInCalendarDays`, so daylight-saving changes and time of day never cause off-by-one errors.

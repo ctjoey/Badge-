@@ -30,6 +30,7 @@ describe("matchUnit", () => {
     ["Robinson 2", "robinson", 2],
     ["Summer", "summer", 1],
     ["Vogtle 4", "vogtle", 4],
+    ["River Bend Station 1", "river-bend", 1],
   ])("%s → %s unit %i", (name, id, unit) => {
     expect(matchUnit(name, plants)).toEqual({ plantId: id, unit });
   });
@@ -79,6 +80,30 @@ describe("projectUnit", () => {
     expect(p.cycleBasis).toBe("default");
     expect(p.outages[0]).toEqual({ start: "2026-10-20", days: 30, status: "in-progress" });
     expect(p.outages[1].start).toBe("2028-10-20");
+  });
+});
+
+describe("projectUnit: telling refuelings from forced outages", () => {
+  it("ignores a mid-cycle forced outage instead of halving the cycle", () => {
+    const outages = [
+      { start: "2023-03-01", end: "2023-03-30", days: 30 },
+      { start: "2024-03-10", end: "2024-03-25", days: 16 }, // forced outage, mid-cycle
+      { start: "2025-03-01", end: "2025-03-28", days: 28 },
+    ];
+    const p = projectUnit({ outages, type: "PWR", today: "2026-11-13", years: 5, dataStart: "2023-01-01" });
+    expect(p.cycleMonths).toBe(24);
+    expect(p.typicalDays).toBe(28);
+    expect(p.lastOutage?.start).toBe("2025-03-01");
+    expect(p.outages[0].start).toBe("2027-03-01");
+  });
+  it("lists a long shutdown as in progress but projects nothing after it", () => {
+    const p = projectUnit({
+      outages: [{ start: "2025-09-09", end: null, days: 431 }],
+      type: "PWR",
+      today: "2026-11-13",
+      years: 5,
+    });
+    expect(p.outages).toEqual([{ start: "2025-09-09", days: 431, status: "in-progress" }]);
   });
 });
 

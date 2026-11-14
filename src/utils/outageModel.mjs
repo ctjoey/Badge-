@@ -5,7 +5,7 @@
 // NRC file format, one line per unit per day:  ReportDt|Unit|Power
 //   e.g. "11/13/2026 12:00:00 AM|Browns Ferry 1|100"
 
-const MIN_OUTAGE_DAYS = 10; // shorter zero-power stretches are trips/forced outages, not refuelings
+const MIN_OUTAGE_DAYS = 10; // shorter zero-power stretches are trips, not outages worth listing
 const MAX_TYPICAL_DAYS = 90; // ignore extended shutdowns when estimating a typical length
 const DAY = 86400000;
 
@@ -107,44 +107,78 @@ export function findOutages(series) {
 
 /**
  * Project refueling outages for one unit through `today + years`.
- * Cycle length = median spacing of observed refuelings, snapped to 12/18/24 months;
- * otherwise the type default (BWR 24, PWR 18). Duration = median observed length, else 30.
+ *
+ * Refuelings are told apart from forced outages by fitting an 18- or 24-month cycle (US units
+ * use one or the other): for each candidate cycle and anchor outage, count observed outages that
+ * land on that lattice (±75 days) and subtract slots inside the data window where none happened.
+ * The best fit sets the cycle; only on-lattice outages set the typical length and the base date.
+ * With fewer than two aligned refuelings the type default is used (BWR 24, PWR 18).
+ *
+ * @param {{outages: {start:string,end:string|null,days:number}[], type:string, today:string, years?:number, dataStart?:string}} p
  */
-export function projectUnit({ outages, type, today, years = 5 }) {
-  const refuels = outages.filter((o) => o.end === null || o.days <= 200);
-  const finished = refuels.filter((o) => o.end !== null);
-  const typical = median(finished.map((o) => o.days).filter((d) => d <= MAX_TYPICAL_DAYS)) ?? 30;
+export function projectUnit({ outages, type, today, years = 5, dataStart }) {
+  const defaultCycle = type === "BWR" ? 24 : 18;
+  const candidates = outages.filter((o) => o.end === null || (o.days >= 14 && o.days <= 200));
+  const TOL = 75;
 
-  let cycleMonths = type === "BWR" ? 24 : 18;
-  let cycleBasis = "default";
-  const starts = refuels.filter((o) => o.days >= 14 || o.end === null).map((o) => o.start);
-  if (starts.length >= 2) {
-    const gaps = starts.slice(1).map((s, i) => daysBetween(starts[i], s) / 30.44);
-    const g = median(gaps.filter((x) => x >= 10 && x <= 30));
-    if (g !== null) {
-      cycleMonths = [12, 18, 24].reduce((a, b) => (Math.abs(b - g) < Math.abs(a - g) ? b : a));
-      cycleBasis = "observed";
+  const aligned = (anchor, cycle) =>
+    candidates.filter((o) => {
+      const months = daysBetween(o.start, anchor.start) / 30.44;
+      const k = Math.round(months / cycle);
+      return Math.abs(months - k * cycle) * 30.44 <= TOL;
+    });
+
+  let best = null;
+  for (const cycle of [18, 24]) {
+    for (const anchor of candidates) {
+      const hits = aligned(anchor, cycle);
+      let missed = 0;
+      if (dataStart) {
+        for (let k = 1; ; k++) {
+          const slot = addMonths(anchor.start, -cycle * k);
+          if (slot < dataStart) break;
+          if (!hits.some((o) => Math.abs(daysBetween(o.start, slot)) <= TOL)) missed++;
+        }
+      }
+      const score = hits.length - 0.75 * missed;
+      const latest = hits[hits.length - 1];
+      const better =
+        !best ||
+        score > best.score ||
+        (score === best.score && latest.start > best.latest.start) ||
+        (score === best.score && latest.start === best.latest.start && cycle === defaultCycle);
+      if (better) best = { cycle, hits, score, latest };
     }
   }
 
-  const horizon = addMonths(today, years * 12);
-  const result = [];
-  const last = refuels[refuels.length - 1];
-  if (!last) return { cycleMonths, cycleBasis, typicalDays: typical, outages: result, lastOutage: null };
+  const refuels = best?.hits ?? [];
+  const cycleMonths = refuels.length >= 2 ? best.cycle : defaultCycle;
+  const cycleBasis = refuels.length >= 2 ? "observed" : "default";
+  const lengths = refuels.filter((o) => o.end !== null && o.days <= MAX_TYPICAL_DAYS).map((o) => o.days);
+  const typical = Math.max(18, median(lengths) ?? 30);
 
-  if (last.end === null) {
-    result.push({ start: last.start, days: Math.max(typical, daysBetween(last.start, today) + 1), status: "in-progress" });
+  const result = [];
+  const ongoing = outages.find((o) => o.end === null) ?? null;
+  if (ongoing) {
+    result.push({
+      start: ongoing.start,
+      days: Math.max(typical, daysBetween(ongoing.start, today) + 1),
+      status: "in-progress",
+    });
   }
-  // A brand-new zero-power stretch could be a trip, so project from the last finished refueling.
-  const base = last.end === null && last.days < MIN_OUTAGE_DAYS && finished.length ? finished[finished.length - 1] : last;
-  let k = 1;
-  for (;;) {
-    const start = addMonths(base.start, cycleMonths * k++);
-    if (start > horizon) break;
-    if (start <= today) continue; // missed in the data window; skip rather than guess
-    result.push({ start, days: typical, status: "projected" });
+  // A unit shut down far longer than any refueling (e.g. a restart) has no predictable cycle.
+  const longShutdown = ongoing && daysBetween(ongoing.start, today) > 150;
+  const base = best?.latest ?? null;
+  if (base && !longShutdown) {
+    const horizon = addMonths(today, years * 12);
+    for (let k = 1; ; k++) {
+      const start = addMonths(base.start, cycleMonths * k);
+      if (start > horizon) break;
+      if (start <= today) continue;
+      result.push({ start, days: typical, status: "projected" });
+    }
   }
-  return { cycleMonths, cycleBasis, typicalDays: typical, outages: result, lastOutage: last };
+  return { cycleMonths, cycleBasis, typicalDays: typical, outages: result, lastOutage: base };
 }
 
 /**
@@ -166,8 +200,10 @@ export function buildOutageData(texts, plants, today, years = 5) {
       continue;
     }
     const plant = plants.find((p) => p.id === m.plantId);
-    const proj = projectUnit({ outages: findOutages(s), type: plant.type, today, years });
-    units.push({ plantId: m.plantId, unit: m.unit, nrcName: name, ...proj });
+    const dataStart = [...s.keys()].sort()[0];
+    const history = findOutages(s);
+    const proj = projectUnit({ outages: history, type: plant.type, today, years, dataStart });
+    units.push({ plantId: m.plantId, unit: m.unit, nrcName: name, dataStart, history, ...proj });
   }
   const outages = units
     .flatMap((u) => u.outages.map((o) => ({ plantId: u.plantId, unit: u.unit, ...o })))

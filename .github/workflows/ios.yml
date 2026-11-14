@@ -5,7 +5,8 @@
 # Secrets/variables to add in GitHub → Settings → Secrets and variables → Actions (this repo):
 #   Variables:  BUNDLE_ID_PREFIX   e.g. com.capozza  → bundle id <prefix>.nuke30 (defaults to com.yourcompany)
 #   Secrets:    APPLE_TEAM_ID      10-char Team ID from developer.apple.com/account
-#               ASC_KEY_ID         App Store Connect API key ID
+#               ASC_KEY_ID         App Store Connect API key ID (key must have **Admin** access:
+#                                  App Manager keys fail with "Cloud signing permission error")
 #               ASC_ISSUER_ID      App Store Connect API issuer ID
 #               ASC_KEY_P8         contents of the AuthKey_XXXX.p8 file
 # One-time in App Store Connect: create the "Nuke30" app record with that bundle id.

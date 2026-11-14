@@ -60,7 +60,7 @@ The iOS app is a [Capacitor](https://capacitorjs.com) wrapper (`ios/`) around th
 
 One-time setup (in this repo's Settings → Secrets and variables → Actions):
 - Variable `BUNDLE_ID_PREFIX`. The bundle id becomes `<prefix>.nuke30`.
-- Secrets `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID` and `ASC_KEY_P8`. These are the same values GameDial uses.
+- Secrets `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID` and `ASC_KEY_P8`. The API key must have **Admin** access (App Manager keys fail with "Cloud signing permission error"). Paste the whole `.p8` file; `scripts/normalize-p8.sh` repairs pasting mistakes.
 - In App Store Connect, create the **Nuke30** app record with that bundle id.
 
 Local: `npm run ios:sync` rebuilds the web app and copies it into `ios/`. `npm run icons` regenerates every icon and the iOS launch screen.

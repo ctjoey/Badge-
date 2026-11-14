@@ -1,5 +1,5 @@
 "use client";
-import { BadgeCheck, CalendarPlus, Hourglass, Settings, TriangleAlert } from "lucide-react";
+import { BadgeCheck, CalendarPlus, Hourglass, Info, Settings, TriangleAlert } from "lucide-react";
 import type { AppActions } from "@/hooks/useAppData";
 import { PLANTS_BY_ID } from "@/data";
 import type { ISODate, Plant, SiteBadge } from "@/types";
@@ -163,12 +163,23 @@ export function StatusView({
     );
   }
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-      {plants
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map((p) => (
-          <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} onChange={(b) => actions.setBadge(p.id, b)} />
-        ))}
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {plants
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((p) => (
+            <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} onChange={(b) => actions.setBadge(p.id, b)} />
+          ))}
+      </div>
+      <div className="flex items-start gap-2 rounded-xl border border-zinc-200 bg-white p-3 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
+        <Info className="mt-0.5 h-4 w-4 shrink-0 text-magenta-500" />
+        <p>
+          <strong>Going in and out of the protected area?</strong> Keep <strong>On site</strong> selected while you work
+          the outage, even if you badge in and out of the protected area every day. Switch to{" "}
+          <strong>Badged out</strong> only when you out-process and your badge is deactivated. That starts the 30-day
+          clock.
+        </p>
+      </div>
     </div>
   );
 }

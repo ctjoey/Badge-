@@ -13,7 +13,7 @@ import {
   syncNotifications,
   type AlertPermission,
 } from "@/utils/notifications";
-import { sitesExpiringToday, takeUnseen } from "@/utils/expiryBlast";
+import { sitesExpired } from "@/utils/expiryBlast";
 import { planReminders, type PlannedReminder } from "@/utils/reminders";
 import { NukeBlast } from "./NukeBlast";
 import { OutagesView } from "./OutagesView";
@@ -61,12 +61,13 @@ export function App() {
     [],
   );
 
-  // A little fun on expiration day: the first time the app opens that day, play the blast.
+  // A little fun: every time the app opens (or comes back to the foreground) while a site
+  // shows EXPIRED, play the blast — until that site's date changes, it goes On Site, or it's removed.
   useEffect(() => {
     if (!hydrated) return;
-    const ids = takeUnseen(sitesExpiringToday(data, today), today);
+    const ids = sitesExpired(data, today);
     if (ids.length) setBlast(ids.map((id) => PLANTS_BY_ID.get(id)?.name ?? id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- only on open / new day / resume
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- on open / resume / new day, not on every edit
   }, [hydrated, today, resumeTick]);
 
   // Re-check alerts whenever the app comes back to the foreground (e.g. after changing

@@ -12,7 +12,9 @@ import {
   syncNotifications,
   type AlertPermission,
 } from "@/utils/notifications";
+import { sitesExpiringToday, takeUnseen } from "@/utils/expiryBlast";
 import { planReminders, type PlannedReminder } from "@/utils/reminders";
+import { NukeBlast } from "./NukeBlast";
 import { OutagesView } from "./OutagesView";
 import { SettingsView } from "./SettingsView";
 import { StatusView } from "./StatusView";
@@ -37,6 +39,15 @@ export function App() {
     planned: PlannedReminder[];
   }>({ permission: "unavailable", pending: null, planned: [] });
   const [resumeTick, setResumeTick] = useState(0);
+  const [blast, setBlast] = useState<string[] | null>(null);
+
+  // A little fun on expiration day: the first time the app opens that day, play the blast.
+  useEffect(() => {
+    if (!hydrated) return;
+    const ids = takeUnseen(sitesExpiringToday(data, today), today);
+    if (ids.length) setBlast(ids.map((id) => PLANTS_BY_ID.get(id)?.name ?? id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only on open / new day / resume
+  }, [hydrated, today, resumeTick]);
 
   // Re-check alerts whenever the app comes back to the foreground (e.g. after changing
   // notification permission in the iPhone Settings app).
@@ -108,6 +119,7 @@ export function App() {
             today={today}
             actions={actions}
             onOpenSettings={() => setTab("settings")}
+            onReplayBlast={(name) => setBlast([name])}
           />
         ) : tab === "outages" ? (
           <OutagesView
@@ -126,6 +138,8 @@ export function App() {
           />
         )}
       </main>
+
+      {blast && <NukeBlast sites={blast} onClose={() => setBlast(null)} />}
 
       <footer className="mx-auto max-w-5xl px-4 pb-8 text-xs text-zinc-500">
         Planning aid based on NRC 10 CFR § 73.56 timeframes — not an official access determination. Data stays on

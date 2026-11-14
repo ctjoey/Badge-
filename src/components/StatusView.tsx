@@ -27,6 +27,7 @@ function SiteCard({
   reminderDays,
   onChange,
   onRemove,
+  onReplayBlast,
 }: {
   plant: Plant;
   badge: SiteBadge | undefined;
@@ -34,6 +35,7 @@ function SiteCard({
   reminderDays: number[];
   onChange: (b: SiteBadge) => void;
   onRemove: () => void;
+  onReplayBlast: () => void;
 }) {
   const active = badge?.active ?? false;
   const outDate = badge?.outDate ?? null;
@@ -62,9 +64,14 @@ function SiteCard({
           <p className="text-sm text-zinc-700 dark:text-zinc-300">Badge-out set for {formatDisplayDate(gap.deactivationDate)}.</p>
         ) : gap && !gap.inWindow ? (
           <div>
-            <p className={cx("flex items-center gap-2 text-3xl font-black", s.text)}>
+            <button
+              type="button"
+              onClick={onReplayBlast}
+              title="Tap for a little fun"
+              className={cx("flex items-center gap-2 text-3xl font-black", s.text)}
+            >
               <TriangleAlert className="h-7 w-7" /> EXPIRED
-            </p>
+            </button>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
               {gap.daysSince} days since badge-out · access ended {formatDisplayDate(gap.terminationDate)}
             </p>
@@ -171,6 +178,7 @@ export function StatusView({
   today,
   actions,
   onOpenSettings,
+  onReplayBlast,
 }: {
   selectedIds: string[];
   badges: Record<string, SiteBadge>;
@@ -178,6 +186,7 @@ export function StatusView({
   today: ISODate;
   actions: AppActions;
   onOpenSettings: () => void;
+  onReplayBlast: (plantName: string) => void;
 }) {
   const plants = selectedIds.map((id) => PLANTS_BY_ID.get(id)).filter((p): p is Plant => !!p);
   if (plants.length === 0) {
@@ -201,6 +210,7 @@ export function StatusView({
           .map((p) => (
             <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} reminderDays={reminderDays} onChange={(b) => actions.setBadge(p.id, b)}
               onRemove={() => actions.togglePlant(p.id)}
+              onReplayBlast={() => onReplayBlast(p.name)}
             />
           ))}
       </div>

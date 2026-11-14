@@ -56,3 +56,43 @@ body {
   color: #fb03a5;
   text-shadow: 0 0 10px rgba(251, 3, 165, 0.55);
 }
+
+/* ---- Badge-expired mushroom cloud (NukeBlast) ---- */
+.nuke-root { background: #050302; cursor: pointer; }
+.nuke-sky {
+  background: linear-gradient(180deg, #0b1e2b 0%, #2c4a52 45%, #b2683a 72%, #3a1a0c 100%);
+  animation: nuke-sky 6s ease-out forwards;
+}
+.nuke-ground { background: linear-gradient(180deg, #5a2c12, #1a0c05); }
+.nuke-flash { animation: nuke-flash 1.4s ease-out forwards; }
+.nuke-shake { animation: nuke-shake 0.9s 0.25s cubic-bezier(.36,.07,.19,.97) both; }
+.nuke-ball { transform-box: fill-box; transform-origin: center; animation: nuke-ball 2.2s ease-out forwards; }
+.nuke-stem { transform-box: fill-box; transform-origin: bottom; animation: nuke-stem 2.4s 0.5s ease-out both; }
+.nuke-cap { transform-box: fill-box; transform-origin: center bottom; animation: nuke-cap 3s 0.7s cubic-bezier(.2,.7,.2,1) both, nuke-boil 1.6s 3.7s ease-in-out infinite alternate; }
+.nuke-ring { transform-box: fill-box; transform-origin: center; animation: nuke-ring 2s 1.6s ease-out both; }
+.nuke-wave { transform-box: fill-box; transform-origin: center; animation: nuke-wave 1.8s 0.2s ease-out both; }
+.nuke-dust { transform-box: fill-box; transform-origin: center; animation: nuke-dust 3s 0.4s ease-out both; }
+
+@keyframes nuke-flash { 0% { opacity: 1; } 15% { opacity: 0.95; } 100% { opacity: 0; } }
+@keyframes nuke-sky { from { filter: brightness(2.2) saturate(1.4); } to { filter: brightness(1); } }
+@keyframes nuke-shake {
+  10%, 90% { transform: translate(-2px, 1px); }
+  20%, 80% { transform: translate(4px, -2px); }
+  30%, 50%, 70% { transform: translate(-6px, 3px); }
+  40%, 60% { transform: translate(6px, -3px); }
+}
+@keyframes nuke-ball {
+  0% { transform: scale(0.1); opacity: 1; }
+  40% { transform: translateY(-60px) scale(1.4); opacity: 1; }
+  100% { transform: translateY(-250px) scale(0.6); opacity: 0; }
+}
+@keyframes nuke-stem { from { transform: scaleY(0); opacity: 0.4; } to { transform: scaleY(1); opacity: 1; } }
+@keyframes nuke-cap {
+  0% { transform: translateY(260px) scale(0.15); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes nuke-boil { from { transform: scale(1); } to { transform: scale(1.04, 1.02); } }
+@keyframes nuke-ring { from { transform: scale(0.2); opacity: 0; } to { transform: scale(1.3); opacity: 0.8; } }
+@keyframes nuke-wave { from { transform: scale(0.2); opacity: 1; } to { transform: scale(6); opacity: 0; } }
+@keyframes nuke-dust { from { transform: scale(0.1, 0.5); opacity: 0; } to { transform: scale(1, 1); opacity: 1; } }

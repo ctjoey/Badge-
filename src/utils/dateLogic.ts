@@ -17,7 +17,7 @@ import {
   parse,
   startOfDay,
 } from "date-fns";
-import type { ISODate, Outage, Urgency } from "@/types";
+import type { ISODate, Urgency } from "@/types";
 
 export const CONTINUOUS_WINDOW_DAYS = 30;
 export const REINSTATEMENT_WINDOW_DAYS = 365;
@@ -164,120 +164,6 @@ export function getScreeningStatus(
     expired: daysUntilDue < 0,
     state,
   };
-}
-
-/** Inclusive outage duration in days. Ongoing outages count through `today`. */
-export function outageDurationDays(outage: Pick<Outage, "startDate" | "endDate">, today: ISODate): number {
-  const end = outage.endDate ?? today;
-  const days = daysBetween(outage.startDate, end) + 1;
-  return Math.max(0, days);
-}
-
-export interface Transition {
-  fromId: string;
-  toId: string;
-  /** Last badge deactivation before the next in-processing (null if TBD). */
-  fromEndDate: ISODate | null;
-  toStartDate: ISODate;
-  /**
-   * Days since deactivation at the next in-processing (the 30-day rule metric).
-   * null when the earlier assignment has no end date yet.
-   */
-  gapDays: number | null;
-  overlap: boolean;
-  exceedsWindow: boolean;
-  /** True when the later assignment is still upcoming / scheduled. */
-  projected: boolean;
-}
-
-/**
- * Compute transitions between consecutive assignments, sorted by start date.
- * Uses a running "coverage end" so an assignment that sits fully inside a
- * longer one does not produce a false gap.
- */
-export function computeTransitions(outages: Outage[]): Transition[] {
-  const sorted = sortByStart(outages);
-  const result: Transition[] = [];
-  let coverEnd: ISODate | null = null;
-  let coverOpen = false; // an earlier assignment is ongoing (no end date)
-  let coverId: string | null = null;
-
-  for (let i = 0; i < sorted.length; i++) {
-    const cur = sorted[i];
-    if (i > 0 && coverId) {
-      let gapDays: number | null = null;
-      let overlap = false;
-      if (coverOpen) {
-        // previous assignment still ongoing: overlap if it started already, else unknown
-        gapDays = null;
-        overlap = false;
-      } else if (coverEnd) {
-        gapDays = daysBetween(coverEnd, cur.startDate);
-        overlap = gapDays <= 0;
-      }
-      result.push({
-        fromId: coverId,
-        toId: cur.id,
-        fromEndDate: coverOpen ? null : coverEnd,
-        toStartDate: cur.startDate,
-        gapDays,
-        overlap,
-        exceedsWindow: gapDays !== null && gapDays > CONTINUOUS_WINDOW_DAYS,
-        projected: cur.status === "upcoming",
-      });
-    }
-    if (cur.endDate === null) {
-      coverOpen = true;
-      coverId = cur.id;
-    } else if (!coverOpen && (coverEnd === null || cur.endDate >= coverEnd)) {
-      coverEnd = cur.endDate;
-      coverId = cur.id;
-    }
-  }
-  return result;
-}
-
-export interface NextOutageProjection {
-  outageId: string;
-  startDate: ISODate;
-  daysUntilStart: number;
-  /** Days since deactivation on the in-processing date (null if still badged). */
-  gapAtStart: number | null;
-  bridgesSafely: boolean | null;
-}
-
-/** Project whether the next upcoming outage starts inside the 30-day window. */
-export function projectNextOutage(
-  outages: Outage[],
-  deactivationDate: ISODate | null,
-  isActive: boolean,
-  today: ISODate,
-): NextOutageProjection | null {
-  const next = sortByStart(outages.filter((o) => o.status === "upcoming" && o.startDate >= today))[0];
-  if (!next) return null;
-  const gapAtStart = !isActive && deactivationDate ? daysBetween(deactivationDate, next.startDate) : null;
-  return {
-    outageId: next.id,
-    startDate: next.startDate,
-    daysUntilStart: daysBetween(today, next.startDate),
-    gapAtStart,
-    bridgesSafely: gapAtStart === null ? null : gapAtStart <= CONTINUOUS_WINDOW_DAYS,
-  };
-}
-
-/** Latest end date among completed outages (null if none). */
-export function latestCompletedEndDate(outages: Outage[]): ISODate | null {
-  let latest: ISODate | null = null;
-  for (const o of outages) {
-    if (o.status === "completed" && o.endDate && (latest === null || o.endDate > latest)) {
-      latest = o.endDate;
-    }
-  }
-  return latest;
-}
-
-export function sortByStart<T extends Pick<Outage, "startDate">>(items: T[]): T[] {
-  return [...items].sort((a, b) => (a.startDate < b.startDate ? -1 : a.startDate > b.startDate ? 1 : 0));
 }
 
 function clamp01(n: number): number {

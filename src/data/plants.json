@@ -1,0 +1,775 @@
+[
+ {
+  "id": "arkansas-nuclear-one",
+  "name": "Arkansas Nuclear One",
+  "state": "AR",
+  "operator": "Entergy",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "ano",
+   "arkansasnuclear",
+   "arkansasnuclearone"
+  ]
+ },
+ {
+  "id": "beaver-valley",
+  "name": "Beaver Valley",
+  "state": "PA",
+  "operator": "Vistra",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "beavervalley"
+  ]
+ },
+ {
+  "id": "braidwood",
+  "name": "Braidwood",
+  "state": "IL",
+  "operator": "Constellation",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "braidwood"
+  ]
+ },
+ {
+  "id": "browns-ferry",
+  "name": "Browns Ferry",
+  "state": "AL",
+  "operator": "TVA",
+  "type": "BWR",
+  "units": [
+   1,
+   2,
+   3
+  ],
+  "keys": [
+   "brownsferry"
+  ]
+ },
+ {
+  "id": "brunswick",
+  "name": "Brunswick",
+  "state": "NC",
+  "operator": "Duke Energy",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "brunswick"
+  ]
+ },
+ {
+  "id": "byron",
+  "name": "Byron",
+  "state": "IL",
+  "operator": "Constellation",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "byron"
+  ]
+ },
+ {
+  "id": "callaway",
+  "name": "Callaway",
+  "state": "MO",
+  "operator": "Ameren",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "callaway"
+  ]
+ },
+ {
+  "id": "calvert-cliffs",
+  "name": "Calvert Cliffs",
+  "state": "MD",
+  "operator": "Constellation",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "calvertcliffs"
+  ]
+ },
+ {
+  "id": "catawba",
+  "name": "Catawba",
+  "state": "SC",
+  "operator": "Duke Energy",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "catawba"
+  ]
+ },
+ {
+  "id": "clinton",
+  "name": "Clinton",
+  "state": "IL",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "clinton"
+  ]
+ },
+ {
+  "id": "columbia-generating-station",
+  "name": "Columbia Generating Station",
+  "state": "WA",
+  "operator": "Energy Northwest",
+  "type": "BWR",
+  "units": [
+   2
+  ],
+  "keys": [
+   "columbia",
+   "columbiagenerating",
+   "columbiageneratingstation",
+   "columbiagenerationstation"
+  ]
+ },
+ {
+  "id": "comanche-peak",
+  "name": "Comanche Peak",
+  "state": "TX",
+  "operator": "Vistra",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "comanchepeak"
+  ]
+ },
+ {
+  "id": "cooper",
+  "name": "Cooper",
+  "state": "NE",
+  "operator": "NPPD",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "cooper"
+  ]
+ },
+ {
+  "id": "d-c-cook",
+  "name": "D.C. Cook",
+  "state": "MI",
+  "operator": "AEP",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "cook",
+   "dccook",
+   "donaldccook"
+  ]
+ },
+ {
+  "id": "davis-besse",
+  "name": "Davis-Besse",
+  "state": "OH",
+  "operator": "Vistra",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "davisbesse"
+  ]
+ },
+ {
+  "id": "diablo-canyon",
+  "name": "Diablo Canyon",
+  "state": "CA",
+  "operator": "PG&E",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "diablocanyon"
+  ]
+ },
+ {
+  "id": "dresden",
+  "name": "Dresden",
+  "state": "IL",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   2,
+   3
+  ],
+  "keys": [
+   "dresden"
+  ]
+ },
+ {
+  "id": "fermi",
+  "name": "Fermi",
+  "state": "MI",
+  "operator": "DTE Energy",
+  "type": "BWR",
+  "units": [
+   2
+  ],
+  "keys": [
+   "enricofermi",
+   "fermi"
+  ]
+ },
+ {
+  "id": "fitzpatrick",
+  "name": "FitzPatrick",
+  "state": "NY",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "fitzpatrick",
+   "jamesafitzpatrick"
+  ]
+ },
+ {
+  "id": "farley",
+  "name": "Farley",
+  "state": "AL",
+  "operator": "Southern Nuclear",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "farley",
+   "josephmfarley"
+  ]
+ },
+ {
+  "id": "ginna",
+  "name": "Ginna",
+  "state": "NY",
+  "operator": "Constellation",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "ginna",
+   "reginna"
+  ]
+ },
+ {
+  "id": "grand-gulf",
+  "name": "Grand Gulf",
+  "state": "MS",
+  "operator": "Entergy",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "grandgulf"
+  ]
+ },
+ {
+  "id": "harris",
+  "name": "Harris",
+  "state": "NC",
+  "operator": "Duke Energy",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "harris",
+   "shearonharris"
+  ]
+ },
+ {
+  "id": "hatch",
+  "name": "Hatch",
+  "state": "GA",
+  "operator": "Southern Nuclear",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "edwinihatch",
+   "hatch"
+  ]
+ },
+ {
+  "id": "hope-creek",
+  "name": "Hope Creek",
+  "state": "NJ",
+  "operator": "PSEG",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "hopecreek"
+  ]
+ },
+ {
+  "id": "lasalle",
+  "name": "LaSalle",
+  "state": "IL",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "lasalle"
+  ]
+ },
+ {
+  "id": "limerick",
+  "name": "Limerick",
+  "state": "PA",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "limerick"
+  ]
+ },
+ {
+  "id": "mcguire",
+  "name": "McGuire",
+  "state": "NC",
+  "operator": "Duke Energy",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "mcguire"
+  ]
+ },
+ {
+  "id": "millstone",
+  "name": "Millstone",
+  "state": "CT",
+  "operator": "Dominion",
+  "type": "PWR",
+  "units": [
+   2,
+   3
+  ],
+  "keys": [
+   "millstone"
+  ]
+ },
+ {
+  "id": "monticello",
+  "name": "Monticello",
+  "state": "MN",
+  "operator": "Xcel Energy",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "monticello"
+  ]
+ },
+ {
+  "id": "nine-mile-point",
+  "name": "Nine Mile Point",
+  "state": "NY",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "ninemilepoint"
+  ]
+ },
+ {
+  "id": "north-anna",
+  "name": "North Anna",
+  "state": "VA",
+  "operator": "Dominion",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "northanna"
+  ]
+ },
+ {
+  "id": "oconee",
+  "name": "Oconee",
+  "state": "SC",
+  "operator": "Duke Energy",
+  "type": "PWR",
+  "units": [
+   1,
+   2,
+   3
+  ],
+  "keys": [
+   "oconee"
+  ]
+ },
+ {
+  "id": "palisades",
+  "name": "Palisades",
+  "state": "MI",
+  "operator": "Holtec",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "palisades"
+  ]
+ },
+ {
+  "id": "palo-verde",
+  "name": "Palo Verde",
+  "state": "AZ",
+  "operator": "APS",
+  "type": "PWR",
+  "units": [
+   1,
+   2,
+   3
+  ],
+  "keys": [
+   "paloverde"
+  ]
+ },
+ {
+  "id": "peach-bottom",
+  "name": "Peach Bottom",
+  "state": "PA",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   2,
+   3
+  ],
+  "keys": [
+   "peachbottom"
+  ]
+ },
+ {
+  "id": "perry",
+  "name": "Perry",
+  "state": "OH",
+  "operator": "Vistra",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "perry"
+  ]
+ },
+ {
+  "id": "point-beach",
+  "name": "Point Beach",
+  "state": "WI",
+  "operator": "NextEra",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "pointbeach"
+  ]
+ },
+ {
+  "id": "prairie-island",
+  "name": "Prairie Island",
+  "state": "MN",
+  "operator": "Xcel Energy",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "prairieisland"
+  ]
+ },
+ {
+  "id": "quad-cities",
+  "name": "Quad Cities",
+  "state": "IL",
+  "operator": "Constellation",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "quadcities"
+  ]
+ },
+ {
+  "id": "river-bend",
+  "name": "River Bend",
+  "state": "LA",
+  "operator": "Entergy",
+  "type": "BWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "riverbend"
+  ]
+ },
+ {
+  "id": "robinson",
+  "name": "Robinson",
+  "state": "SC",
+  "operator": "Duke Energy",
+  "type": "PWR",
+  "units": [
+   2
+  ],
+  "keys": [
+   "hbrobinson",
+   "robinson"
+  ]
+ },
+ {
+  "id": "salem",
+  "name": "Salem",
+  "state": "NJ",
+  "operator": "PSEG",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "salem"
+  ]
+ },
+ {
+  "id": "seabrook",
+  "name": "Seabrook",
+  "state": "NH",
+  "operator": "NextEra",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "seabrook"
+  ]
+ },
+ {
+  "id": "sequoyah",
+  "name": "Sequoyah",
+  "state": "TN",
+  "operator": "TVA",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "sequoyah"
+  ]
+ },
+ {
+  "id": "south-texas-project",
+  "name": "South Texas Project",
+  "state": "TX",
+  "operator": "STP Nuclear",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "southtexas",
+   "southtexasproject"
+  ]
+ },
+ {
+  "id": "st-lucie",
+  "name": "St. Lucie",
+  "state": "FL",
+  "operator": "NextEra",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "saintlucie",
+   "stlucie"
+  ]
+ },
+ {
+  "id": "summer",
+  "name": "Summer",
+  "state": "SC",
+  "operator": "Dominion",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "summer",
+   "vcsummer",
+   "virgilcsummer"
+  ]
+ },
+ {
+  "id": "surry",
+  "name": "Surry",
+  "state": "VA",
+  "operator": "Dominion",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "surry"
+  ]
+ },
+ {
+  "id": "susquehanna",
+  "name": "Susquehanna",
+  "state": "PA",
+  "operator": "Talen Energy",
+  "type": "BWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "susquehanna"
+  ]
+ },
+ {
+  "id": "turkey-point",
+  "name": "Turkey Point",
+  "state": "FL",
+  "operator": "NextEra",
+  "type": "PWR",
+  "units": [
+   3,
+   4
+  ],
+  "keys": [
+   "turkeypoint"
+  ]
+ },
+ {
+  "id": "vogtle",
+  "name": "Vogtle",
+  "state": "GA",
+  "operator": "Southern Nuclear",
+  "type": "PWR",
+  "units": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "keys": [
+   "vogtle"
+  ]
+ },
+ {
+  "id": "waterford",
+  "name": "Waterford",
+  "state": "LA",
+  "operator": "Entergy",
+  "type": "PWR",
+  "units": [
+   3
+  ],
+  "keys": [
+   "waterford"
+  ]
+ },
+ {
+  "id": "watts-bar",
+  "name": "Watts Bar",
+  "state": "TN",
+  "operator": "TVA",
+  "type": "PWR",
+  "units": [
+   1,
+   2
+  ],
+  "keys": [
+   "wattsbar"
+  ]
+ },
+ {
+  "id": "wolf-creek",
+  "name": "Wolf Creek",
+  "state": "KS",
+  "operator": "Evergy",
+  "type": "PWR",
+  "units": [
+   1
+  ],
+  "keys": [
+   "wolfcreek"
+  ]
+ }
+]

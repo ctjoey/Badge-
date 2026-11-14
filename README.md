@@ -10,24 +10,19 @@ Nuke30 is a local-first, offline-capable PWA for nuclear outage workers, traveli
 > Nuke30 is a personal planning aid, not an official access determination. Your licensee's access authorization program has final say.
 
 ## Privacy
-- **100% on-device.** Data is stored in `localStorage` under `nuke30_data_v1`. There is no backend, no analytics and no network calls with your data.
+- **100% on-device.** Data is stored in `localStorage` under `nuke30_data_v2`. There is no backend, no analytics and no network calls with your data.
 - **No sensitive personal info.** The app never asks for SSNs, driver's license or badge numbers, badge photos or site security details.
-- **You hold the backup.** Use Data → Export/Import Backup (`nuke30-backup-YYYY-MM-DD.json`) to move data between devices. Imports are validated, and unknown fields are dropped.
 
 ## Features
-| View | What it does |
+| Tab | What it does |
 |---|---|
-| **Status** | Toggle between Active UA and the Gap Clock. Shows a 30-day countdown with color urgency (green 0–15, amber 16–25, red 26–30, terminated 31+), the exact Day-30 deadline, a preview of the next outage with a bridge/exceed projection, 365-day and 5-year/3-year screening timers, and an `.ics` export (`nuke30-reminders.ics`) with alarms on Day 20, 25, 28 and 29. |
-| **Outages** | Add, edit and delete outages (Upcoming / Active / Completed), with utility presets plus a custom name. Each outage shows its duration, and the gap between outages is shown with 30-day warnings and overlap detection. Active outages have a one-click **Mark Outage Complete**. |
-| **PHQ** | A chronological history of completed and active outages and the gaps between them. Gaps over 30 days are flagged. Copy it as text or download `nuke30-phq-history.csv`. Upcoming outages are left out. |
-| **Data** | Backup/restore, **Load Demo Outage Data** and **Clear All Data**. |
-
-Training & qualification tracking is planned for v2. It shows as a disabled tab.
+| **Status** | One card for each site you picked. It shows **Active UA** while you're on site, or the days left in the 30-day window after you badge out, colored by urgency (green 0–15, amber 16–25, red 26–30, expired 31+). It also shows the date you must in-process by. The calendar reminder (`.ics`) has alarms on Day 20, 25, 28 and 29. |
+| **Outages** | Refueling outages for the next 5 years, with start dates and lengths, for your sites or all sites. These are **projected** from NRC daily reactor power reports and each unit's measured refueling cycle. The list is refreshed weekly by `.github/workflows/outages.yml` (`scripts/scrape-outages.mjs` → `src/data/outages.json`). |
+| **Settings** | Every operating US nuclear plant (`src/data/plants.json`). Tick the ones you work at. |
 
 ## Date rules
 - All dates are calendar dates set to **local midnight**. Day counts use `differenceInCalendarDays`, so daylight-saving changes and time of day never cause off-by-one errors.
 - The deactivation date is **Day 0**. **Day 30 is the last valid day.** Day 31 means continuous access has ended.
-- "Gap" between outages is the number of days since deactivation on the next in-processing date. This is the same number the 30-day rule uses.
 
 ## Development
 ```bash
@@ -46,9 +41,10 @@ public/            generated PNG/ICO icons, manifest.json, sw.js
 assets/            app-icon-1024.png (App Store size, not served)
 scripts/           icon-source.png (master artwork) + generate-icons.mjs (sharp + png-to-ico)
 src/types/         data model
-src/utils/         dateLogic.ts, icsGenerator.ts, phq.ts, storage.ts, uaState.ts, demoData.ts
+src/data/          plants.json, outages.json (generated weekly)
+src/utils/         dateLogic.ts, outageModel.mjs, icsGenerator.ts, storage.ts
 src/hooks/         useAppData (localStorage state), useToday (midnight rollover)
-src/components/    App shell, dashboard/, outages/, phq/, data/, ui primitives
+src/components/    App shell, StatusView, OutagesView, SettingsView, ui primitives
 ```
 
 ## iOS app & TestFlight

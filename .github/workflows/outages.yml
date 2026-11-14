@@ -1,0 +1,37 @@
+# Weekly: download NRC daily reactor power reports, detect each unit's refueling outages,
+# project the next 5 years, and commit src/data/outages.json (shipped inside the app).
+# Run on demand from Actions → "Outage schedule" → Run workflow.
+name: Outage schedule
+
+on:
+  schedule:
+    - cron: '17 9 * * 1' # Mondays 09:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: outages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download NRC reports and project outages
+        run: node scripts/scrape-outages.mjs
+      - name: Commit if changed
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/outages.json
+          git diff --cached --quiet && { echo "No change"; exit 0; }
+          git commit -m "Outage schedule: refresh from NRC reports"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"

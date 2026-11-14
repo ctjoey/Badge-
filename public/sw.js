@@ -1,6 +1,6 @@
 /* Nuke30 service worker — offline app shell. No user data is ever sent or cached here;
    all records live in the browser's localStorage. */
-const CACHE = "nuke30-v2";
+const CACHE = "nuke30-v3";
 const SHELL = [
   "/",
   "/manifest.json",

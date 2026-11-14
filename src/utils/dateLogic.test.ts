@@ -1,34 +1,13 @@
 import { describe, expect, it } from "vitest";
-import type { Outage } from "@/types";
 import {
   addDaysISO,
-  computeTransitions,
   daysBetween,
   get365Status,
   getGapStatus,
   getScreeningStatus,
-  latestCompletedEndDate,
-  outageDurationDays,
   parseISODate,
-  projectNextOutage,
   urgencyForDays,
 } from "./dateLogic";
-
-function outage(p: Partial<Outage> & Pick<Outage, "id" | "startDate">): Outage {
-  return {
-    status: "completed",
-    utility: "Test Utility",
-    site: "",
-    unitLabel: "",
-    role: "",
-    employer: "",
-    endDate: null,
-    notes: "",
-    createdAt: "",
-    updatedAt: "",
-    ...p,
-  };
-}
 
 describe("parseISODate", () => {
   it("parses to local midnight", () => {
@@ -130,108 +109,5 @@ describe("screening status", () => {
     expect(getScreeningStatus("2021-01-01", 5, "2025-11-01").state).toBe("due-soon");
     expect(getScreeningStatus("2021-01-01", 5, "2026-01-02").state).toBe("overdue");
     expect(getScreeningStatus("2021-01-01", 3, "2022-01-01").state).toBe("ok");
-  });
-});
-
-describe("outage duration", () => {
-  it("is inclusive of both badge dates", () => {
-    expect(outageDurationDays({ startDate: "2025-04-01", endDate: "2025-04-01" }, "2025-05-01")).toBe(1);
-    expect(outageDurationDays({ startDate: "2025-04-01", endDate: "2025-04-30" }, "2025-05-01")).toBe(30);
-  });
-  it("counts ongoing outages through today", () => {
-    expect(outageDurationDays({ startDate: "2025-04-01", endDate: null }, "2025-04-10")).toBe(10);
-  });
-});
-
-describe("transitions between assignments", () => {
-  it("computes gap days and flags > 30", () => {
-    const t = computeTransitions([
-      outage({ id: "b", startDate: "2025-05-05", endDate: "2025-06-01" }),
-      outage({ id: "a", startDate: "2025-03-01", endDate: "2025-04-01" }),
-      outage({ id: "c", status: "upcoming", startDate: "2025-07-05", endDate: "2025-08-01" }),
-    ]);
-    expect(t).toHaveLength(2);
-    expect(t[0]).toMatchObject({ fromId: "a", toId: "b", gapDays: 34, exceedsWindow: true, overlap: false, projected: false });
-    expect(t[1]).toMatchObject({ fromId: "b", toId: "c", gapDays: 34, exceedsWindow: true, projected: true });
-  });
-
-  it("exactly 30 days is safe, 31 is not", () => {
-    const ok = computeTransitions([
-      outage({ id: "a", startDate: "2025-01-01", endDate: "2025-02-01" }),
-      outage({ id: "b", startDate: "2025-03-03", endDate: "2025-04-01" }),
-    ]);
-    expect(ok[0].gapDays).toBe(30);
-    expect(ok[0].exceedsWindow).toBe(false);
-    const bad = computeTransitions([
-      outage({ id: "a", startDate: "2025-01-01", endDate: "2025-02-01" }),
-      outage({ id: "b", startDate: "2025-03-04", endDate: "2025-04-01" }),
-    ]);
-    expect(bad[0].gapDays).toBe(31);
-    expect(bad[0].exceedsWindow).toBe(true);
-  });
-
-  it("detects overlapping site dates", () => {
-    const t = computeTransitions([
-      outage({ id: "a", startDate: "2025-01-01", endDate: "2025-02-10" }),
-      outage({ id: "b", startDate: "2025-02-05", endDate: "2025-03-01" }),
-    ]);
-    expect(t[0].overlap).toBe(true);
-    expect(t[0].gapDays).toBe(-5);
-    expect(t[0].exceedsWindow).toBe(false);
-  });
-
-  it("measures from the longest covering assignment when one is nested", () => {
-    const t = computeTransitions([
-      outage({ id: "long", startDate: "2025-01-01", endDate: "2025-03-31" }),
-      outage({ id: "nested", startDate: "2025-02-01", endDate: "2025-02-15" }),
-      outage({ id: "next", startDate: "2025-04-10", endDate: "2025-05-01" }),
-    ]);
-    expect(t[1]).toMatchObject({ fromId: "long", toId: "next", gapDays: 10, exceedsWindow: false });
-  });
-
-  it("returns unknown gap after an ongoing (TBD) assignment", () => {
-    const t = computeTransitions([
-      outage({ id: "a", status: "active", startDate: "2025-01-01", endDate: null }),
-      outage({ id: "b", status: "upcoming", startDate: "2025-06-01", endDate: null }),
-    ]);
-    expect(t[0].gapDays).toBeNull();
-    expect(t[0].exceedsWindow).toBe(false);
-  });
-});
-
-describe("upcoming outage projection", () => {
-  const outages = [
-    outage({ id: "done", startDate: "2025-09-01", endDate: "2025-10-01" }),
-    outage({ id: "next", status: "upcoming", startDate: "2025-10-31", endDate: null }),
-    outage({ id: "later", status: "upcoming", startDate: "2026-03-01", endDate: null }),
-  ];
-
-  it("bridges safely when in-processing is on Day 30", () => {
-    const p = projectNextOutage(outages, "2025-10-01", false, "2025-10-10")!;
-    expect(p.outageId).toBe("next");
-    expect(p.daysUntilStart).toBe(21);
-    expect(p.gapAtStart).toBe(30);
-    expect(p.bridgesSafely).toBe(true);
-  });
-
-  it("warns when in-processing would be Day 31+", () => {
-    const p = projectNextOutage(outages, "2025-09-30", false, "2025-10-10")!;
-    expect(p.gapAtStart).toBe(31);
-    expect(p.bridgesSafely).toBe(false);
-  });
-
-  it("has no gap projection while still badged", () => {
-    const p = projectNextOutage(outages, null, true, "2025-10-10")!;
-    expect(p.gapAtStart).toBeNull();
-    expect(p.bridgesSafely).toBeNull();
-  });
-
-  it("ignores upcoming entries dated in the past and returns null when none", () => {
-    expect(projectNextOutage(outages, "2025-10-01", false, "2026-03-02")).toBeNull();
-  });
-
-  it("latestCompletedEndDate picks the most recent", () => {
-    expect(latestCompletedEndDate(outages)).toBe("2025-10-01");
-    expect(latestCompletedEndDate([])).toBeNull();
   });
 });

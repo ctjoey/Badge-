@@ -1,5 +1,5 @@
 "use client";
-import { BadgeCheck, CalendarPlus, Hourglass, Info, Settings, TriangleAlert } from "lucide-react";
+import { BadgeCheck, CalendarPlus, Hourglass, Info, Settings, Trash2, TriangleAlert } from "lucide-react";
 import type { AppActions } from "@/hooks/useAppData";
 import { PLANTS_BY_ID } from "@/data";
 import type { ISODate, Plant, SiteBadge } from "@/types";
@@ -24,11 +24,13 @@ function SiteCard({
   badge,
   today,
   onChange,
+  onRemove,
 }: {
   plant: Plant;
   badge: SiteBadge | undefined;
   today: ISODate;
   onChange: (b: SiteBadge) => void;
+  onRemove: () => void;
 }) {
   const active = badge?.active ?? false;
   const outDate = badge?.outDate ?? null;
@@ -131,6 +133,16 @@ function SiteCard({
           </Button>
         )}
       </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          if (window.confirm(`Remove ${plant.name} from Status? You can add it back in Settings.`)) onRemove();
+        }}
+        className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400"
+      >
+        <Trash2 className="h-3.5 w-3.5" /> Remove from Status
+      </button>
     </section>
   );
 }
@@ -168,7 +180,9 @@ export function StatusView({
         {plants
           .sort((a, b) => a.name.localeCompare(b.name))
           .map((p) => (
-            <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} onChange={(b) => actions.setBadge(p.id, b)} />
+            <SiteCard key={p.id} plant={p} badge={badges[p.id]} today={today} onChange={(b) => actions.setBadge(p.id, b)}
+              onRemove={() => actions.togglePlant(p.id)}
+            />
           ))}
       </div>
       <div className="flex items-start gap-2 rounded-xl border border-zinc-200 bg-white p-3 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">

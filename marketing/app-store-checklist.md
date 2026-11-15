@@ -6,7 +6,11 @@ Everything to paste is in [`app-store-copy.md`](app-store-copy.md). The six scre
 ## Before you start
 
 - [ ] The privacy and support pages are live on the web (Apple checks both links).
-      Pages: `docs/privacy.html` and `docs/index.html`.
+      Turn on GitHub Pages once: github.com/ctjoey/Badge- → **Settings** → **Pages** →
+      Source **Deploy from a branch** → Branch `claude/nuke30-outage-tracker-9b6wbp`, folder **/docs** → **Save**.
+      After a minute or two both links below should open:
+  - Support: https://ctjoey.github.io/Badge-/
+  - Privacy: https://ctjoey.github.io/Badge-/privacy.html
 - [ ] The newest build has finished processing in TestFlight.
 
 ## 1. App Information (left menu, under General)
@@ -25,14 +29,14 @@ Everything to paste is in [`app-store-copy.md`](app-store-copy.md). The six scre
 
 ## 3. App Privacy (left menu)
 
-- [ ] **Privacy Policy URL:** the link to `privacy.html`
+- [ ] **Privacy Policy URL:** `https://ctjoey.github.io/Badge-/privacy.html`
 - [ ] Click **Get Started** → choose **"No, we do not collect data from this app"** → **Save** → **Publish**
 
 ## 4. The version page (left menu: "1.0 Prepare for Submission")
 
 - [ ] **Screenshots:** under "iPhone 6.9-inch Display", drag in the six PNG files, in number order
 - [ ] **Promotional Text**, **Description**, **Keywords:** paste each from the copy file
-- [ ] **Support URL:** the link to the support page (`index.html`)
+- [ ] **Support URL:** `https://ctjoey.github.io/Badge-/`
 - [ ] **Version:** change to **1.1.0** (it must match the build)
 - [ ] **Copyright:** `2026` followed by your name or company
 - [ ] **Build:** click **+** (or "Add Build") and pick the newest one

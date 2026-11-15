@@ -60,3 +60,10 @@ One-time setup (in this repo's Settings → Secrets and variables → Actions):
 - In App Store Connect, create the **Nuke30** app record with that bundle id.
 
 Local: `npm run ios:sync` rebuilds the web app and copies it into `ios/`. `npm run icons` regenerates every icon and the iOS launch screen.
+
+## App Store listing
+- `marketing/app-store-copy.md`: name, subtitle, keywords, description and review notes, ready to paste (length-checked by `npm test`).
+- `marketing/store-screenshots/`: the six 1290×2796 screenshots. `npm run screenshots` regenerates them from the real app (needs Playwright).
+- `marketing/app-store-checklist.md`: step-by-step submission checklist.
+- `docs/privacy.html` and `docs/index.html`: privacy policy and support pages for the listing's two required links.
+- The app is iPhone-only and portrait-only, and ships a privacy manifest (`ios/App/App/PrivacyInfo.xcprivacy`).

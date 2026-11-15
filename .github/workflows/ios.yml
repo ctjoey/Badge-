@@ -74,6 +74,10 @@ jobs:
           /usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" -c "Print :CFBundleDisplayName" "$APP/Info.plist"
           test -f "$APP/public/index.html" || { echo "::error::web app missing from bundle"; exit 1; }
           test -f "$APP/Assets.car" || { echo "::error::asset catalog (icon) missing"; exit 1; }
+          test -f "$APP/PrivacyInfo.xcprivacy" || { echo "::error::privacy manifest missing from app"; exit 1; }
+          FAMILY=$(/usr/libexec/PlistBuddy -c "Print :UIDeviceFamily" "$APP/Info.plist" | tr -d ' \n')
+          echo "Device family: $FAMILY"
+          [ "$FAMILY" = "Array{1}" ] || { echo "::error::app should be iPhone-only (UIDeviceFamily 1)"; exit 1; }
           grep -c "BUILD SUCCEEDED\|SwiftCompile\|CompileSwift" build.log || true
           ls "$APP/public" | head
       - uses: actions/upload-artifact@v4

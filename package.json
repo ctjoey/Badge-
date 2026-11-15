@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "icons": "node scripts/generate-icons.mjs",
-    "ios:sync": "next build && cap sync ios"
+    "ios:sync": "next build && cap sync ios",
+    "screenshots": "next build && node marketing/store-art/make-screenshots.cjs"
   },
   "dependencies": {
     "@capacitor/core": "^8.6.2",

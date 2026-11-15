@@ -1,7 +1,5 @@
 "use client";
 import { Share } from "@capacitor/share";
-import type { AppData, ISODate } from "@/types";
-import { formatDisplayDate, getGapStatus } from "./dateLogic";
 import { isNativeApp } from "./notifications";
 
 /**
@@ -18,23 +16,6 @@ export function appInviteText(): string {
   ]
     .filter(Boolean)
     .join("\n\n");
-}
-
-/** Plain-text summary of the user's sites, e.g. for a supervisor or recruiter. */
-export function badgeStatusText(data: AppData, today: ISODate, plantName: (id: string) => string): string {
-  const lines = data.selectedPlantIds
-    .map((id) => {
-      const name = plantName(id);
-      const b = data.badges[id];
-      if (!b || (!b.active && !b.outDate)) return `• ${name}: status not set`;
-      if (b.active) return `• ${name}: on site (active badge)`;
-      const g = getGapStatus(b.outDate!, today);
-      if (g.daysSince < 0) return `• ${name}: badge-out set for ${formatDisplayDate(g.deactivationDate)}`;
-      if (!g.inWindow) return `• ${name}: 30-day window expired ${formatDisplayDate(g.terminationDate)}`;
-      return `• ${name}: badged out ${formatDisplayDate(g.deactivationDate)} — ${g.daysRemaining} day${g.daysRemaining === 1 ? "" : "s"} left, in-process by ${formatDisplayDate(g.windowLastDay)}`;
-    })
-    .sort();
-  return [`My badge status (${formatDisplayDate(today)}):`, ...(lines.length ? lines : ["• No sites picked yet"]), "", "Sent from Nuke30"].join("\n");
 }
 
 /**

@@ -65,6 +65,9 @@ AND A LITTLE FUN
 ABOUT THE OUTAGE DATES
 Utilities don't publish exact outage schedules. Nuke30 projects them from the NRC's public daily reactor power reports and each unit's refueling cycle. Treat them as good estimates and go by your call-out for exact dates.
 
+HELP AND OUTAGE UPDATES
+Questions, or know an exact outage date? Email Nuke30app@outlook.com.
+
 IMPORTANT
 Nuke30 is a personal planning aid. It is not an official access determination and is not affiliated with the NRC, any utility or any staffing company. Your site's access authorization program has the final say.
 ```

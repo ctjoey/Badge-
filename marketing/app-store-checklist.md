@@ -38,7 +38,8 @@ Everything to paste is in [`app-store-copy.md`](app-store-copy.md). The six scre
 - [ ] **Build:** click **+** (or "Add Build") and pick the newest one
 - [ ] **App Review Information:**
   - untick **Sign-in required**
-  - fill in your contact name, phone and email
+  - fill in your contact name and phone
+  - **Email:** `Nuke30app@outlook.com`
   - **Notes:** paste from "App Review notes"
 - [ ] **Version Release:** "Automatically release this version"
 - [ ] Click **Save**

@@ -1,14 +1,18 @@
 "use client";
-import { Bell, BellRing, Factory, Info, Share2, Users, X } from "lucide-react";
+import { Bell, BellRing, CalendarClock, Factory, Info, LifeBuoy, Mail, Share2, Users, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { AppActions } from "@/hooks/useAppData";
 import { PLANTS, PLANTS_BY_ID } from "@/data";
 import { formatDisplayDate, toISODate } from "@/utils/dateLogic";
 import { isNativeApp, sendTestAlert, type AlertPermission } from "@/utils/notifications";
 import type { PlannedReminder } from "@/utils/reminders";
+import { HELP_MAILTO, OUTAGE_UPDATE_MAILTO, SUPPORT_EMAIL } from "@/utils/contact";
 import { appInviteText, shareText } from "@/utils/share";
 import { MultiSelect, type Option } from "./MultiSelect";
 import { Button, cx } from "./ui";
+
+const linkButton =
+  "inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-300 bg-white px-3.5 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700";
 
 const DAY_OPTIONS: Option[] = Array.from({ length: 15 }, (_, i) => {
   const n = i + 1;
@@ -213,6 +217,30 @@ export function SettingsView({
           just a short description of Nuke30.
         </p>
         {shareMsg && <p className="mt-2 text-xs font-medium text-zinc-700 dark:text-zinc-300">{shareMsg}</p>}
+      </section>
+
+      <section className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+        <p className="flex items-center gap-2 font-bold">
+          <Mail className="h-4 w-4 text-magenta-500" /> Help &amp; outage updates
+        </p>
+        <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
+          Email{" "}
+          <a href={HELP_MAILTO} className="font-semibold break-all text-magenta-600 underline dark:text-magenta-400">
+            {SUPPORT_EMAIL}
+          </a>{" "}
+          for help or to provide outage updates.
+        </p>
+        <div className="mt-3 flex flex-col gap-2">
+          <a href={HELP_MAILTO} className={linkButton}>
+            <LifeBuoy className="h-4 w-4" /> Email for help
+          </a>
+          <a href={OUTAGE_UPDATE_MAILTO} className={linkButton}>
+            <CalendarClock className="h-4 w-4" /> Send an outage update
+          </a>
+        </div>
+        <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+          Know an exact outage date? Send it in and it can be added for everyone in a future update.
+        </p>
       </section>
     </div>
   );

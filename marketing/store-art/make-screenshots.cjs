@@ -26,25 +26,25 @@ const daysAgo = (n) => { const d = new Date(); d.setDate(d.getDate() - n); retur
 const fmt = (s) => new Date(`${s}T12:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 const nextOutage = (plantId) => outages.outages.find((o) => o.plantId === plantId && o.status === "projected" && o.start > iso(new Date()));
 
-const base = { version: 2, selectedPlantIds: ["perry", "surry", "vogtle"], reminderDays: [10, 5, 3, 1], followed: [], userOutages: [],
-  badges: { perry: { active: false, outDate: daysAgo(9) }, surry: { active: false, outDate: daysAgo(27) }, vogtle: { active: true, outDate: null } } };
+const base = { version: 2, selectedPlantIds: ["perry", "surry", "vogtle"], reminderDays: [10, 5, 2, 1], followed: [], userOutages: [],
+  badges: { perry: { active: false, outDate: daysAgo(9) }, surry: { active: false, outDate: daysAgo(28) }, vogtle: { active: true, outDate: null } } };
 const perryNext = nextOutage("perry"), vogtleNext = nextOutage("vogtle"), surryNext = nextOutage("surry");
-const surryLastDay = (() => { const d = new Date(); d.setDate(d.getDate() + 3); return iso(d); })();
+const surryLastDay = (() => { const d = new Date(); d.setDate(d.getDate() + 2); return iso(d); })();
 
 const SCENES = [
   { file: "01-badge-clock", head: 'Know your <b>30&#8209;day</b><br>badge clock', sub: "Days left at every plant you work", data: base, go: async () => {} },
   { file: "02-alerts", head: 'Alerts <b>before</b><br>it expires', sub: "Pick your reminder days. Get the last-day warning.", data: base,
-    banner: { title: "3 days left at Surry", body: `Your 30-day badge window at Surry closes after ${fmt(surryLastDay)}. In-process by then to keep your access.` },
+    banner: { title: "2 days left at Surry", body: `Your 30-day badge window at Surry closes after ${fmt(surryLastDay)}. In-process by then to keep your access.` },
     go: async (p) => { await p.getByRole("button", { name: "Settings", exact: true }).click(); await p.getByText("iPhone alerts").scrollIntoViewIfNeeded(); await p.evaluate(() => window.scrollBy(0, 150)); } },
   { file: "03-outages", head: 'Every outage,<br><b>5 years</b> out', sub: "Projected refueling outages for your sites", data: base,
-    go: async (p) => { await p.getByRole("button", { name: "Outages", exact: true }).click(); } },
+    go: async (p) => { await p.getByRole("button", { name: "Outages", exact: true }).click(); await p.evaluate(() => window.scrollTo(0, 0)); } },
   { file: "04-follow-and-fix", head: 'Follow outages.<br><b>Fix the dates.</b>', sub: "Star the ones you care about. Add what you know.",
     data: { ...base,
       followed: [perryNext, vogtleNext, surryNext, ...["browns-ferry", "watts-bar", "catawba", "palo-verde", "st-lucie"].map(nextOutage)].filter(Boolean).map(({ plantId, unit, start }) => ({ plantId, unit, start })),
       userOutages: perryNext ? [{ id: "u-demo", plantId: "perry", unit: perryNext.unit, start: iso(new Date(new Date(`${perryNext.start}T12:00:00`).getTime() - 9 * 864e5)), days: 38, replaces: { plantId: "perry", unit: perryNext.unit, start: perryNext.start } }] : [] },
     go: async (p) => { await p.getByRole("button", { name: "Outages", exact: true }).click(); await p.getByRole("tab", { name: /Following/ }).click(); } },
   { file: "05-pick-your-plants", head: 'All <b>55</b> U.S.<br>nuclear plants', sub: "Pick your sites in seconds", data: base,
-    go: async (p) => { await p.getByRole("button", { name: "Settings", exact: true }).click(); const dd = p.getByRole("button", { name: /plants selected/ }); await dd.evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 215)); await dd.click(); await p.getByRole("option", { name: /Palo Verde/ }).evaluate((el) => el.scrollIntoView({ block: "start" })); } },
+    go: async (p) => { await p.getByRole("button", { name: "Settings", exact: true }).click(); const dd = p.getByRole("button", { name: /plants selected/ }); await dd.evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 215)); await dd.click(); await p.getByRole("option", { name: /Palo Verde/ }).evaluate((el) => { const list = el.closest("ul"); list.scrollTop = el.offsetTop - list.offsetTop; }); } },
   { file: "06-expired", head: 'Let it expire and…<br><b>boom</b>', sub: "A little fun when the clock runs out",
     data: { ...base, selectedPlantIds: ["perry"], badges: { perry: { active: false, outDate: daysAgo(31) } } }, wait: 5200, go: async () => {} },
 ];
@@ -83,23 +83,23 @@ function frame(scene, screenDataUrl) {
     <div class="banner"><img src="${ICON}"><div><div class="bt"><span>${scene.banner.title}</span><i>now</i></div><div class="bb">${scene.banner.body}</div></div></div>` : "";
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   *{box-sizing:border-box;margin:0}
-  body{width:${W}px;height:${H}px;background:#000;overflow:hidden;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#fff;position:relative}
-  .glow{position:absolute;inset:0;background:radial-gradient(900px 700px at 50% 30%,rgba(251,3,165,.34),transparent 70%),radial-gradient(900px 600px at 50% 100%,rgba(253,224,71,.14),transparent 70%)}
+  body{width:${W}px;height:${H}px;background:linear-gradient(180deg,#e0f2fe 0%,#fdf2f8 55%,#fefce8 100%);overflow:hidden;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#18181b;position:relative}
+  .glow{position:absolute;inset:0;background:radial-gradient(900px 700px at 50% 32%,rgba(251,3,165,.16),transparent 70%),radial-gradient(1000px 700px at 50% 100%,rgba(253,224,71,.35),transparent 70%)}
   .stripe{position:absolute;left:0;right:0;height:44px;background:repeating-linear-gradient(-45deg,#fde047 0 30px,#000 30px 60px)}
   .head{position:absolute;top:150px;left:70px;right:70px;text-align:center}
   h1{white-space:nowrap;font-size:104px;line-height:1.02;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-2px;
-     background:linear-gradient(180deg,#fff 0%,#d4d4d8 55%,#a1a1aa 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  h1 b{color:#fb03a5;-webkit-text-fill-color:#fb03a5;text-shadow:0 0 34px rgba(251,3,165,.6)}
-  .sub{margin-top:30px;font-size:50px;font-weight:600;color:#e4e4e7}
+     color:#18181b}
+  h1 b{color:#e0008f;-webkit-text-fill-color:#e0008f}
+  .sub{margin-top:30px;font-size:50px;font-weight:600;color:#3f3f46}
   .phone{position:absolute;top:606px;left:${(W - PHONE_W) / 2}px;width:${PHONE_W}px;border:${BEZEL}px solid #1b1b1f;border-radius:${Math.round(58 * K)}px;overflow:hidden;background:#000;
-     box-shadow:0 0 0 3px #3f3f46,0 0 120px rgba(251,3,165,.45),0 40px 120px rgba(0,0,0,.8)}
+     box-shadow:0 0 0 3px #52525b,0 30px 90px rgba(24,24,27,.35),0 0 80px rgba(251,3,165,.25)}
   .phone img.screen{display:block;width:100%}
-  .sb{position:absolute;top:0;left:0;right:0;height:${SAFE_TOP * K}px;font-weight:700;font-size:${17 * K}px}
+  .sb{color:#fff;position:absolute;top:0;left:0;right:0;height:${SAFE_TOP * K}px;font-weight:700;font-size:${17 * K}px}
   .sb .time{position:absolute;left:${52 * K}px;top:${17 * K}px}
   .sb .island{position:absolute;left:50%;top:${11 * K}px;width:${124 * K}px;height:${36 * K}px;margin-left:${-62 * K}px;border-radius:${18 * K}px;background:#000;border:2px solid #18181b}
   .sb svg{position:absolute;right:${30 * K}px;top:${19 * K}px;height:${13 * K}px}
   .banner{position:absolute;top:${(SAFE_TOP + 6) * K}px;left:${9 * K}px;right:${9 * K}px;display:flex;gap:${11 * K}px;align-items:center;padding:${13 * K}px ${14 * K}px;border-radius:${24 * K}px;
-     background:rgba(44,44,48,.97);box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08)}
+     color:#fff;background:rgba(44,44,48,.97);box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08)}
   .banner img{width:${40 * K}px;height:${40 * K}px;border-radius:${9 * K}px;flex:none}
   .bt{display:flex;justify-content:space-between;font-size:${15.5 * K}px;font-weight:700}
   .bt i{font-style:normal;font-weight:400;color:#a1a1aa;font-size:${13 * K}px}
@@ -121,7 +121,7 @@ function frame(scene, screenDataUrl) {
   await new Promise((r) => server.listen(0, r));
   const url = `http://localhost:${server.address().port}/`;
   const browser = await chromium.launch();
-  const ctx = await browser.newContext({ viewport: { width: PT_W, height: PT_H }, deviceScaleFactor: 3, colorScheme: "dark" });
+  const ctx = await browser.newContext({ viewport: { width: PT_W, height: PT_H }, deviceScaleFactor: 3, colorScheme: "light" });
   await ctx.addInitScript(fakeIphone);
   await ctx.addInitScript({ path: NATIVE_BRIDGE });
   const page = await ctx.newPage();
@@ -130,7 +130,14 @@ function frame(scene, screenDataUrl) {
 
   for (const scene of SCENES) {
     await page.goto(url);
-    await page.evaluate((d) => { localStorage.setItem("nuke30_data_v2", JSON.stringify(d)); localStorage.removeItem("nuke30_theme"); }, scene.data);
+    await page.evaluate(({ d, today }) => {
+      localStorage.setItem("nuke30_data_v2", JSON.stringify(d));
+      localStorage.setItem("nuke30_theme", "light");
+      // Today's 8 AM alerts count as already delivered, so "Next" shows a real upcoming 8:00 AM alert.
+      const sent = {};
+      for (const id of d.selectedPlantIds) for (const n of [...d.reminderDays, 0]) sent[`${id}#${n}#${today}`] = 1;
+      localStorage.setItem("nuke30_alerts_sent_today", JSON.stringify({ day: today, sent }));
+    }, { d: scene.data, today: iso(new Date()) });
     await page.reload();
     // room for the iPhone status bar (the real app gets this from the phone's safe area)
     await page.addStyleTag({ content: `header{padding-top:${SAFE_TOP}px!important} .nuke-root{cursor:default}` });

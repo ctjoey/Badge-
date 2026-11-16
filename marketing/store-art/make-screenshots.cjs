@@ -14,6 +14,7 @@ const sharp = require("sharp");
 const ROOT = path.resolve(__dirname, "../..");
 const OUT_DIR = path.join(ROOT, "out");
 const SHOTS = path.join(ROOT, "marketing/store-screenshots");
+const SHOTS_63 = path.join(ROOT, "marketing/store-screenshots/6.3-inch-1206x2622");
 const NATIVE_BRIDGE = path.join(ROOT, "node_modules/@capacitor/ios/Capacitor/Capacitor/assets/native-bridge.js");
 const outages = JSON.parse(fs.readFileSync(path.join(ROOT, "src/data/outages.json"), "utf8"));
 const ICON = "data:image/png;base64," + fs.readFileSync(path.join(ROOT, "public/icon-192x192.png")).toString("base64");
@@ -127,6 +128,7 @@ function frame(scene, screenDataUrl) {
   const page = await ctx.newPage();
   const composer = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   fs.mkdirSync(SHOTS, { recursive: true });
+  fs.mkdirSync(SHOTS_63, { recursive: true });
 
   for (const scene of SCENES) {
     await page.goto(url);
@@ -153,6 +155,9 @@ function frame(scene, screenDataUrl) {
     await sharp(framed).flatten({ background: "#000" }).removeAlpha().png({ compressionLevel: 9 }).toFile(file);
     const meta = await sharp(file).metadata();
     console.log(`${scene.file}.png  ${meta.width}x${meta.height}  channels=${meta.channels}`);
+    // App Store Connect's "iPhone with Dynamic Island (medium display)" slot wants 1206×2622 (6.3").
+    const small = path.join(SHOTS_63, `${scene.file}.png`);
+    await sharp(file).resize(1206, 2622, { fit: "cover", position: "centre" }).removeAlpha().png({ compressionLevel: 9 }).toFile(small);
   }
   await browser.close();
   server.close();

@@ -34,7 +34,7 @@ Everything to paste is in [`app-store-copy.md`](app-store-copy.md). The six scre
 
 ## 4. The version page (left menu: "1.0 Prepare for Submission")
 
-- [ ] **Screenshots:** under "iPhone 6.9-inch Display", drag in the six PNG files, in number order
+- [ ] **Screenshots:** on the "App Previews and Screenshots" tab, "iPhone with Dynamic Island (medium display)", drag in the six PNG files from `store-screenshots/6.3-inch-1206x2622/`, in number order
 - [ ] **Promotional Text**, **Description**, **Keywords:** paste each from the copy file
 - [ ] **Support URL:** `https://ctjoey.github.io/Badge-/`
 - [ ] **Version:** change to **1.1.0** (it must match the build)

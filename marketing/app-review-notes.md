@@ -5,7 +5,8 @@ Copy everything between the lines.
 
 ---
 1. SCREEN RECORDING
-A screen recording from a physical iPhone running the latest iOS is attached in App Review Information. It starts by launching the app from the Home Screen and shows the full flow: picking sites in Settings, choosing reminder days, allowing notifications and sending a test alert, setting a badge-out date on the Status tab, viewing and following outages, adding an outage date, and the Share and Help buttons.
+Screen recording from a physical iPhone running the latest iOS: PASTE-VIDEO-LINK-HERE
+The recording starts by launching the app from the Home Screen and shows the full flow: picking sites in Settings, choosing reminder days, allowing notifications and sending a test alert, setting a badge-out date on the Status tab, viewing and following outages, adding an outage date, and the Share and Help buttons.
 Nuke30 has NO account registration, NO login, NO user-generated content shared with other people, and NO paid content or in-app purchases. Account deletion does not apply because there are no accounts.
 
 2. PURPOSE AND AUDIENCE
@@ -28,7 +29,7 @@ The outage list built into the app comes from the U.S. Nuclear Regulatory Commis
 None. The app works the same in every region. Its content covers U.S. nuclear plants because the 30-day rule is a U.S. rule.
 
 6. REGULATED INDUSTRY
-Nuke30 is an independent personal reminder. It is not affiliated with the NRC or any utility. It does not grant, check, or change anyone's site access, and it does not connect to any plant system. It only uses public information: the 30-day rule comes from the public federal regulation 10 CFR 73.56 and the outage data comes from public NRC reports.
+Nuke30 is an independent personal reminder. It is not affiliated with the NRC or any utility. It does not grant, check, or change anyone's site access, and it does not connect to any plant system. It only uses public information: the 30-day rule comes from the public federal regulation 10 CFR 73.56, and the outage data comes from public NRC reports.
 
 Guideline 3.2: the app is not for one business or its employees. It is for the general public of nuclear outage workers, who are mostly independent contractors working for many different companies across many utilities.
 

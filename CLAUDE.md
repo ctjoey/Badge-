@@ -14,7 +14,8 @@
 - App: Next.js static export (`out/`) wrapped with Capacitor 8 for iOS (`ios/`). Bundle id
   `com.capozza.nuke30`. iPhone-only, portrait-only, privacy manifest `ios/App/App/PrivacyInfo.xcprivacy`.
 - Version comes from `package.json` (`1.1.0`); the build number is the workflow run number.
-- **App Store:** version 1.1.0 (build 47) submitted for review on 2026-11-15. Any App Store update
+- **App Store:** version 1.1.0 (build 47) submitted for review on 2026-11-15; rejected 2026-11-16 (Guideline 2.1 "Information Needed", not a bug),
+  resubmitted 2026-11-16 with notes from `marketing/app-review-notes.md` + a screen-recording link. Any App Store update
   needs a new `package.json` version (e.g. 1.1.1) and a new submission in App Store Connect.
 - Signing: repo secrets `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` (key must be **Admin**),
   variable `BUNDLE_ID_PREFIX=com.capozza`. `scripts/normalize-p8.sh` repairs pasted keys.

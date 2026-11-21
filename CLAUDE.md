@@ -22,6 +22,9 @@
 - Support email: `Nuke30app@outlook.com` (`src/utils/contact.ts`).
 - Privacy/support pages: `docs/privacy.html`, `docs/index.html`, served by GitHub Pages at
   `https://ctjoey.github.io/Badge-/` (Pages source: this branch, `/docs`).
+- Apple warning ITMS-90725 (build 52, 2026-11-21): from April 2027 uploads need the iOS 27 SDK (Xcode 27).
+  `ios.yml` already picks the newest Xcode on the `macos-26` runner; if a build after March 2027 still shows
+  Xcode 26 in "Select the newest Xcode", switch `runs-on` to a newer macOS runner image.
 - Live on the App Store: https://apps.apple.com/us/app/nuke30-badge-reminder/id6834612799 (`APP_LINK` in `src/utils/share.ts`).
 
 ## App structure

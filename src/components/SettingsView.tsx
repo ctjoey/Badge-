@@ -74,7 +74,7 @@ export function SettingsView({
             </li>
             <li>
               Go to <strong>Status</strong>. Keep <strong>On Site</strong> while you&apos;re working there. Switch to{" "}
-              <strong>30 Day Badge Reminder</strong> and set the date when you out-process.
+              <strong>30 Day Badge Reminder</strong> and set the date you last badged in.
             </li>
             <li>
               Check <strong>Outages</strong> for upcoming outages at your plants.

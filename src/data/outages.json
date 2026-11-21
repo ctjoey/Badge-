@@ -1,7 +1,7 @@
 {
- "generatedAt": "2026-11-16T19:38:48.640Z",
- "today": "2026-11-16",
- "latestReport": "2026-11-16",
+ "generatedAt": "2026-11-21T16:01:30.787Z",
+ "today": "2026-11-21",
+ "latestReport": "2026-11-20",
  "source": "NRC Power Reactor Status Reports (nrc.gov)",
  "years": 5,
  "units": [
@@ -222,11 +222,6 @@
      "start": "2025-03-05",
      "end": "2025-04-10",
      "days": 37
-    },
-    {
-     "start": "2026-11-14",
-     "end": null,
-     "days": 3
     }
    ],
    "cycleMonths": 24,
@@ -618,17 +613,17 @@
     },
     {
      "start": "2026-10-19",
-     "end": null,
-     "days": 29
+     "end": "2026-11-17",
+     "days": 30
     }
    ],
    "cycleMonths": 18,
    "cycleBasis": "observed",
-   "typicalDays": 24,
+   "typicalDays": 29,
    "lastOutage": {
     "start": "2026-10-19",
-    "end": null,
-    "days": 29
+    "end": "2026-11-17",
+    "days": 30
    }
   },
   {
@@ -681,7 +676,7 @@
     {
      "start": "2026-11-10",
      "end": null,
-     "days": 7
+     "days": 11
     }
    ],
    "cycleMonths": 24,
@@ -690,7 +685,7 @@
    "lastOutage": {
     "start": "2026-11-10",
     "end": null,
-    "days": 7
+    "days": 11
    }
   },
   {
@@ -877,8 +872,8 @@
     },
     {
      "start": "2026-10-26",
-     "end": null,
-     "days": 22
+     "end": "2026-11-17",
+     "days": 23
     }
    ],
    "cycleMonths": 24,
@@ -886,8 +881,8 @@
    "typicalDays": 19,
    "lastOutage": {
     "start": "2026-10-26",
-    "end": null,
-    "days": 22
+    "end": "2026-11-17",
+    "days": 23
    }
   },
   {
@@ -1421,7 +1416,7 @@
     {
      "start": "2026-10-12",
      "end": null,
-     "days": 36
+     "days": 40
     }
    ],
    "cycleMonths": 18,
@@ -1430,7 +1425,7 @@
    "lastOutage": {
     "start": "2026-10-12",
     "end": null,
-    "days": 36
+    "days": 40
    }
   },
   {
@@ -1566,7 +1561,7 @@
     {
      "start": "2026-09-06",
      "end": null,
-     "days": 72
+     "days": 76
     }
    ],
    "cycleMonths": 18,
@@ -1575,7 +1570,7 @@
    "lastOutage": {
     "start": "2026-09-06",
     "end": null,
-    "days": 72
+    "days": 76
    }
   },
   {
@@ -1592,7 +1587,7 @@
     {
      "start": "2026-10-31",
      "end": null,
-     "days": 17
+     "days": 21
     }
    ],
    "cycleMonths": 24,
@@ -1601,7 +1596,7 @@
    "lastOutage": {
     "start": "2026-10-31",
     "end": null,
-    "days": 17
+    "days": 21
    }
   },
   {
@@ -1670,7 +1665,7 @@
     {
      "start": "2025-09-09",
      "end": null,
-     "days": 434
+     "days": 438
     }
    ],
    "cycleMonths": 18,
@@ -1679,7 +1674,7 @@
    "lastOutage": {
     "start": "2025-09-09",
     "end": null,
-    "days": 434
+    "days": 438
    }
   },
   {
@@ -1700,17 +1695,17 @@
     },
     {
      "start": "2026-10-03",
-     "end": null,
-     "days": 45
+     "end": "2026-11-18",
+     "days": 47
     }
    ],
    "cycleMonths": 18,
    "cycleBasis": "observed",
-   "typicalDays": 36,
+   "typicalDays": 43,
    "lastOutage": {
     "start": "2026-10-03",
-    "end": null,
-    "days": 45
+    "end": "2026-11-18",
+    "days": 47
    }
   },
   {
@@ -1877,7 +1872,7 @@
     {
      "start": "2026-11-11",
      "end": null,
-     "days": 6
+     "days": 10
     }
    ],
    "cycleMonths": 18,
@@ -1886,7 +1881,7 @@
    "lastOutage": {
     "start": "2026-11-11",
     "end": null,
-    "days": 6
+    "days": 10
    }
   },
   {
@@ -2054,15 +2049,20 @@
      "start": "2025-02-11",
      "end": "2025-03-30",
      "days": 48
+    },
+    {
+     "start": "2026-11-18",
+     "end": null,
+     "days": 3
     }
    ],
-   "cycleMonths": 24,
+   "cycleMonths": 18,
    "cycleBasis": "observed",
-   "typicalDays": 48,
+   "typicalDays": 18,
    "lastOutage": {
-    "start": "2025-02-11",
-    "end": "2025-03-30",
-    "days": 48
+    "start": "2026-11-18",
+    "end": null,
+    "days": 3
    }
   },
   {
@@ -2110,7 +2110,7 @@
     {
      "start": "2026-10-04",
      "end": null,
-     "days": 44
+     "days": 48
     }
    ],
    "cycleMonths": 18,
@@ -2119,7 +2119,7 @@
    "lastOutage": {
     "start": "2026-10-04",
     "end": null,
-    "days": 44
+    "days": 48
    }
   },
   {
@@ -2750,7 +2750,7 @@
     {
      "start": "2026-10-17",
      "end": null,
-     "days": 31
+     "days": 35
     }
    ],
    "cycleMonths": 18,
@@ -2759,7 +2759,7 @@
    "lastOutage": {
     "start": "2026-10-17",
     "end": null,
-    "days": 31
+    "days": 35
    }
   },
   {
@@ -2822,7 +2822,7 @@
     {
      "start": "2026-11-07",
      "end": null,
-     "days": 10
+     "days": 14
     }
    ],
    "cycleMonths": 18,
@@ -2831,7 +2831,7 @@
    "lastOutage": {
     "start": "2026-11-07",
     "end": null,
-    "days": 10
+    "days": 14
    }
   },
   {
@@ -2866,35 +2866,28 @@
    "plantId": "palisades",
    "unit": 1,
    "start": "2025-09-09",
-   "days": 434,
+   "days": 439,
    "status": "in-progress"
   },
   {
    "plantId": "north-anna",
    "unit": 2,
    "start": "2026-09-06",
-   "days": 72,
-   "status": "in-progress"
-  },
-  {
-   "plantId": "palo-verde",
-   "unit": 1,
-   "start": "2026-10-03",
-   "days": 45,
+   "days": 77,
    "status": "in-progress"
   },
   {
    "plantId": "salem",
    "unit": 1,
    "start": "2026-10-04",
-   "days": 44,
+   "days": 49,
    "status": "in-progress"
   },
   {
    "plantId": "millstone",
    "unit": 3,
    "start": "2026-10-12",
-   "days": 37,
+   "days": 41,
    "status": "in-progress"
   },
   {
@@ -2902,20 +2895,6 @@
    "unit": 3,
    "start": "2026-10-17",
    "days": 42,
-   "status": "in-progress"
-  },
-  {
-   "plantId": "comanche-peak",
-   "unit": 1,
-   "start": "2026-10-19",
-   "days": 29,
-   "status": "in-progress"
-  },
-  {
-   "plantId": "dresden",
-   "unit": 3,
-   "start": "2026-10-26",
-   "days": 22,
    "status": "in-progress"
   },
   {
@@ -2947,10 +2926,10 @@
    "status": "in-progress"
   },
   {
-   "plantId": "browns-ferry",
-   "unit": 2,
-   "start": "2026-11-14",
-   "days": 32,
+   "plantId": "river-bend",
+   "unit": 1,
+   "start": "2026-11-18",
+   "days": 18,
    "status": "in-progress"
   },
   {
@@ -2965,13 +2944,6 @@
    "unit": 2,
    "start": "2027-02-10",
    "days": 20,
-   "status": "projected"
-  },
-  {
-   "plantId": "river-bend",
-   "unit": 1,
-   "start": "2027-02-11",
-   "days": 48,
    "status": "projected"
   },
   {
@@ -3482,7 +3454,7 @@
    "plantId": "palo-verde",
    "unit": 1,
    "start": "2028-04-03",
-   "days": 36,
+   "days": 43,
    "status": "projected"
   },
   {
@@ -3524,7 +3496,7 @@
    "plantId": "comanche-peak",
    "unit": 1,
    "start": "2028-04-19",
-   "days": 24,
+   "days": 29,
    "status": "projected"
   },
   {
@@ -3560,6 +3532,13 @@
    "unit": 1,
    "start": "2028-05-11",
    "days": 25,
+   "status": "projected"
+  },
+  {
+   "plantId": "river-bend",
+   "unit": 1,
+   "start": "2028-05-18",
+   "days": 18,
    "status": "projected"
   },
   {
@@ -3735,13 +3714,6 @@
    "unit": 2,
    "start": "2029-02-10",
    "days": 20,
-   "status": "projected"
-  },
-  {
-   "plantId": "river-bend",
-   "unit": 1,
-   "start": "2029-02-11",
-   "days": 48,
    "status": "projected"
   },
   {
@@ -4028,7 +4000,7 @@
    "plantId": "palo-verde",
    "unit": 1,
    "start": "2029-10-03",
-   "days": 36,
+   "days": 43,
    "status": "projected"
   },
   {
@@ -4084,7 +4056,7 @@
    "plantId": "comanche-peak",
    "unit": 1,
    "start": "2029-10-19",
-   "days": 24,
+   "days": 29,
    "status": "projected"
   },
   {
@@ -4120,6 +4092,13 @@
    "unit": 1,
    "start": "2029-11-11",
    "days": 25,
+   "status": "projected"
+  },
+  {
+   "plantId": "river-bend",
+   "unit": 1,
+   "start": "2029-11-18",
+   "days": 18,
    "status": "projected"
   },
   {
@@ -4543,13 +4522,6 @@
    "status": "projected"
   },
   {
-   "plantId": "river-bend",
-   "unit": 1,
-   "start": "2031-02-11",
-   "days": 48,
-   "status": "projected"
-  },
-  {
    "plantId": "calvert-cliffs",
    "unit": 2,
    "start": "2031-02-24",
@@ -4651,7 +4623,7 @@
    "plantId": "palo-verde",
    "unit": 1,
    "start": "2031-04-03",
-   "days": 36,
+   "days": 43,
    "status": "projected"
   },
   {
@@ -4700,7 +4672,7 @@
    "plantId": "comanche-peak",
    "unit": 1,
    "start": "2031-04-19",
-   "days": 24,
+   "days": 29,
    "status": "projected"
   },
   {
@@ -4729,6 +4701,13 @@
    "unit": 1,
    "start": "2031-05-11",
    "days": 25,
+   "status": "projected"
+  },
+  {
+   "plantId": "river-bend",
+   "unit": 1,
+   "start": "2031-05-18",
+   "days": 18,
    "status": "projected"
   },
   {

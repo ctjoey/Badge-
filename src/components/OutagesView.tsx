@@ -190,6 +190,8 @@ export function OutagesView({
                   <div className="flex shrink-0 items-center gap-1">
                     {o.status === "in-progress" ? (
                       <Pill className="bg-emerald-100 text-emerald-900 dark:bg-emerald-500/15 dark:text-emerald-300">In outage</Pill>
+                    ) : inDays <= 0 ? (
+                      <Pill className="bg-magenta-100 text-magenta-900 dark:bg-magenta-500/15 dark:text-magenta-300">Due now</Pill>
                     ) : (
                       <div className="mr-1 text-right">
                         <p className="tabular text-xl font-black leading-none text-magenta-600 dark:text-magenta-400">{inDays}</p>
@@ -223,8 +225,8 @@ export function OutagesView({
 
       <p className="flex items-start gap-1.5 text-xs text-zinc-500">
         <CalendarClock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-        Projected from NRC daily reactor reports and each unit&apos;s refueling cycle. Utilities don&apos;t publish
-        exact dates.
+        Upcoming dates are the first day of each forecast window, from NRC daily reactor reports and each
+        unit&apos;s refueling cycle. Utilities don&apos;t publish exact dates.
         {OUTAGE_DATA.latestReport && <> Updated {formatDisplayDate(OUTAGE_DATA.latestReport)}.</>}
       </p>
     </div>

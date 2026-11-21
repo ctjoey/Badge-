@@ -36,8 +36,10 @@
   cloud painted on canvas in `src/utils/cloudRender.ts`, daytime sky in `src/app/globals.css`).
 - Outage data: `src/data/outages.json`, refreshed weekly (Mondays) by `.github/workflows/outages.yml`
   from NRC daily power reports (`scripts/scrape-outages.mjs`, `src/utils/outageModel.mjs`).
-  Hand-checked fixes in `src/data/outageCorrections.json` (from nuclearhustle.com/outages, 2026-11-21) are
-  re-applied on every weekly refresh until NRC reports show that outage. To re-check against that site, run the
+  Upcoming dates are the FIRST day of a 6-week forecast window (owner wants the start, not the middle):
+  model cycle date minus 21 days (`WINDOW_LEAD_DAYS`). `src/data/outageCorrections.json` holds nuclearhustle.com/outages
+  window starts (checked 2026-11-21) for 83 units, re-applied on every weekly refresh until NRC reports show that outage.
+  A projected outage whose window has opened shows "Due now" for 42 days. To re-check against that site, run the
   "Fetch nuclearhustle outages" workflow: it commits a copy of the page to `data-raw/nuclearhustle/` (delete it after use).
   Plants list: `src/data/plants.json` (55 sites, 95 units).
 

@@ -5,6 +5,13 @@
 // NRC file format, one line per unit per day:  ReportDt|Unit|Power
 //   e.g. "11/13/2026 12:00:00 AM|Browns Ferry 1|100"
 
+/**
+ * Projections are shown as the first day of a forecast window (like nuclearhustle.com), not the
+ * middle: the cycle date minus WINDOW_LEAD_DAYS. A projected outage stays listed as "due" for
+ * WINDOW_DAYS after that first day.
+ */
+export const WINDOW_LEAD_DAYS = 21;
+export const WINDOW_DAYS = 42;
 const MIN_OUTAGE_DAYS = 10; // shorter zero-power stretches are trips, not outages worth listing
 const MAX_TYPICAL_DAYS = 90; // ignore extended shutdowns when estimating a typical length
 const DAY = 86400000;
@@ -172,9 +179,9 @@ export function projectUnit({ outages, type, today, years = 5, dataStart }) {
   if (base && !longShutdown) {
     const horizon = addMonths(today, years * 12);
     for (let k = 1; ; k++) {
-      const start = addMonths(base.start, cycleMonths * k);
+      const start = addDays(addMonths(base.start, cycleMonths * k), -WINDOW_LEAD_DAYS);
       if (start > horizon) break;
-      if (start <= today) continue;
+      if (addDays(start, WINDOW_DAYS) < today) continue;
       result.push({ start, days: typical, status: "projected" });
     }
   }
@@ -229,8 +236,8 @@ export function buildOutageData(texts, plants, today, years = 5) {
 /**
  * Apply hand-checked next-refueling corrections (src/data/outageCorrections.json) to a dataset
  * from buildOutageData. A correction replaces the unit's projected outages with
- * `start`, `start + cycleMonths`, ... It is skipped once the NRC history shows an outage within
- * 90 days of `start` (the real data wins), or once `start + days` has passed.
+ * `start`, `start + cycleMonths`, ... (each the first day of a forecast window). It is skipped once
+ * the NRC history shows an outage within 90 days of `start` (the real data wins).
  * @template {{today:string, years?:number, units?:{plantId:string,unit:number,history?:{start:string}[]}[], outages:{plantId:string,unit:number,start:string,days:number,status:string}[]}} T
  * @param {T} data
  * @param {{plantId:string,unit:number,start:string,cycleMonths:number,days:number}[]} corrections
@@ -243,14 +250,15 @@ export function applyCorrections(data, corrections) {
   for (const c of corrections ?? []) {
     const unit = (data.units ?? []).find((u) => u.plantId === c.plantId && u.unit === c.unit);
     const observed = (unit?.history ?? []).some((h) => Math.abs(daysBetween(h.start, c.start)) <= 90);
-    if (observed || addDays(c.start, c.days) < today) continue;
+    if (observed) continue;
     const added = [];
     for (let k = 0; ; k++) {
       const start = addMonths(c.start, c.cycleMonths * k);
       if (start > horizon) break;
-      const status = start > today ? "projected" : "in-progress";
-      added.push({ plantId: c.plantId, unit: c.unit, start, days: c.days, status });
+      if (addDays(start, WINDOW_DAYS) < today) continue;
+      added.push({ plantId: c.plantId, unit: c.unit, start, days: c.days, status: "projected" });
     }
+    if (!added.length) continue;
     outages = [
       ...outages.filter((o) => !(o.plantId === c.plantId && o.unit === c.unit && o.status === "projected")),
       ...added,

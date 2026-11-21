@@ -66,7 +66,7 @@ describe("projectUnit", () => {
     expect(p.cycleMonths).toBe(18);
     expect(p.cycleBasis).toBe("observed");
     expect(p.typicalDays).toBe(25);
-    expect(p.outages.map((o) => o.start)).toEqual(["2026-10-01", "2028-04-01", "2029-10-01"]);
+    expect(p.outages.map((o) => o.start)).toEqual(["2026-09-10", "2028-03-11", "2029-09-10"]);
     expect(p.outages.every((o) => o.status === "projected")).toBe(true);
   });
   it("falls back to type defaults with one observed outage, and shows in-progress outages", () => {
@@ -79,7 +79,7 @@ describe("projectUnit", () => {
     expect(p.cycleMonths).toBe(24);
     expect(p.cycleBasis).toBe("default");
     expect(p.outages[0]).toEqual({ start: "2026-10-20", days: 30, status: "in-progress" });
-    expect(p.outages[1].start).toBe("2028-10-20");
+    expect(p.outages[1].start).toBe("2028-09-29");
   });
 });
 
@@ -94,7 +94,7 @@ describe("projectUnit: telling refuelings from forced outages", () => {
     expect(p.cycleMonths).toBe(24);
     expect(p.typicalDays).toBe(28);
     expect(p.lastOutage?.start).toBe("2025-03-01");
-    expect(p.outages[0].start).toBe("2027-03-01");
+    expect(p.outages[0].start).toBe("2027-02-08");
   });
   it("lists a long shutdown as in progress but projects nothing after it", () => {
     const p = projectUnit({
@@ -116,7 +116,7 @@ describe("buildOutageData", () => {
     const d = buildOutageData(texts, plants, "2026-11-13", 5);
     expect(d.units).toHaveLength(1);
     expect(d.units[0]).toMatchObject({ plantId: "surry", unit: 1, cycleMonths: 18 });
-    expect(d.outages[0]).toMatchObject({ plantId: "surry", unit: 1, start: "2027-05-01", days: 28, status: "projected" });
+    expect(d.outages[0]).toMatchObject({ plantId: "surry", unit: 1, start: "2027-04-10", days: 28, status: "projected" });
     expect(d.unmatched).toEqual(["Unknown Plant 9"]);
     expect(d.latestReport).toBe("2026-11-13");
   });
@@ -141,9 +141,10 @@ describe("applyCorrections", () => {
     expect(out.corrected).toEqual(["catawba#2"]);
   });
 
-  it("is dropped once NRC reports show that outage, or after it has passed", () => {
+  it("is dropped once NRC reports show that outage; closed windows are skipped", () => {
     const seen = { ...base, units: [{ ...base.units[0], history: [{ start: "2027-03-10", end: null, days: 5 }] }] };
     expect(applyCorrections(seen, [{ plantId: "catawba", unit: 2, start: "2027-03-01", cycleMonths: 18, days: 30 }]).corrected).toEqual([]);
-    expect(applyCorrections(base, [{ plantId: "catawba", unit: 2, start: "2026-01-01", cycleMonths: 18, days: 30 }]).corrected).toEqual([]);
+    const stale = applyCorrections(base, [{ plantId: "catawba", unit: 2, start: "2026-01-01", cycleMonths: 18, days: 30 }]);
+    expect(stale.outages.find((o) => o.plantId === "catawba")?.start).toBe("2027-07-01"); // closed window skipped
   });
 });

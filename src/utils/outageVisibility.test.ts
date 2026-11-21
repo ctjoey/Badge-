@@ -7,7 +7,8 @@ describe("isCurrentOrUpcoming", () => {
   it("shows upcoming outages within the horizon, not past projections", () => {
     expect(isCurrentOrUpcoming({ start: "2027-03-17", status: "projected" }, "2026-11-14", opts)).toBe(true);
     expect(isCurrentOrUpcoming({ start: "2026-11-14", status: "projected" }, "2026-11-14", opts)).toBe(true);
-    expect(isCurrentOrUpcoming({ start: "2026-11-01", status: "projected" }, "2026-11-14", opts)).toBe(false);
+    expect(isCurrentOrUpcoming({ start: "2026-11-01", status: "projected" }, "2026-11-14", opts)).toBe(true); // window still open
+    expect(isCurrentOrUpcoming({ start: "2026-09-01", status: "projected" }, "2026-11-14", opts)).toBe(false);
     expect(isCurrentOrUpcoming({ start: "2032-01-01", status: "projected" }, "2026-11-14", opts)).toBe(false);
   });
   it("shows an outage the NRC still reports as offline", () => {

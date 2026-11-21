@@ -4,10 +4,13 @@ import { addDaysISO, daysBetween } from "./dateLogic";
 /** Outages that began longer ago than this are extended shutdowns (e.g. a plant restart), not outage work. */
 export const REPORT_GRACE_DAYS = 7; // the outage data refreshes weekly
 export const MAX_CURRENT_OUTAGE_DAYS = 120;
+/** A projected date is the first day of a forecast window; it stays listed ("Due now") this long. */
+export const PROJECTED_WINDOW_DAYS = 42;
 
 /**
  * Only current and upcoming outages are shown.
- * - Upcoming: starts today or later (and within `horizon`).
+ * - Upcoming: its forecast window hasn't closed (start + 42 days is today or later) and it starts
+ *   within `horizon`.
  * - Current: the NRC data says the unit is offline, it started within the last 120 days, and it
  *   isn't past its expected end. The expected end is the later of start + typical length and a
  *   week after the last NRC report (the data refreshes weekly), so an app built from older data
@@ -18,7 +21,7 @@ export function isCurrentOrUpcoming(
   today: ISODate,
   opts: { horizon: ISODate; typicalDays: number; latestReport: ISODate | null },
 ): boolean {
-  if (o.status === "projected") return o.start >= today && o.start <= opts.horizon;
+  if (o.status === "projected") return addDaysISO(o.start, PROJECTED_WINDOW_DAYS) >= today && o.start <= opts.horizon;
   if (daysBetween(o.start, today) > MAX_CURRENT_OUTAGE_DAYS) return false;
   const byLength = addDaysISO(o.start, opts.typicalDays - 1);
   const reportGrace = opts.latestReport ? addDaysISO(opts.latestReport, REPORT_GRACE_DAYS) : null;

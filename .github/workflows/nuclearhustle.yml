@@ -1,0 +1,49 @@
+# On demand: download the public outage page from nuclearhustle.com and commit a copy to
+# data-raw/nuclearhustle/ so it can be read and merged into src/data/outages.json.
+# Run from Actions → "Fetch nuclearhustle outages" → Run workflow.
+name: Fetch nuclearhustle outages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download page
+        run: |
+          mkdir -p data-raw/nuclearhustle
+          cd data-raw/nuclearhustle
+          curl -sSL --max-time 60 -D headers.txt -o outages.html https://www.nuclearhustle.com/outages
+          ls -la
+          # Scripts and JSON on the same site, in case the list is loaded by JavaScript.
+          grep -oE '(src|href)="[^"]+"' outages.html | sed -E 's/^(src|href)="//; s/"$//' \
+            | grep -E '\.(js|json)(\?|$)|/api/' | sort -u > assets.txt || true
+          cat assets.txt
+          n=0
+          while read -r u; do
+            case "$u" in
+              http*) url="$u" ;;
+              //*) url="https:$u" ;;
+              /*) url="https://www.nuclearhustle.com$u" ;;
+              *) continue ;;
+            esac
+            case "$url" in https://www.nuclearhustle.com/*|https://nuclearhustle.com/*) ;; *) continue ;; esac
+            n=$((n+1)); [ $n -le 40 ] || break
+            curl -sSL --max-time 30 -o "asset-$n.txt" "$url" && echo "$n $url" >> assets-fetched.txt || true
+          done < assets.txt
+          ls -la
+      - name: Commit copy
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data-raw/nuclearhustle
+          git diff --cached --quiet && { echo "No change"; exit 0; }
+          git commit -m "Fetch nuclearhustle outage page"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"

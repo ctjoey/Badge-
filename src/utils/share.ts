@@ -6,7 +6,7 @@ import { isNativeApp } from "./notifications";
  * Public link people can use to get the app (e.g. a public TestFlight link, later the
  * App Store link). Leave empty to share without a link.
  */
-export const APP_LINK = "";
+export const APP_LINK = "https://apps.apple.com/us/app/nuke30-badge-reminder/id6834612799";
 
 export function appInviteText(): string {
   return [

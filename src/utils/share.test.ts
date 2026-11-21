@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { appInviteText } from "./share";
+import { APP_LINK, appInviteText } from "./share";
 
 describe("share text", () => {
-  it("invites without a link until one is set", () => {
+  it("invites with the App Store link", () => {
+    expect(APP_LINK).toMatch(/^https:\/\/apps\.apple\.com\/.+\/id\d+$/);
     expect(appInviteText()).toContain("Nuke30");
-    expect(appInviteText()).not.toContain("http");
+    expect(appInviteText()).toContain(`Get it here: ${APP_LINK}`);
   });
 });

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-21T16:01:30.787Z",
+ "generatedAt": "2026-11-21T16:10:45.259Z",
  "today": "2026-11-21",
  "latestReport": "2026-11-20",
  "source": "NRC Power Reactor Status Reports (nrc.gov)",
@@ -2935,1987 +2935,2069 @@
   {
    "plantId": "hatch",
    "unit": 2,
-   "start": "2027-02-09",
+   "start": "2027-01-21",
    "days": 29,
    "status": "projected"
   },
   {
    "plantId": "lasalle",
    "unit": 2,
-   "start": "2027-02-10",
+   "start": "2027-01-22",
    "days": 20,
-   "status": "projected"
-  },
-  {
-   "plantId": "calvert-cliffs",
-   "unit": 2,
-   "start": "2027-02-24",
-   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "brunswick",
    "unit": 2,
-   "start": "2027-03-01",
+   "start": "2027-02-03",
    "days": 27,
+   "status": "projected"
+  },
+  {
+   "plantId": "calvert-cliffs",
+   "unit": 2,
+   "start": "2027-02-08",
+   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "catawba",
    "unit": 2,
-   "start": "2027-03-01",
-   "days": 30,
+   "start": "2027-02-08",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "browns-ferry",
    "unit": 2,
-   "start": "2027-03-05",
+   "start": "2027-02-12",
    "days": 32,
-   "status": "projected"
-  },
-  {
-   "plantId": "north-anna",
-   "unit": 1,
-   "start": "2027-03-07",
-   "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "vogtle",
-   "unit": 4,
-   "start": "2027-03-09",
-   "days": 30,
    "status": "projected"
   },
   {
    "plantId": "quad-cities",
    "unit": 1,
-   "start": "2027-03-10",
+   "start": "2027-02-12",
    "days": 21,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 4,
+   "start": "2027-02-16",
+   "days": 30,
+   "status": "projected"
+  },
+  {
+   "plantId": "north-anna",
+   "unit": 1,
+   "start": "2027-02-21",
+   "days": 35,
+   "status": "projected"
+  },
+  {
+   "plantId": "d-c-cook",
+   "unit": 2,
+   "start": "2027-02-24",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "nine-mile-point",
    "unit": 1,
-   "start": "2027-03-17",
+   "start": "2027-02-26",
    "days": 19,
    "status": "projected"
   },
   {
    "plantId": "perry",
    "unit": 1,
-   "start": "2027-03-17",
+   "start": "2027-02-26",
    "days": 36,
-   "status": "projected"
-  },
-  {
-   "plantId": "d-c-cook",
-   "unit": 2,
-   "start": "2027-03-20",
-   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "st-lucie",
    "unit": 1,
-   "start": "2027-03-20",
+   "start": "2027-03-02",
    "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "susquehanna",
-   "unit": 2,
-   "start": "2027-03-24",
-   "days": 34,
-   "status": "projected"
-  },
-  {
-   "plantId": "hope-creek",
-   "unit": 1,
-   "start": "2027-03-26",
-   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 1,
-   "start": "2027-03-29",
+   "start": "2027-03-05",
    "days": 26,
    "status": "projected"
   },
   {
-   "plantId": "wolf-creek",
+   "plantId": "hope-creek",
    "unit": 1,
-   "start": "2027-04-02",
-   "days": 44,
+   "start": "2027-03-06",
+   "days": 36,
+   "status": "projected"
+  },
+  {
+   "plantId": "susquehanna",
+   "unit": 2,
+   "start": "2027-03-06",
+   "days": 34,
+   "status": "projected"
+  },
+  {
+   "plantId": "diablo-canyon",
+   "unit": 2,
+   "start": "2027-03-09",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "harris",
    "unit": 1,
-   "start": "2027-04-04",
+   "start": "2027-03-13",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 3,
-   "start": "2027-04-04",
+   "start": "2027-03-13",
    "days": 37,
-   "status": "projected"
-  },
-  {
-   "plantId": "sequoyah",
-   "unit": 1,
-   "start": "2027-04-04",
-   "days": 39,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 2,
-   "start": "2027-04-04",
+   "start": "2027-03-14",
    "days": 33,
    "status": "projected"
   },
   {
-   "plantId": "diablo-canyon",
+   "plantId": "limerick",
    "unit": 2,
-   "start": "2027-04-05",
-   "days": 31,
+   "start": "2027-03-14",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "braidwood",
    "unit": 1,
-   "start": "2027-04-06",
+   "start": "2027-03-15",
    "days": 18,
    "status": "projected"
   },
   {
-   "plantId": "arkansas-nuclear-one",
+   "plantId": "wolf-creek",
    "unit": 1,
-   "start": "2027-04-11",
-   "days": 23,
-   "status": "projected"
-  },
-  {
-   "plantId": "beaver-valley",
-   "unit": 1,
-   "start": "2027-04-12",
-   "days": 39,
+   "start": "2027-03-17",
+   "days": 44,
    "status": "projected"
   },
   {
    "plantId": "columbia-generating-station",
    "unit": 2,
-   "start": "2027-04-12",
+   "start": "2027-03-20",
    "days": 44,
+   "status": "projected"
+  },
+  {
+   "plantId": "sequoyah",
+   "unit": 1,
+   "start": "2027-03-20",
+   "days": 39,
+   "status": "projected"
+  },
+  {
+   "plantId": "beaver-valley",
+   "unit": 1,
+   "start": "2027-03-22",
+   "days": 39,
+   "status": "projected"
+  },
+  {
+   "plantId": "arkansas-nuclear-one",
+   "unit": 1,
+   "start": "2027-03-23",
+   "days": 23,
    "status": "projected"
   },
   {
    "plantId": "surry",
    "unit": 1,
-   "start": "2027-04-12",
+   "start": "2027-03-28",
    "days": 58,
    "status": "projected"
   },
   {
    "plantId": "monticello",
    "unit": 1,
-   "start": "2027-04-21",
-   "days": 32,
-   "status": "projected"
-  },
-  {
-   "plantId": "limerick",
-   "unit": 2,
-   "start": "2027-04-28",
-   "days": 18,
+   "start": "2027-03-31",
+   "days": 29,
    "status": "projected"
   },
   {
    "plantId": "palisades",
    "unit": 1,
-   "start": "2027-05-16",
+   "start": "2027-04-01",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "summer",
    "unit": 1,
-   "start": "2027-06-29",
+   "start": "2027-05-25",
    "days": 41,
    "status": "projected"
   },
   {
    "plantId": "turkey-point",
    "unit": 3,
-   "start": "2027-08-04",
+   "start": "2027-07-18",
    "days": 28,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 1,
-   "start": "2027-08-22",
+   "start": "2027-08-01",
    "days": 26,
    "status": "projected"
   },
   {
    "plantId": "byron",
    "unit": 1,
-   "start": "2027-09-02",
+   "start": "2027-08-09",
    "days": 21,
    "status": "projected"
   },
   {
    "plantId": "clinton",
    "unit": 1,
-   "start": "2027-09-08",
+   "start": "2027-08-09",
    "days": 26,
-   "status": "projected"
-  },
-  {
-   "plantId": "arkansas-nuclear-one",
-   "unit": 2,
-   "start": "2027-09-14",
-   "days": 38,
    "status": "projected"
   },
   {
    "plantId": "point-beach",
    "unit": 2,
-   "start": "2027-09-14",
+   "start": "2027-08-14",
    "days": 24,
+   "status": "projected"
+  },
+  {
+   "plantId": "arkansas-nuclear-one",
+   "unit": 2,
+   "start": "2027-08-22",
+   "days": 38,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 2,
-   "start": "2027-09-20",
+   "start": "2027-08-27",
    "days": 38,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 1,
-   "start": "2027-09-21",
+   "start": "2027-09-01",
    "days": 33,
    "status": "projected"
   },
   {
    "plantId": "mcguire",
    "unit": 2,
-   "start": "2027-09-22",
+   "start": "2027-09-02",
    "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "seabrook",
-   "unit": 1,
-   "start": "2027-10-04",
-   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "beaver-valley",
    "unit": 2,
-   "start": "2027-10-05",
+   "start": "2027-09-12",
    "days": 32,
    "status": "projected"
   },
   {
    "plantId": "salem",
    "unit": 2,
-   "start": "2027-10-05",
+   "start": "2027-09-12",
    "days": 32,
    "status": "projected"
   },
   {
-   "plantId": "ginna",
+   "plantId": "seabrook",
    "unit": 1,
-   "start": "2027-10-06",
-   "days": 18,
+   "start": "2027-09-13",
+   "days": 36,
    "status": "projected"
   },
   {
-   "plantId": "prairie-island",
-   "unit": 2,
-   "start": "2027-10-11",
-   "days": 35,
+   "plantId": "watts-bar",
+   "unit": 1,
+   "start": "2027-09-15",
+   "days": 28,
    "status": "projected"
   },
   {
    "plantId": "surry",
    "unit": 2,
-   "start": "2027-10-12",
+   "start": "2027-09-16",
    "days": 46,
+   "status": "projected"
+  },
+  {
+   "plantId": "ginna",
+   "unit": 1,
+   "start": "2027-09-17",
+   "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "catawba",
+   "unit": 1,
+   "start": "2027-09-20",
+   "days": 28,
    "status": "projected"
   },
   {
    "plantId": "millstone",
    "unit": 2,
-   "start": "2027-10-13",
+   "start": "2027-09-20",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "peach-bottom",
    "unit": 3,
-   "start": "2027-10-13",
+   "start": "2027-09-20",
    "days": 21,
    "status": "projected"
   },
   {
-   "plantId": "catawba",
-   "unit": 1,
-   "start": "2027-10-18",
-   "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "st-lucie",
+   "plantId": "prairie-island",
    "unit": 2,
-   "start": "2027-10-18",
-   "days": 44,
-   "status": "projected"
-  },
-  {
-   "plantId": "watts-bar",
-   "unit": 1,
-   "start": "2027-10-18",
-   "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "vogtle",
-   "unit": 3,
-   "start": "2027-10-19",
-   "days": 26,
+   "start": "2027-09-22",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "braidwood",
    "unit": 2,
-   "start": "2027-10-20",
+   "start": "2027-10-01",
    "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 3,
+   "start": "2027-10-03",
+   "days": 26,
    "status": "projected"
   },
   {
    "plantId": "dresden",
    "unit": 2,
-   "start": "2027-10-27",
+   "start": "2027-10-06",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "oconee",
    "unit": 2,
-   "start": "2027-10-28",
+   "start": "2027-10-10",
    "days": 25,
    "status": "projected"
   },
   {
    "plantId": "comanche-peak",
    "unit": 2,
-   "start": "2027-11-04",
+   "start": "2027-10-18",
    "days": 30,
+   "status": "projected"
+  },
+  {
+   "plantId": "st-lucie",
+   "unit": 2,
+   "start": "2027-10-27",
+   "days": 44,
+   "status": "projected"
+  },
+  {
+   "plantId": "grand-gulf",
+   "unit": 1,
+   "start": "2028-01-08",
+   "days": 28,
    "status": "projected"
   },
   {
    "plantId": "hatch",
    "unit": 1,
-   "start": "2028-01-17",
+   "start": "2028-01-09",
    "days": 36,
    "status": "projected"
   },
   {
    "plantId": "lasalle",
    "unit": 1,
-   "start": "2028-02-09",
+   "start": "2028-01-14",
    "days": 19,
-   "status": "projected"
-  },
-  {
-   "plantId": "grand-gulf",
-   "unit": 1,
-   "start": "2028-02-14",
-   "days": 28,
    "status": "projected"
   },
   {
    "plantId": "calvert-cliffs",
    "unit": 1,
-   "start": "2028-02-16",
+   "start": "2028-01-28",
    "days": 20,
    "status": "projected"
   },
   {
    "plantId": "browns-ferry",
    "unit": 3,
-   "start": "2028-02-21",
+   "start": "2028-02-05",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "brunswick",
    "unit": 1,
-   "start": "2028-02-26",
+   "start": "2028-02-07",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "davis-besse",
    "unit": 1,
-   "start": "2028-03-01",
+   "start": "2028-02-07",
    "days": 26,
    "status": "projected"
   },
   {
    "plantId": "turkey-point",
    "unit": 4,
-   "start": "2028-03-01",
+   "start": "2028-02-09",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "mcguire",
    "unit": 1,
-   "start": "2028-03-05",
+   "start": "2028-02-12",
    "days": 29,
    "status": "projected"
   },
   {
    "plantId": "north-anna",
    "unit": 2,
-   "start": "2028-03-06",
+   "start": "2028-02-14",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "nine-mile-point",
    "unit": 2,
-   "start": "2028-03-09",
+   "start": "2028-02-16",
    "days": 23,
+   "status": "projected"
+  },
+  {
+   "plantId": "susquehanna",
+   "unit": 1,
+   "start": "2028-02-28",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 2,
-   "start": "2028-03-13",
-   "days": 27,
-   "status": "projected"
-  },
-  {
-   "plantId": "d-c-cook",
-   "unit": 1,
-   "start": "2028-03-19",
-   "days": 33,
-   "status": "projected"
-  },
-  {
-   "plantId": "sequoyah",
-   "unit": 2,
-   "start": "2028-03-22",
+   "start": "2028-02-29",
    "days": 27,
    "status": "projected"
   },
   {
    "plantId": "fermi",
    "unit": 2,
-   "start": "2028-03-23",
+   "start": "2028-03-01",
    "days": 48,
    "status": "projected"
   },
   {
-   "plantId": "susquehanna",
-   "unit": 1,
-   "start": "2028-03-23",
-   "days": 31,
+   "plantId": "sequoyah",
+   "unit": 2,
+   "start": "2028-03-01",
+   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "callaway",
    "unit": 1,
-   "start": "2028-03-26",
+   "start": "2028-03-04",
    "days": 38,
+   "status": "projected"
+  },
+  {
+   "plantId": "d-c-cook",
+   "unit": 1,
+   "start": "2028-03-04",
+   "days": 33,
    "status": "projected"
   },
   {
    "plantId": "byron",
    "unit": 2,
-   "start": "2028-03-28",
+   "start": "2028-03-06",
    "days": 18,
-   "status": "projected"
-  },
-  {
-   "plantId": "quad-cities",
-   "unit": 2,
-   "start": "2028-03-30",
-   "days": 24,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 1,
-   "start": "2028-04-03",
+   "start": "2028-03-11",
    "days": 43,
+   "status": "projected"
+  },
+  {
+   "plantId": "quad-cities",
+   "unit": 2,
+   "start": "2028-03-13",
+   "days": 24,
    "status": "projected"
   },
   {
    "plantId": "salem",
    "unit": 1,
-   "start": "2028-04-04",
+   "start": "2028-03-14",
    "days": 35,
    "status": "projected"
   },
   {
-   "plantId": "diablo-canyon",
+   "plantId": "limerick",
    "unit": 1,
-   "start": "2028-04-11",
-   "days": 35,
+   "start": "2028-03-16",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "millstone",
    "unit": 3,
-   "start": "2028-04-12",
+   "start": "2028-03-22",
    "days": 37,
+   "status": "projected"
+  },
+  {
+   "plantId": "diablo-canyon",
+   "unit": 1,
+   "start": "2028-03-23",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "waterford",
    "unit": 3,
-   "start": "2028-04-17",
+   "start": "2028-03-27",
    "days": 42,
-   "status": "projected"
-  },
-  {
-   "plantId": "comanche-peak",
-   "unit": 1,
-   "start": "2028-04-19",
-   "days": 29,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 2,
-   "start": "2028-04-19",
+   "start": "2028-03-27",
    "days": 36,
    "status": "projected"
   },
   {
-   "plantId": "limerick",
+   "plantId": "comanche-peak",
+   "unit": 1,
+   "start": "2028-03-31",
+   "days": 29,
+   "status": "projected"
+  },
+  {
+   "plantId": "oconee",
+   "unit": 3,
+   "start": "2028-04-14",
+   "days": 22,
+   "status": "projected"
+  },
+  {
+   "plantId": "watts-bar",
+   "unit": 2,
+   "start": "2028-04-16",
+   "days": 24,
+   "status": "projected"
+  },
+  {
+   "plantId": "point-beach",
+   "unit": 1,
+   "start": "2028-04-20",
+   "days": 25,
+   "status": "projected"
+  },
+  {
+   "plantId": "river-bend",
    "unit": 1,
    "start": "2028-04-27",
    "days": 18,
    "status": "projected"
   },
   {
-   "plantId": "oconee",
-   "unit": 3,
-   "start": "2028-05-06",
-   "days": 22,
-   "status": "projected"
-  },
-  {
-   "plantId": "watts-bar",
-   "unit": 2,
-   "start": "2028-05-07",
-   "days": 24,
-   "status": "projected"
-  },
-  {
-   "plantId": "point-beach",
-   "unit": 1,
-   "start": "2028-05-11",
-   "days": 25,
-   "status": "projected"
-  },
-  {
-   "plantId": "river-bend",
-   "unit": 1,
-   "start": "2028-05-18",
-   "days": 18,
-   "status": "projected"
-  },
-  {
    "plantId": "robinson",
    "unit": 2,
-   "start": "2028-08-25",
-   "days": 33,
+   "start": "2028-08-04",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "catawba",
    "unit": 2,
-   "start": "2028-09-01",
+   "start": "2028-08-08",
+   "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "browns-ferry",
+   "unit": 1,
+   "start": "2028-08-15",
+   "days": 28,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 4,
+   "start": "2028-08-16",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "north-anna",
    "unit": 1,
-   "start": "2028-09-07",
+   "start": "2028-08-21",
    "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "vogtle",
-   "unit": 4,
-   "start": "2028-09-09",
-   "days": 30,
-   "status": "projected"
-  },
-  {
-   "plantId": "browns-ferry",
-   "unit": 1,
-   "start": "2028-09-12",
-   "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "fitzpatrick",
-   "unit": 1,
-   "start": "2028-09-14",
-   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "d-c-cook",
    "unit": 2,
-   "start": "2028-09-20",
+   "start": "2028-08-24",
    "days": 35,
+   "status": "projected"
+  },
+  {
+   "plantId": "fitzpatrick",
+   "unit": 1,
+   "start": "2028-08-30",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "st-lucie",
    "unit": 1,
-   "start": "2028-09-20",
+   "start": "2028-09-02",
    "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "hope-creek",
-   "unit": 1,
-   "start": "2028-09-26",
-   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 1,
-   "start": "2028-09-29",
+   "start": "2028-09-05",
    "days": 26,
    "status": "projected"
   },
   {
-   "plantId": "wolf-creek",
+   "plantId": "hope-creek",
    "unit": 1,
-   "start": "2028-10-02",
-   "days": 44,
+   "start": "2028-09-06",
+   "days": 36,
+   "status": "projected"
+  },
+  {
+   "plantId": "diablo-canyon",
+   "unit": 2,
+   "start": "2028-09-09",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "harris",
    "unit": 1,
-   "start": "2028-10-04",
+   "start": "2028-09-13",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 3,
-   "start": "2028-10-04",
+   "start": "2028-09-13",
    "days": 37,
-   "status": "projected"
-  },
-  {
-   "plantId": "sequoyah",
-   "unit": 1,
-   "start": "2028-10-04",
-   "days": 39,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 2,
-   "start": "2028-10-04",
+   "start": "2028-09-14",
    "days": 33,
-   "status": "projected"
-  },
-  {
-   "plantId": "diablo-canyon",
-   "unit": 2,
-   "start": "2028-10-05",
-   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "braidwood",
    "unit": 1,
-   "start": "2028-10-06",
+   "start": "2028-09-15",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "prairie-island",
    "unit": 1,
-   "start": "2028-10-07",
-   "days": 40,
+   "start": "2028-09-16",
+   "days": 42,
    "status": "projected"
   },
   {
-   "plantId": "arkansas-nuclear-one",
+   "plantId": "wolf-creek",
    "unit": 1,
-   "start": "2028-10-11",
-   "days": 23,
+   "start": "2028-09-17",
+   "days": 44,
+   "status": "projected"
+  },
+  {
+   "plantId": "sequoyah",
+   "unit": 1,
+   "start": "2028-09-20",
+   "days": 39,
    "status": "projected"
   },
   {
    "plantId": "beaver-valley",
    "unit": 1,
-   "start": "2028-10-12",
+   "start": "2028-09-22",
    "days": 39,
    "status": "projected"
   },
   {
    "plantId": "peach-bottom",
    "unit": 2,
-   "start": "2028-10-12",
+   "start": "2028-09-22",
    "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "arkansas-nuclear-one",
+   "unit": 1,
+   "start": "2028-09-23",
+   "days": 23,
+   "status": "projected"
+  },
+  {
+   "plantId": "summer",
+   "unit": 1,
+   "start": "2028-09-25",
+   "days": 41,
    "status": "projected"
   },
   {
    "plantId": "surry",
    "unit": 1,
-   "start": "2028-10-12",
+   "start": "2028-09-28",
    "days": 58,
    "status": "projected"
   },
   {
    "plantId": "dresden",
    "unit": 3,
-   "start": "2028-10-26",
+   "start": "2028-10-02",
    "days": 19,
-   "status": "projected"
-  },
-  {
-   "plantId": "summer",
-   "unit": 1,
-   "start": "2028-10-29",
-   "days": 41,
    "status": "projected"
   },
   {
    "plantId": "oconee",
    "unit": 1,
-   "start": "2028-10-31",
+   "start": "2028-10-10",
    "days": 22,
    "status": "projected"
   },
   {
    "plantId": "cooper",
    "unit": 1,
-   "start": "2028-11-10",
+   "start": "2028-10-20",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "palisades",
    "unit": 1,
-   "start": "2029-01-16",
+   "start": "2028-12-01",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "turkey-point",
    "unit": 3,
-   "start": "2029-02-04",
+   "start": "2029-01-18",
    "days": 28,
    "status": "projected"
   },
   {
    "plantId": "hatch",
    "unit": 2,
-   "start": "2029-02-09",
+   "start": "2029-01-21",
    "days": 29,
    "status": "projected"
   },
   {
    "plantId": "lasalle",
    "unit": 2,
-   "start": "2029-02-10",
+   "start": "2029-01-22",
    "days": 20,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 1,
-   "start": "2029-02-22",
+   "start": "2029-02-01",
    "days": 26,
-   "status": "projected"
-  },
-  {
-   "plantId": "calvert-cliffs",
-   "unit": 2,
-   "start": "2029-02-24",
-   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "brunswick",
    "unit": 2,
-   "start": "2029-03-01",
+   "start": "2029-02-03",
    "days": 27,
+   "status": "projected"
+  },
+  {
+   "plantId": "calvert-cliffs",
+   "unit": 2,
+   "start": "2029-02-08",
+   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "byron",
    "unit": 1,
-   "start": "2029-03-02",
+   "start": "2029-02-09",
    "days": 21,
    "status": "projected"
   },
   {
    "plantId": "browns-ferry",
    "unit": 2,
-   "start": "2029-03-05",
+   "start": "2029-02-12",
    "days": 32,
    "status": "projected"
   },
   {
    "plantId": "quad-cities",
    "unit": 1,
-   "start": "2029-03-10",
+   "start": "2029-02-12",
    "days": 21,
    "status": "projected"
   },
   {
-   "plantId": "arkansas-nuclear-one",
+   "plantId": "limerick",
    "unit": 2,
-   "start": "2029-03-14",
-   "days": 38,
+   "start": "2029-02-14",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "point-beach",
    "unit": 2,
-   "start": "2029-03-14",
+   "start": "2029-02-14",
    "days": 24,
+   "status": "projected"
+  },
+  {
+   "plantId": "arkansas-nuclear-one",
+   "unit": 2,
+   "start": "2029-02-22",
+   "days": 38,
    "status": "projected"
   },
   {
    "plantId": "nine-mile-point",
    "unit": 1,
-   "start": "2029-03-17",
+   "start": "2029-02-26",
    "days": 19,
    "status": "projected"
   },
   {
    "plantId": "perry",
    "unit": 1,
-   "start": "2029-03-17",
+   "start": "2029-02-26",
    "days": 36,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 2,
-   "start": "2029-03-20",
+   "start": "2029-02-27",
    "days": 38,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 1,
-   "start": "2029-03-21",
+   "start": "2029-03-01",
    "days": 33,
    "status": "projected"
   },
   {
    "plantId": "mcguire",
    "unit": 2,
-   "start": "2029-03-22",
+   "start": "2029-03-02",
    "days": 28,
    "status": "projected"
   },
   {
    "plantId": "susquehanna",
    "unit": 2,
-   "start": "2029-03-24",
+   "start": "2029-03-06",
    "days": 34,
-   "status": "projected"
-  },
-  {
-   "plantId": "seabrook",
-   "unit": 1,
-   "start": "2029-04-04",
-   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "beaver-valley",
    "unit": 2,
-   "start": "2029-04-05",
+   "start": "2029-03-12",
    "days": 32,
    "status": "projected"
   },
   {
    "plantId": "salem",
    "unit": 2,
-   "start": "2029-04-05",
+   "start": "2029-03-12",
    "days": 32,
+   "status": "projected"
+  },
+  {
+   "plantId": "seabrook",
+   "unit": 1,
+   "start": "2029-03-13",
+   "days": 36,
+   "status": "projected"
+  },
+  {
+   "plantId": "watts-bar",
+   "unit": 1,
+   "start": "2029-03-15",
+   "days": 28,
+   "status": "projected"
+  },
+  {
+   "plantId": "surry",
+   "unit": 2,
+   "start": "2029-03-16",
+   "days": 46,
    "status": "projected"
   },
   {
    "plantId": "ginna",
    "unit": 1,
-   "start": "2029-04-06",
+   "start": "2029-03-17",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "columbia-generating-station",
    "unit": 2,
-   "start": "2029-04-12",
+   "start": "2029-03-20",
    "days": 44,
-   "status": "projected"
-  },
-  {
-   "plantId": "surry",
-   "unit": 2,
-   "start": "2029-04-12",
-   "days": 46,
-   "status": "projected"
-  },
-  {
-   "plantId": "millstone",
-   "unit": 2,
-   "start": "2029-04-13",
-   "days": 34,
    "status": "projected"
   },
   {
    "plantId": "catawba",
    "unit": 1,
-   "start": "2029-04-18",
+   "start": "2029-03-20",
    "days": 28,
    "status": "projected"
   },
   {
-   "plantId": "st-lucie",
+   "plantId": "millstone",
    "unit": 2,
-   "start": "2029-04-18",
-   "days": 44,
-   "status": "projected"
-  },
-  {
-   "plantId": "watts-bar",
-   "unit": 1,
-   "start": "2029-04-18",
-   "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "vogtle",
-   "unit": 3,
-   "start": "2029-04-19",
-   "days": 26,
-   "status": "projected"
-  },
-  {
-   "plantId": "braidwood",
-   "unit": 2,
-   "start": "2029-04-20",
-   "days": 18,
+   "start": "2029-03-20",
+   "days": 34,
    "status": "projected"
   },
   {
    "plantId": "monticello",
    "unit": 1,
-   "start": "2029-04-21",
-   "days": 32,
+   "start": "2029-03-31",
+   "days": 29,
    "status": "projected"
   },
   {
-   "plantId": "limerick",
+   "plantId": "braidwood",
    "unit": 2,
-   "start": "2029-04-28",
+   "start": "2029-04-01",
    "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 3,
+   "start": "2029-04-03",
+   "days": 26,
    "status": "projected"
   },
   {
    "plantId": "comanche-peak",
    "unit": 2,
-   "start": "2029-05-04",
+   "start": "2029-04-18",
    "days": 30,
+   "status": "projected"
+  },
+  {
+   "plantId": "st-lucie",
+   "unit": 2,
+   "start": "2029-05-27",
+   "days": 44,
+   "status": "projected"
+  },
+  {
+   "plantId": "clinton",
+   "unit": 1,
+   "start": "2029-08-09",
+   "days": 26,
    "status": "projected"
   },
   {
    "plantId": "turkey-point",
    "unit": 4,
-   "start": "2029-09-01",
+   "start": "2029-08-11",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "mcguire",
    "unit": 1,
-   "start": "2029-09-05",
+   "start": "2029-08-12",
    "days": 29,
    "status": "projected"
   },
   {
    "plantId": "north-anna",
    "unit": 2,
-   "start": "2029-09-06",
+   "start": "2029-08-16",
    "days": 34,
-   "status": "projected"
-  },
-  {
-   "plantId": "clinton",
-   "unit": 1,
-   "start": "2029-09-08",
-   "days": 26,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 2,
-   "start": "2029-09-13",
+   "start": "2029-08-29",
    "days": 27,
-   "status": "projected"
-  },
-  {
-   "plantId": "d-c-cook",
-   "unit": 1,
-   "start": "2029-09-19",
-   "days": 33,
    "status": "projected"
   },
   {
    "plantId": "sequoyah",
    "unit": 2,
-   "start": "2029-09-22",
-   "days": 27,
+   "start": "2029-09-01",
+   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "callaway",
    "unit": 1,
-   "start": "2029-09-26",
+   "start": "2029-09-04",
    "days": 38,
+   "status": "projected"
+  },
+  {
+   "plantId": "d-c-cook",
+   "unit": 1,
+   "start": "2029-09-04",
+   "days": 33,
    "status": "projected"
   },
   {
    "plantId": "byron",
    "unit": 2,
-   "start": "2029-09-28",
+   "start": "2029-09-06",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 1,
-   "start": "2029-10-03",
+   "start": "2029-09-11",
    "days": 43,
    "status": "projected"
   },
   {
    "plantId": "salem",
    "unit": 1,
-   "start": "2029-10-04",
+   "start": "2029-09-13",
+   "days": 35,
+   "status": "projected"
+  },
+  {
+   "plantId": "peach-bottom",
+   "unit": 3,
+   "start": "2029-09-20",
+   "days": 21,
+   "status": "projected"
+  },
+  {
+   "plantId": "millstone",
+   "unit": 3,
+   "start": "2029-09-21",
+   "days": 37,
+   "status": "projected"
+  },
+  {
+   "plantId": "prairie-island",
+   "unit": 2,
+   "start": "2029-09-22",
    "days": 35,
    "status": "projected"
   },
   {
    "plantId": "diablo-canyon",
    "unit": 1,
-   "start": "2029-10-11",
+   "start": "2029-09-23",
    "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "prairie-island",
-   "unit": 2,
-   "start": "2029-10-11",
-   "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "millstone",
-   "unit": 3,
-   "start": "2029-10-12",
-   "days": 37,
-   "status": "projected"
-  },
-  {
-   "plantId": "peach-bottom",
-   "unit": 3,
-   "start": "2029-10-13",
-   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "waterford",
    "unit": 3,
-   "start": "2029-10-17",
+   "start": "2029-09-26",
    "days": 42,
-   "status": "projected"
-  },
-  {
-   "plantId": "comanche-peak",
-   "unit": 1,
-   "start": "2029-10-19",
-   "days": 29,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 2,
-   "start": "2029-10-19",
+   "start": "2029-09-27",
    "days": 36,
+   "status": "projected"
+  },
+  {
+   "plantId": "comanche-peak",
+   "unit": 1,
+   "start": "2029-09-30",
+   "days": 29,
    "status": "projected"
   },
   {
    "plantId": "dresden",
    "unit": 2,
-   "start": "2029-10-27",
+   "start": "2029-10-06",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "oconee",
    "unit": 2,
-   "start": "2029-10-28",
+   "start": "2029-10-10",
    "days": 25,
    "status": "projected"
   },
   {
    "plantId": "watts-bar",
    "unit": 2,
-   "start": "2029-11-07",
+   "start": "2029-10-17",
    "days": 24,
    "status": "projected"
   },
   {
    "plantId": "point-beach",
    "unit": 1,
-   "start": "2029-11-11",
+   "start": "2029-10-21",
    "days": 25,
    "status": "projected"
   },
   {
    "plantId": "river-bend",
    "unit": 1,
-   "start": "2029-11-18",
+   "start": "2029-10-28",
    "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "grand-gulf",
+   "unit": 1,
+   "start": "2029-12-08",
+   "days": 28,
    "status": "projected"
   },
   {
    "plantId": "hatch",
    "unit": 1,
-   "start": "2030-01-17",
+   "start": "2030-01-09",
    "days": 36,
    "status": "projected"
   },
   {
    "plantId": "lasalle",
    "unit": 1,
-   "start": "2030-02-09",
+   "start": "2030-01-14",
    "days": 19,
    "status": "projected"
   },
   {
-   "plantId": "grand-gulf",
+   "plantId": "summer",
    "unit": 1,
-   "start": "2030-02-14",
-   "days": 28,
+   "start": "2030-01-25",
+   "days": 41,
    "status": "projected"
   },
   {
    "plantId": "calvert-cliffs",
    "unit": 1,
-   "start": "2030-02-16",
+   "start": "2030-01-28",
    "days": 20,
    "status": "projected"
   },
   {
    "plantId": "browns-ferry",
    "unit": 3,
-   "start": "2030-02-21",
+   "start": "2030-02-05",
    "days": 34,
    "status": "projected"
   },
   {
    "plantId": "brunswick",
    "unit": 1,
-   "start": "2030-02-26",
+   "start": "2030-02-07",
    "days": 30,
-   "status": "projected"
-  },
-  {
-   "plantId": "summer",
-   "unit": 1,
-   "start": "2030-02-28",
-   "days": 41,
    "status": "projected"
   },
   {
    "plantId": "davis-besse",
    "unit": 1,
-   "start": "2030-03-01",
+   "start": "2030-02-07",
    "days": 26,
    "status": "projected"
   },
   {
    "plantId": "catawba",
    "unit": 2,
-   "start": "2030-03-01",
-   "days": 30,
-   "status": "projected"
-  },
-  {
-   "plantId": "north-anna",
-   "unit": 1,
-   "start": "2030-03-07",
-   "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "nine-mile-point",
-   "unit": 2,
-   "start": "2030-03-09",
-   "days": 23,
+   "start": "2030-02-08",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 4,
-   "start": "2030-03-09",
+   "start": "2030-02-16",
    "days": 30,
+   "status": "projected"
+  },
+  {
+   "plantId": "nine-mile-point",
+   "unit": 2,
+   "start": "2030-02-16",
+   "days": 23,
+   "status": "projected"
+  },
+  {
+   "plantId": "north-anna",
+   "unit": 1,
+   "start": "2030-02-21",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "d-c-cook",
    "unit": 2,
-   "start": "2030-03-20",
+   "start": "2030-02-24",
    "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "st-lucie",
-   "unit": 1,
-   "start": "2030-03-20",
-   "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "fermi",
-   "unit": 2,
-   "start": "2030-03-23",
-   "days": 48,
    "status": "projected"
   },
   {
    "plantId": "susquehanna",
    "unit": 1,
-   "start": "2030-03-23",
+   "start": "2030-02-28",
    "days": 31,
    "status": "projected"
   },
   {
-   "plantId": "hope-creek",
+   "plantId": "fermi",
+   "unit": 2,
+   "start": "2030-03-01",
+   "days": 48,
+   "status": "projected"
+  },
+  {
+   "plantId": "st-lucie",
    "unit": 1,
-   "start": "2030-03-26",
-   "days": 36,
+   "start": "2030-03-02",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 1,
-   "start": "2030-03-29",
+   "start": "2030-03-05",
    "days": 26,
    "status": "projected"
   },
   {
-   "plantId": "quad-cities",
-   "unit": 2,
-   "start": "2030-03-30",
-   "days": 24,
+   "plantId": "hope-creek",
+   "unit": 1,
+   "start": "2030-03-06",
+   "days": 36,
    "status": "projected"
   },
   {
-   "plantId": "wolf-creek",
-   "unit": 1,
-   "start": "2030-04-02",
-   "days": 44,
+   "plantId": "diablo-canyon",
+   "unit": 2,
+   "start": "2030-03-09",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "harris",
    "unit": 1,
-   "start": "2030-04-04",
+   "start": "2030-03-13",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 3,
-   "start": "2030-04-04",
+   "start": "2030-03-13",
    "days": 37,
    "status": "projected"
   },
   {
-   "plantId": "sequoyah",
-   "unit": 1,
-   "start": "2030-04-04",
-   "days": 39,
+   "plantId": "quad-cities",
+   "unit": 2,
+   "start": "2030-03-13",
+   "days": 24,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 2,
-   "start": "2030-04-04",
+   "start": "2030-03-14",
    "days": 33,
-   "status": "projected"
-  },
-  {
-   "plantId": "diablo-canyon",
-   "unit": 2,
-   "start": "2030-04-05",
-   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "braidwood",
    "unit": 1,
-   "start": "2030-04-06",
+   "start": "2030-03-15",
    "days": 18,
-   "status": "projected"
-  },
-  {
-   "plantId": "arkansas-nuclear-one",
-   "unit": 1,
-   "start": "2030-04-11",
-   "days": 23,
-   "status": "projected"
-  },
-  {
-   "plantId": "beaver-valley",
-   "unit": 1,
-   "start": "2030-04-12",
-   "days": 39,
-   "status": "projected"
-  },
-  {
-   "plantId": "surry",
-   "unit": 1,
-   "start": "2030-04-12",
-   "days": 58,
    "status": "projected"
   },
   {
    "plantId": "limerick",
    "unit": 1,
-   "start": "2030-04-27",
+   "start": "2030-03-16",
    "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "wolf-creek",
+   "unit": 1,
+   "start": "2030-03-17",
+   "days": 44,
+   "status": "projected"
+  },
+  {
+   "plantId": "sequoyah",
+   "unit": 1,
+   "start": "2030-03-20",
+   "days": 39,
+   "status": "projected"
+  },
+  {
+   "plantId": "beaver-valley",
+   "unit": 1,
+   "start": "2030-03-22",
+   "days": 39,
+   "status": "projected"
+  },
+  {
+   "plantId": "arkansas-nuclear-one",
+   "unit": 1,
+   "start": "2030-03-23",
+   "days": 23,
+   "status": "projected"
+  },
+  {
+   "plantId": "surry",
+   "unit": 1,
+   "start": "2030-03-28",
+   "days": 58,
    "status": "projected"
   },
   {
    "plantId": "oconee",
    "unit": 3,
-   "start": "2030-05-06",
+   "start": "2030-04-14",
    "days": 22,
    "status": "projected"
   },
   {
    "plantId": "robinson",
    "unit": 2,
-   "start": "2030-07-25",
-   "days": 33,
+   "start": "2030-07-04",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "turkey-point",
    "unit": 3,
-   "start": "2030-08-04",
+   "start": "2030-07-18",
    "days": 28,
+   "status": "projected"
+  },
+  {
+   "plantId": "palisades",
+   "unit": 1,
+   "start": "2030-08-01",
+   "days": 30,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 1,
-   "start": "2030-08-22",
+   "start": "2030-08-01",
    "days": 26,
    "status": "projected"
   },
   {
    "plantId": "byron",
    "unit": 1,
-   "start": "2030-09-02",
+   "start": "2030-08-09",
    "days": 21,
+   "status": "projected"
+  },
+  {
+   "plantId": "point-beach",
+   "unit": 2,
+   "start": "2030-08-14",
+   "days": 24,
    "status": "projected"
   },
   {
    "plantId": "browns-ferry",
    "unit": 1,
-   "start": "2030-09-12",
+   "start": "2030-08-15",
    "days": 28,
    "status": "projected"
   },
   {
    "plantId": "arkansas-nuclear-one",
    "unit": 2,
-   "start": "2030-09-14",
+   "start": "2030-08-22",
+   "days": 38,
+   "status": "projected"
+  },
+  {
+   "plantId": "palo-verde",
+   "unit": 2,
+   "start": "2030-08-27",
    "days": 38,
    "status": "projected"
   },
   {
    "plantId": "fitzpatrick",
    "unit": 1,
-   "start": "2030-09-14",
+   "start": "2030-08-30",
    "days": 18,
-   "status": "projected"
-  },
-  {
-   "plantId": "point-beach",
-   "unit": 2,
-   "start": "2030-09-14",
-   "days": 24,
-   "status": "projected"
-  },
-  {
-   "plantId": "palisades",
-   "unit": 1,
-   "start": "2030-09-16",
-   "days": 30,
-   "status": "projected"
-  },
-  {
-   "plantId": "palo-verde",
-   "unit": 2,
-   "start": "2030-09-20",
-   "days": 38,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 1,
-   "start": "2030-09-21",
+   "start": "2030-09-01",
    "days": 33,
    "status": "projected"
   },
   {
    "plantId": "mcguire",
    "unit": 2,
-   "start": "2030-09-22",
+   "start": "2030-09-02",
    "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "seabrook",
-   "unit": 1,
-   "start": "2030-10-04",
-   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "beaver-valley",
    "unit": 2,
-   "start": "2030-10-05",
+   "start": "2030-09-12",
    "days": 32,
    "status": "projected"
   },
   {
    "plantId": "salem",
    "unit": 2,
-   "start": "2030-10-05",
+   "start": "2030-09-12",
    "days": 32,
    "status": "projected"
   },
   {
-   "plantId": "ginna",
+   "plantId": "seabrook",
    "unit": 1,
-   "start": "2030-10-06",
-   "days": 18,
-   "status": "projected"
-  },
-  {
-   "plantId": "prairie-island",
-   "unit": 1,
-   "start": "2030-10-07",
-   "days": 40,
-   "status": "projected"
-  },
-  {
-   "plantId": "peach-bottom",
-   "unit": 2,
-   "start": "2030-10-12",
-   "days": 18,
-   "status": "projected"
-  },
-  {
-   "plantId": "surry",
-   "unit": 2,
-   "start": "2030-10-12",
-   "days": 46,
-   "status": "projected"
-  },
-  {
-   "plantId": "millstone",
-   "unit": 2,
-   "start": "2030-10-13",
-   "days": 34,
-   "status": "projected"
-  },
-  {
-   "plantId": "catawba",
-   "unit": 1,
-   "start": "2030-10-18",
-   "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "st-lucie",
-   "unit": 2,
-   "start": "2030-10-18",
-   "days": 44,
+   "start": "2030-09-13",
+   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "watts-bar",
    "unit": 1,
-   "start": "2030-10-18",
+   "start": "2030-09-15",
    "days": 28,
    "status": "projected"
   },
   {
-   "plantId": "vogtle",
-   "unit": 3,
-   "start": "2030-10-19",
-   "days": 26,
+   "plantId": "surry",
+   "unit": 2,
+   "start": "2030-09-16",
+   "days": 46,
+   "status": "projected"
+  },
+  {
+   "plantId": "prairie-island",
+   "unit": 1,
+   "start": "2030-09-16",
+   "days": 42,
+   "status": "projected"
+  },
+  {
+   "plantId": "ginna",
+   "unit": 1,
+   "start": "2030-09-17",
+   "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "catawba",
+   "unit": 1,
+   "start": "2030-09-20",
+   "days": 28,
+   "status": "projected"
+  },
+  {
+   "plantId": "millstone",
+   "unit": 2,
+   "start": "2030-09-20",
+   "days": 34,
+   "status": "projected"
+  },
+  {
+   "plantId": "peach-bottom",
+   "unit": 2,
+   "start": "2030-09-22",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "braidwood",
    "unit": 2,
-   "start": "2030-10-20",
+   "start": "2030-10-01",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "dresden",
    "unit": 3,
-   "start": "2030-10-26",
+   "start": "2030-10-02",
    "days": 19,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 3,
+   "start": "2030-10-03",
+   "days": 26,
    "status": "projected"
   },
   {
    "plantId": "oconee",
    "unit": 1,
-   "start": "2030-10-31",
+   "start": "2030-10-10",
    "days": 22,
    "status": "projected"
   },
   {
    "plantId": "comanche-peak",
    "unit": 2,
-   "start": "2030-11-04",
+   "start": "2030-10-18",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "cooper",
    "unit": 1,
-   "start": "2030-11-10",
+   "start": "2030-10-20",
    "days": 34,
+   "status": "projected"
+  },
+  {
+   "plantId": "st-lucie",
+   "unit": 2,
+   "start": "2030-12-27",
+   "days": 44,
+   "status": "projected"
+  },
+  {
+   "plantId": "limerick",
+   "unit": 2,
+   "start": "2031-01-14",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "hatch",
    "unit": 2,
-   "start": "2031-02-09",
+   "start": "2031-01-21",
    "days": 29,
    "status": "projected"
   },
   {
    "plantId": "lasalle",
    "unit": 2,
-   "start": "2031-02-10",
+   "start": "2031-01-22",
    "days": 20,
-   "status": "projected"
-  },
-  {
-   "plantId": "calvert-cliffs",
-   "unit": 2,
-   "start": "2031-02-24",
-   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "brunswick",
    "unit": 2,
-   "start": "2031-03-01",
+   "start": "2031-02-03",
    "days": 27,
    "status": "projected"
   },
   {
    "plantId": "turkey-point",
    "unit": 4,
-   "start": "2031-03-01",
+   "start": "2031-02-08",
    "days": 34,
+   "status": "projected"
+  },
+  {
+   "plantId": "calvert-cliffs",
+   "unit": 2,
+   "start": "2031-02-08",
+   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "browns-ferry",
    "unit": 2,
-   "start": "2031-03-05",
+   "start": "2031-02-12",
    "days": 32,
+   "status": "projected"
+  },
+  {
+   "plantId": "quad-cities",
+   "unit": 1,
+   "start": "2031-02-12",
+   "days": 21,
    "status": "projected"
   },
   {
    "plantId": "mcguire",
    "unit": 1,
-   "start": "2031-03-05",
+   "start": "2031-02-12",
    "days": 29,
    "status": "projected"
   },
   {
    "plantId": "north-anna",
+   "unit": 2,
+   "start": "2031-02-13",
+   "days": 34,
+   "status": "projected"
+  },
+  {
+   "plantId": "nine-mile-point",
+   "unit": 1,
+   "start": "2031-02-26",
+   "days": 19,
+   "status": "projected"
+  },
+  {
+   "plantId": "perry",
+   "unit": 1,
+   "start": "2031-02-26",
+   "days": 36,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 2,
+   "start": "2031-02-28",
+   "days": 27,
+   "status": "projected"
+  },
+  {
+   "plantId": "sequoyah",
+   "unit": 2,
+   "start": "2031-03-01",
+   "days": 21,
+   "status": "projected"
+  },
+  {
+   "plantId": "callaway",
+   "unit": 1,
+   "start": "2031-03-04",
+   "days": 38,
+   "status": "projected"
+  },
+  {
+   "plantId": "d-c-cook",
+   "unit": 1,
+   "start": "2031-03-04",
+   "days": 33,
+   "status": "projected"
+  },
+  {
+   "plantId": "susquehanna",
    "unit": 2,
    "start": "2031-03-06",
    "days": 34,
    "status": "projected"
   },
   {
-   "plantId": "quad-cities",
-   "unit": 1,
-   "start": "2031-03-10",
-   "days": 21,
-   "status": "projected"
-  },
-  {
-   "plantId": "vogtle",
-   "unit": 2,
-   "start": "2031-03-13",
-   "days": 27,
-   "status": "projected"
-  },
-  {
-   "plantId": "nine-mile-point",
-   "unit": 1,
-   "start": "2031-03-17",
-   "days": 19,
-   "status": "projected"
-  },
-  {
-   "plantId": "perry",
-   "unit": 1,
-   "start": "2031-03-17",
-   "days": 36,
-   "status": "projected"
-  },
-  {
-   "plantId": "d-c-cook",
-   "unit": 1,
-   "start": "2031-03-19",
-   "days": 33,
-   "status": "projected"
-  },
-  {
-   "plantId": "sequoyah",
-   "unit": 2,
-   "start": "2031-03-22",
-   "days": 27,
-   "status": "projected"
-  },
-  {
-   "plantId": "susquehanna",
-   "unit": 2,
-   "start": "2031-03-24",
-   "days": 34,
-   "status": "projected"
-  },
-  {
-   "plantId": "callaway",
-   "unit": 1,
-   "start": "2031-03-26",
-   "days": 38,
-   "status": "projected"
-  },
-  {
    "plantId": "byron",
    "unit": 2,
-   "start": "2031-03-28",
+   "start": "2031-03-06",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 1,
-   "start": "2031-04-03",
+   "start": "2031-03-11",
    "days": 43,
    "status": "projected"
   },
   {
    "plantId": "salem",
    "unit": 1,
-   "start": "2031-04-04",
-   "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "diablo-canyon",
-   "unit": 1,
-   "start": "2031-04-11",
+   "start": "2031-03-14",
    "days": 35,
    "status": "projected"
   },
   {
    "plantId": "columbia-generating-station",
    "unit": 2,
-   "start": "2031-04-12",
+   "start": "2031-03-20",
    "days": 44,
    "status": "projected"
   },
   {
    "plantId": "millstone",
    "unit": 3,
-   "start": "2031-04-12",
+   "start": "2031-03-22",
    "days": 37,
+   "status": "projected"
+  },
+  {
+   "plantId": "diablo-canyon",
+   "unit": 1,
+   "start": "2031-03-23",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "waterford",
    "unit": 3,
-   "start": "2031-04-17",
+   "start": "2031-03-27",
    "days": 42,
-   "status": "projected"
-  },
-  {
-   "plantId": "comanche-peak",
-   "unit": 1,
-   "start": "2031-04-19",
-   "days": 29,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 2,
-   "start": "2031-04-19",
+   "start": "2031-03-27",
    "days": 36,
    "status": "projected"
   },
   {
    "plantId": "monticello",
    "unit": 1,
-   "start": "2031-04-21",
-   "days": 32,
+   "start": "2031-03-31",
+   "days": 29,
    "status": "projected"
   },
   {
-   "plantId": "limerick",
-   "unit": 2,
-   "start": "2031-04-28",
-   "days": 18,
+   "plantId": "comanche-peak",
+   "unit": 1,
+   "start": "2031-03-31",
+   "days": 29,
    "status": "projected"
   },
   {
    "plantId": "watts-bar",
    "unit": 2,
-   "start": "2031-05-07",
+   "start": "2031-04-16",
    "days": 24,
    "status": "projected"
   },
   {
    "plantId": "point-beach",
    "unit": 1,
-   "start": "2031-05-11",
+   "start": "2031-04-20",
    "days": 25,
    "status": "projected"
   },
   {
    "plantId": "river-bend",
    "unit": 1,
-   "start": "2031-05-18",
+   "start": "2031-04-27",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "summer",
    "unit": 1,
-   "start": "2031-06-29",
+   "start": "2031-05-25",
    "days": 41,
    "status": "projected"
   },
   {
    "plantId": "catawba",
    "unit": 2,
-   "start": "2031-09-01",
-   "days": 30,
-   "status": "projected"
-  },
-  {
-   "plantId": "north-anna",
-   "unit": 1,
-   "start": "2031-09-07",
-   "days": 35,
+   "start": "2031-08-08",
+   "days": 18,
    "status": "projected"
   },
   {
    "plantId": "clinton",
    "unit": 1,
-   "start": "2031-09-08",
+   "start": "2031-08-09",
    "days": 26,
    "status": "projected"
   },
   {
    "plantId": "vogtle",
    "unit": 4,
-   "start": "2031-09-09",
+   "start": "2031-08-16",
    "days": 30,
+   "status": "projected"
+  },
+  {
+   "plantId": "north-anna",
+   "unit": 1,
+   "start": "2031-08-21",
+   "days": 35,
    "status": "projected"
   },
   {
    "plantId": "d-c-cook",
    "unit": 2,
-   "start": "2031-09-20",
+   "start": "2031-08-24",
    "days": 35,
    "status": "projected"
   },
   {
    "plantId": "st-lucie",
    "unit": 1,
-   "start": "2031-09-20",
+   "start": "2031-09-02",
    "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "hope-creek",
-   "unit": 1,
-   "start": "2031-09-26",
-   "days": 36,
    "status": "projected"
   },
   {
    "plantId": "farley",
    "unit": 1,
-   "start": "2031-09-29",
+   "start": "2031-09-05",
    "days": 26,
    "status": "projected"
   },
   {
-   "plantId": "wolf-creek",
+   "plantId": "hope-creek",
    "unit": 1,
-   "start": "2031-10-02",
-   "days": 44,
+   "start": "2031-09-06",
+   "days": 36,
+   "status": "projected"
+  },
+  {
+   "plantId": "diablo-canyon",
+   "unit": 2,
+   "start": "2031-09-09",
+   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "harris",
    "unit": 1,
-   "start": "2031-10-04",
+   "start": "2031-09-13",
    "days": 30,
    "status": "projected"
   },
   {
    "plantId": "palo-verde",
    "unit": 3,
-   "start": "2031-10-04",
+   "start": "2031-09-13",
    "days": 37,
-   "status": "projected"
-  },
-  {
-   "plantId": "sequoyah",
-   "unit": 1,
-   "start": "2031-10-04",
-   "days": 39,
    "status": "projected"
   },
   {
    "plantId": "south-texas-project",
    "unit": 2,
-   "start": "2031-10-04",
+   "start": "2031-09-14",
    "days": 33,
-   "status": "projected"
-  },
-  {
-   "plantId": "diablo-canyon",
-   "unit": 2,
-   "start": "2031-10-05",
-   "days": 31,
    "status": "projected"
   },
   {
    "plantId": "braidwood",
    "unit": 1,
-   "start": "2031-10-06",
+   "start": "2031-09-15",
    "days": 18,
    "status": "projected"
   },
   {
-   "plantId": "arkansas-nuclear-one",
+   "plantId": "wolf-creek",
    "unit": 1,
-   "start": "2031-10-11",
-   "days": 23,
+   "start": "2031-09-17",
+   "days": 44,
    "status": "projected"
   },
   {
-   "plantId": "prairie-island",
-   "unit": 2,
-   "start": "2031-10-11",
-   "days": 35,
-   "status": "projected"
-  },
-  {
-   "plantId": "beaver-valley",
+   "plantId": "sequoyah",
    "unit": 1,
-   "start": "2031-10-12",
+   "start": "2031-09-20",
    "days": 39,
-   "status": "projected"
-  },
-  {
-   "plantId": "surry",
-   "unit": 1,
-   "start": "2031-10-12",
-   "days": 58,
    "status": "projected"
   },
   {
    "plantId": "peach-bottom",
    "unit": 3,
-   "start": "2031-10-13",
+   "start": "2031-09-20",
    "days": 21,
+   "status": "projected"
+  },
+  {
+   "plantId": "beaver-valley",
+   "unit": 1,
+   "start": "2031-09-22",
+   "days": 39,
+   "status": "projected"
+  },
+  {
+   "plantId": "prairie-island",
+   "unit": 2,
+   "start": "2031-09-22",
+   "days": 35,
+   "status": "projected"
+  },
+  {
+   "plantId": "arkansas-nuclear-one",
+   "unit": 1,
+   "start": "2031-09-23",
+   "days": 23,
+   "status": "projected"
+  },
+  {
+   "plantId": "surry",
+   "unit": 1,
+   "start": "2031-09-28",
+   "days": 58,
    "status": "projected"
   },
   {
    "plantId": "dresden",
    "unit": 2,
-   "start": "2031-10-27",
+   "start": "2031-10-06",
    "days": 18,
    "status": "projected"
   },
   {
    "plantId": "oconee",
    "unit": 2,
-   "start": "2031-10-28",
+   "start": "2031-10-10",
    "days": 25,
+   "status": "projected"
+  },
+  {
+   "plantId": "grand-gulf",
+   "unit": 1,
+   "start": "2031-11-08",
+   "days": 28,
    "status": "projected"
   }
  ],
  "unmatched": [],
  "corrected": [
+  "hatch#2",
+  "lasalle#2",
+  "brunswick#2",
+  "calvert-cliffs#2",
   "catawba#2",
+  "quad-cities#1",
   "vogtle#4",
+  "north-anna#1",
+  "d-c-cook#2",
+  "nine-mile-point#1",
+  "perry#1",
+  "st-lucie#1",
+  "farley#1",
+  "hope-creek#1",
+  "susquehanna#2",
+  "diablo-canyon#2",
+  "harris#1",
+  "palo-verde#3",
+  "south-texas-project#2",
+  "limerick#2",
+  "braidwood#1",
+  "wolf-creek#1",
+  "columbia-generating-station#2",
+  "sequoyah#1",
+  "beaver-valley#1",
+  "arkansas-nuclear-one#1",
+  "surry#1",
   "monticello#1",
   "palisades#1",
   "summer#1",
+  "turkey-point#3",
+  "vogtle#1",
+  "byron#1",
+  "clinton#1",
+  "point-beach#2",
+  "arkansas-nuclear-one#2",
+  "palo-verde#2",
+  "south-texas-project#1",
+  "mcguire#2",
+  "beaver-valley#2",
+  "salem#2",
+  "seabrook#1",
+  "watts-bar#1",
+  "surry#2",
+  "ginna#1",
+  "catawba#1",
+  "millstone#2",
+  "peach-bottom#3",
+  "prairie-island#2",
+  "braidwood#2",
+  "vogtle#3",
+  "oconee#2",
+  "comanche-peak#2",
+  "st-lucie#2",
+  "grand-gulf#1",
+  "hatch#1",
+  "lasalle#1",
+  "calvert-cliffs#1",
+  "browns-ferry#3",
+  "brunswick#1",
+  "davis-besse#1",
+  "mcguire#1",
+  "nine-mile-point#2",
+  "susquehanna#1",
+  "vogtle#2",
+  "fermi#2",
   "sequoyah#2",
+  "callaway#1",
+  "d-c-cook#1",
+  "byron#2",
+  "palo-verde#1",
+  "quad-cities#2",
+  "limerick#1",
+  "diablo-canyon#1",
+  "farley#2",
+  "comanche-peak#1",
+  "oconee#3",
   "robinson#2",
-  "prairie-island#1"
+  "browns-ferry#1",
+  "fitzpatrick#1",
+  "prairie-island#1",
+  "peach-bottom#2",
+  "dresden#3"
  ]
 }

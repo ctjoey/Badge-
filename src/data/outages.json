@@ -2961,6 +2961,13 @@
    "status": "projected"
   },
   {
+   "plantId": "catawba",
+   "unit": 2,
+   "start": "2027-03-01",
+   "days": 30,
+   "status": "projected"
+  },
+  {
    "plantId": "browns-ferry",
    "unit": 2,
    "start": "2027-03-05",
@@ -2972,6 +2979,13 @@
    "unit": 1,
    "start": "2027-03-07",
    "days": 35,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 4,
+   "start": "2027-03-09",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -3108,6 +3122,13 @@
    "status": "projected"
   },
   {
+   "plantId": "monticello",
+   "unit": 1,
+   "start": "2027-04-21",
+   "days": 32,
+   "status": "projected"
+  },
+  {
    "plantId": "limerick",
    "unit": 2,
    "start": "2027-04-28",
@@ -3115,10 +3136,17 @@
    "status": "projected"
   },
   {
-   "plantId": "sequoyah",
-   "unit": 2,
-   "start": "2027-05-30",
-   "days": 21,
+   "plantId": "palisades",
+   "unit": 1,
+   "start": "2027-05-16",
+   "days": 30,
+   "status": "projected"
+  },
+  {
+   "plantId": "summer",
+   "unit": 1,
+   "start": "2027-06-29",
+   "days": 41,
    "status": "projected"
   },
   {
@@ -3129,13 +3157,6 @@
    "status": "projected"
   },
   {
-   "plantId": "monticello",
-   "unit": 1,
-   "start": "2027-08-21",
-   "days": 29,
-   "status": "projected"
-  },
-  {
    "plantId": "vogtle",
    "unit": 1,
    "start": "2027-08-22",
@@ -3143,24 +3164,10 @@
    "status": "projected"
   },
   {
-   "plantId": "summer",
-   "unit": 1,
-   "start": "2027-08-28",
-   "days": 41,
-   "status": "projected"
-  },
-  {
    "plantId": "byron",
    "unit": 1,
    "start": "2027-09-02",
    "days": 21,
-   "status": "projected"
-  },
-  {
-   "plantId": "vogtle",
-   "unit": 4,
-   "start": "2027-09-07",
-   "days": 30,
    "status": "projected"
   },
   {
@@ -3409,6 +3416,13 @@
    "status": "projected"
   },
   {
+   "plantId": "sequoyah",
+   "unit": 2,
+   "start": "2028-03-22",
+   "days": 27,
+   "status": "projected"
+  },
+  {
    "plantId": "fermi",
    "unit": 2,
    "start": "2028-03-23",
@@ -3444,24 +3458,10 @@
    "status": "projected"
   },
   {
-   "plantId": "catawba",
-   "unit": 2,
-   "start": "2028-03-31",
-   "days": 18,
-   "status": "projected"
-  },
-  {
    "plantId": "palo-verde",
    "unit": 1,
    "start": "2028-04-03",
    "days": 43,
-   "status": "projected"
-  },
-  {
-   "plantId": "prairie-island",
-   "unit": 1,
-   "start": "2028-04-03",
-   "days": 42,
    "status": "projected"
   },
   {
@@ -3542,10 +3542,31 @@
    "status": "projected"
   },
   {
+   "plantId": "robinson",
+   "unit": 2,
+   "start": "2028-08-25",
+   "days": 33,
+   "status": "projected"
+  },
+  {
+   "plantId": "catawba",
+   "unit": 2,
+   "start": "2028-09-01",
+   "days": 30,
+   "status": "projected"
+  },
+  {
    "plantId": "north-anna",
    "unit": 1,
    "start": "2028-09-07",
    "days": 35,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 4,
+   "start": "2028-09-09",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -3598,13 +3619,6 @@
    "status": "projected"
   },
   {
-   "plantId": "robinson",
-   "unit": 2,
-   "start": "2028-10-03",
-   "days": 31,
-   "status": "projected"
-  },
-  {
    "plantId": "harris",
    "unit": 1,
    "start": "2028-10-04",
@@ -3647,6 +3661,13 @@
    "status": "projected"
   },
   {
+   "plantId": "prairie-island",
+   "unit": 1,
+   "start": "2028-10-07",
+   "days": 40,
+   "status": "projected"
+  },
+  {
    "plantId": "arkansas-nuclear-one",
    "unit": 1,
    "start": "2028-10-11",
@@ -3682,6 +3703,13 @@
    "status": "projected"
   },
   {
+   "plantId": "summer",
+   "unit": 1,
+   "start": "2028-10-29",
+   "days": 41,
+   "status": "projected"
+  },
+  {
    "plantId": "oconee",
    "unit": 1,
    "start": "2028-10-31",
@@ -3693,6 +3721,13 @@
    "unit": 1,
    "start": "2028-11-10",
    "days": 34,
+   "status": "projected"
+  },
+  {
+   "plantId": "palisades",
+   "unit": 1,
+   "start": "2029-01-16",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -3717,13 +3752,6 @@
    "status": "projected"
   },
   {
-   "plantId": "monticello",
-   "unit": 1,
-   "start": "2029-02-21",
-   "days": 29,
-   "status": "projected"
-  },
-  {
    "plantId": "vogtle",
    "unit": 1,
    "start": "2029-02-22",
@@ -3735,13 +3763,6 @@
    "unit": 2,
    "start": "2029-02-24",
    "days": 21,
-   "status": "projected"
-  },
-  {
-   "plantId": "summer",
-   "unit": 1,
-   "start": "2029-02-28",
-   "days": 41,
    "status": "projected"
   },
   {
@@ -3913,6 +3934,13 @@
    "status": "projected"
   },
   {
+   "plantId": "monticello",
+   "unit": 1,
+   "start": "2029-04-21",
+   "days": 32,
+   "status": "projected"
+  },
+  {
    "plantId": "limerick",
    "unit": 2,
    "start": "2029-04-28",
@@ -3924,13 +3952,6 @@
    "unit": 2,
    "start": "2029-05-04",
    "days": 30,
-   "status": "projected"
-  },
-  {
-   "plantId": "sequoyah",
-   "unit": 2,
-   "start": "2029-05-30",
-   "days": 21,
    "status": "projected"
   },
   {
@@ -3955,13 +3976,6 @@
    "status": "projected"
   },
   {
-   "plantId": "vogtle",
-   "unit": 4,
-   "start": "2029-09-07",
-   "days": 30,
-   "status": "projected"
-  },
-  {
    "plantId": "clinton",
    "unit": 1,
    "start": "2029-09-08",
@@ -3983,6 +3997,13 @@
    "status": "projected"
   },
   {
+   "plantId": "sequoyah",
+   "unit": 2,
+   "start": "2029-09-22",
+   "days": 27,
+   "status": "projected"
+  },
+  {
    "plantId": "callaway",
    "unit": 1,
    "start": "2029-09-26",
@@ -4001,13 +4022,6 @@
    "unit": 1,
    "start": "2029-10-03",
    "days": 43,
-   "status": "projected"
-  },
-  {
-   "plantId": "prairie-island",
-   "unit": 1,
-   "start": "2029-10-03",
-   "days": 42,
    "status": "projected"
   },
   {
@@ -4144,10 +4158,24 @@
    "status": "projected"
   },
   {
+   "plantId": "summer",
+   "unit": 1,
+   "start": "2030-02-28",
+   "days": 41,
+   "status": "projected"
+  },
+  {
    "plantId": "davis-besse",
    "unit": 1,
    "start": "2030-03-01",
    "days": 26,
+   "status": "projected"
+  },
+  {
+   "plantId": "catawba",
+   "unit": 2,
+   "start": "2030-03-01",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -4162,6 +4190,13 @@
    "unit": 2,
    "start": "2030-03-09",
    "days": 23,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 4,
+   "start": "2030-03-09",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -4211,13 +4246,6 @@
    "unit": 2,
    "start": "2030-03-30",
    "days": 24,
-   "status": "projected"
-  },
-  {
-   "plantId": "catawba",
-   "unit": 2,
-   "start": "2030-03-31",
-   "days": 18,
    "status": "projected"
   },
   {
@@ -4305,6 +4333,13 @@
    "status": "projected"
   },
   {
+   "plantId": "robinson",
+   "unit": 2,
+   "start": "2030-07-25",
+   "days": 33,
+   "status": "projected"
+  },
+  {
    "plantId": "turkey-point",
    "unit": 3,
    "start": "2030-08-04",
@@ -4312,24 +4347,10 @@
    "status": "projected"
   },
   {
-   "plantId": "monticello",
-   "unit": 1,
-   "start": "2030-08-21",
-   "days": 29,
-   "status": "projected"
-  },
-  {
    "plantId": "vogtle",
    "unit": 1,
    "start": "2030-08-22",
    "days": 26,
-   "status": "projected"
-  },
-  {
-   "plantId": "summer",
-   "unit": 1,
-   "start": "2030-08-28",
-   "days": 41,
    "status": "projected"
   },
   {
@@ -4368,6 +4389,13 @@
    "status": "projected"
   },
   {
+   "plantId": "palisades",
+   "unit": 1,
+   "start": "2030-09-16",
+   "days": 30,
+   "status": "projected"
+  },
+  {
    "plantId": "palo-verde",
    "unit": 2,
    "start": "2030-09-20",
@@ -4386,13 +4414,6 @@
    "unit": 2,
    "start": "2030-09-22",
    "days": 28,
-   "status": "projected"
-  },
-  {
-   "plantId": "robinson",
-   "unit": 2,
-   "start": "2030-10-03",
-   "days": 31,
    "status": "projected"
   },
   {
@@ -4421,6 +4442,13 @@
    "unit": 1,
    "start": "2030-10-06",
    "days": 18,
+   "status": "projected"
+  },
+  {
+   "plantId": "prairie-island",
+   "unit": 1,
+   "start": "2030-10-07",
+   "days": 40,
    "status": "projected"
   },
   {
@@ -4599,6 +4627,13 @@
    "status": "projected"
   },
   {
+   "plantId": "sequoyah",
+   "unit": 2,
+   "start": "2031-03-22",
+   "days": 27,
+   "status": "projected"
+  },
+  {
    "plantId": "susquehanna",
    "unit": 2,
    "start": "2031-03-24",
@@ -4624,13 +4659,6 @@
    "unit": 1,
    "start": "2031-04-03",
    "days": 43,
-   "status": "projected"
-  },
-  {
-   "plantId": "prairie-island",
-   "unit": 1,
-   "start": "2031-04-03",
-   "days": 42,
    "status": "projected"
   },
   {
@@ -4683,6 +4711,13 @@
    "status": "projected"
   },
   {
+   "plantId": "monticello",
+   "unit": 1,
+   "start": "2031-04-21",
+   "days": 32,
+   "status": "projected"
+  },
+  {
    "plantId": "limerick",
    "unit": 2,
    "start": "2031-04-28",
@@ -4711,10 +4746,17 @@
    "status": "projected"
   },
   {
-   "plantId": "sequoyah",
+   "plantId": "summer",
+   "unit": 1,
+   "start": "2031-06-29",
+   "days": 41,
+   "status": "projected"
+  },
+  {
+   "plantId": "catawba",
    "unit": 2,
-   "start": "2031-05-30",
-   "days": 21,
+   "start": "2031-09-01",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -4725,17 +4767,17 @@
    "status": "projected"
   },
   {
-   "plantId": "vogtle",
-   "unit": 4,
-   "start": "2031-09-07",
-   "days": 30,
-   "status": "projected"
-  },
-  {
    "plantId": "clinton",
    "unit": 1,
    "start": "2031-09-08",
    "days": 26,
+   "status": "projected"
+  },
+  {
+   "plantId": "vogtle",
+   "unit": 4,
+   "start": "2031-09-09",
+   "days": 30,
    "status": "projected"
   },
   {
@@ -4865,5 +4907,15 @@
    "status": "projected"
   }
  ],
- "unmatched": []
+ "unmatched": [],
+ "corrected": [
+  "catawba#2",
+  "vogtle#4",
+  "monticello#1",
+  "palisades#1",
+  "summer#1",
+  "sequoyah#2",
+  "robinson#2",
+  "prairie-island#1"
+ ]
 }

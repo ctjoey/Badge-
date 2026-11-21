@@ -1,0 +1,14 @@
+{
+ "note": "Next-refueling corrections, checked against nuclearhustle.com/outages on 2026-11-21 (start = middle of their forecast window). Each one is used only until the NRC reports show an outage near that date, or the date has passed. Applied by applyCorrections() in src/utils/outageModel.mjs.",
+ "source": "nuclearhustle.com/outages",
+ "corrections": [
+  { "plantId": "catawba", "unit": 2, "start": "2027-03-01", "cycleMonths": 18, "days": 30 },
+  { "plantId": "vogtle", "unit": 4, "start": "2027-03-09", "cycleMonths": 18, "days": 30 },
+  { "plantId": "monticello", "unit": 1, "start": "2027-04-21", "cycleMonths": 24, "days": 32 },
+  { "plantId": "palisades", "unit": 1, "start": "2027-05-16", "cycleMonths": 20, "days": 30 },
+  { "plantId": "summer", "unit": 1, "start": "2027-06-29", "cycleMonths": 16, "days": 41 },
+  { "plantId": "sequoyah", "unit": 2, "start": "2028-03-22", "cycleMonths": 18, "days": 27 },
+  { "plantId": "robinson", "unit": 2, "start": "2028-08-25", "cycleMonths": 23, "days": 33 },
+  { "plantId": "prairie-island", "unit": 1, "start": "2028-10-07", "cycleMonths": 24, "days": 40 }
+ ]
+}

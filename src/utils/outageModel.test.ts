@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import plants from "@/data/plants.json";
-import { buildOutageData, findOutages, matchUnit, parseNrcStatus, projectUnit } from "./outageModel.mjs";
+import { applyCorrections, buildOutageData, findOutages, matchUnit, parseNrcStatus, projectUnit } from "./outageModel.mjs";
 
 /** Synthetic NRC report: `unit` at 100% except the given zero-power ranges. */
 function report(unit: string, from: string, to: string, zero: [string, string][]): string {
@@ -119,5 +119,31 @@ describe("buildOutageData", () => {
     expect(d.outages[0]).toMatchObject({ plantId: "surry", unit: 1, start: "2027-05-01", days: 28, status: "projected" });
     expect(d.unmatched).toEqual(["Unknown Plant 9"]);
     expect(d.latestReport).toBe("2026-11-13");
+  });
+});
+
+describe("applyCorrections", () => {
+  const base = {
+    today: "2026-11-21",
+    years: 5,
+    units: [{ plantId: "catawba", unit: 2, history: [{ start: "2025-09-03", end: "2025-10-04", days: 32 }] }],
+    outages: [
+      { plantId: "catawba", unit: 2, start: "2028-03-31", days: 18, status: "projected" as const },
+      { plantId: "vogtle", unit: 1, start: "2027-08-22", days: 26, status: "projected" as const },
+    ],
+  };
+
+  it("replaces a unit's projected outages with the corrected cycle", () => {
+    const out = applyCorrections(base, [{ plantId: "catawba", unit: 2, start: "2027-03-01", cycleMonths: 18, days: 30 }]);
+    const cat = out.outages.filter((o) => o.plantId === "catawba").map((o) => o.start);
+    expect(cat).toEqual(["2027-03-01", "2028-09-01", "2030-03-01", "2031-09-01"]);
+    expect(out.outages.some((o) => o.plantId === "vogtle")).toBe(true);
+    expect(out.corrected).toEqual(["catawba#2"]);
+  });
+
+  it("is dropped once NRC reports show that outage, or after it has passed", () => {
+    const seen = { ...base, units: [{ ...base.units[0], history: [{ start: "2027-03-10", end: null, days: 5 }] }] };
+    expect(applyCorrections(seen, [{ plantId: "catawba", unit: 2, start: "2027-03-01", cycleMonths: 18, days: 30 }]).corrected).toEqual([]);
+    expect(applyCorrections(base, [{ plantId: "catawba", unit: 2, start: "2026-01-01", cycleMonths: 18, days: 30 }]).corrected).toEqual([]);
   });
 });

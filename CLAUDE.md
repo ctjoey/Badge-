@@ -36,6 +36,9 @@
   cloud painted on canvas in `src/utils/cloudRender.ts`, daytime sky in `src/app/globals.css`).
 - Outage data: `src/data/outages.json`, refreshed weekly (Mondays) by `.github/workflows/outages.yml`
   from NRC daily power reports (`scripts/scrape-outages.mjs`, `src/utils/outageModel.mjs`).
+  Hand-checked fixes in `src/data/outageCorrections.json` (from nuclearhustle.com/outages, 2026-11-21) are
+  re-applied on every weekly refresh until NRC reports show that outage. To re-check against that site, run the
+  "Fetch nuclearhustle outages" workflow: it commits a copy of the page to `data-raw/nuclearhustle/` (delete it after use).
   Plants list: `src/data/plants.json` (55 sites, 95 units).
 
 ## Checks and tools

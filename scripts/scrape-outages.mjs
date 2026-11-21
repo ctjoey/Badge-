@@ -2,7 +2,7 @@
 // detect each unit's refueling outages and project the next 5 years → src/data/outages.json.
 // Usage: node scripts/scrape-outages.mjs [--from-dir <dir with .txt files>]
 import { readFile, readdir, writeFile } from "node:fs/promises";
-import { buildOutageData } from "../src/utils/outageModel.mjs";
+import { applyCorrections, buildOutageData } from "../src/utils/outageModel.mjs";
 
 const BASE = "https://www.nrc.gov/reading-rm/doc-collections/event-status/reactor-status";
 const plants = JSON.parse(await readFile(new URL("../src/data/plants.json", import.meta.url), "utf8"));
@@ -53,7 +53,9 @@ if (fromDir > -1) {
   }
 }
 
-const data = buildOutageData(texts, plants, today);
+const corrections = JSON.parse(await readFile(new URL("../src/data/outageCorrections.json", import.meta.url), "utf8"));
+const data = applyCorrections(buildOutageData(texts, plants, today), corrections.corrections);
+console.log(`corrections applied: ${data.corrected.join(", ") || "none"}`);
 const matched = new Set(data.units.map((u) => `${u.plantId}#${u.unit}`));
 const missing = plants.flatMap((p) => p.units.filter((u) => !matched.has(`${p.id}#${u}`)).map((u) => `${p.name} ${u}`));
 console.log(`units matched: ${data.units.length}, projected outages: ${data.outages.length}, latest report: ${data.latestReport}`);

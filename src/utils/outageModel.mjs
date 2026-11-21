@@ -226,4 +226,39 @@ export function buildOutageData(texts, plants, today, years = 5) {
   };
 }
 
+/**
+ * Apply hand-checked next-refueling corrections (src/data/outageCorrections.json) to a dataset
+ * from buildOutageData. A correction replaces the unit's projected outages with
+ * `start`, `start + cycleMonths`, ... It is skipped once the NRC history shows an outage within
+ * 90 days of `start` (the real data wins), or once `start + days` has passed.
+ * @template {{today:string, years?:number, units?:{plantId:string,unit:number,history?:{start:string}[]}[], outages:{plantId:string,unit:number,start:string,days:number,status:string}[]}} T
+ * @param {T} data
+ * @param {{plantId:string,unit:number,start:string,cycleMonths:number,days:number}[]} corrections
+ */
+export function applyCorrections(data, corrections) {
+  const today = data.today;
+  const horizon = addMonths(today, (data.years ?? 5) * 12);
+  let outages = data.outages;
+  const applied = [];
+  for (const c of corrections ?? []) {
+    const unit = (data.units ?? []).find((u) => u.plantId === c.plantId && u.unit === c.unit);
+    const observed = (unit?.history ?? []).some((h) => Math.abs(daysBetween(h.start, c.start)) <= 90);
+    if (observed || addDays(c.start, c.days) < today) continue;
+    const added = [];
+    for (let k = 0; ; k++) {
+      const start = addMonths(c.start, c.cycleMonths * k);
+      if (start > horizon) break;
+      const status = start > today ? "projected" : "in-progress";
+      added.push({ plantId: c.plantId, unit: c.unit, start, days: c.days, status });
+    }
+    outages = [
+      ...outages.filter((o) => !(o.plantId === c.plantId && o.unit === c.unit && o.status === "projected")),
+      ...added,
+    ];
+    applied.push(`${c.plantId}#${c.unit}`);
+  }
+  outages.sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
+  return { ...data, outages, corrected: applied };
+}
+
 export const _internal = { addMonths, daysBetween, addDays };
